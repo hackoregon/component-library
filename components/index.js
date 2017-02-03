@@ -7,6 +7,7 @@ import DropdownMenu from './DropdownMenu/DropdownMenu';
 import Pie from './Pie/Pie';
 import Slider from './Slider/Slider';
 import Header from './Core/Header';
+import MapView from './MapView/MapView';
 
 export {
   BarChart,
@@ -18,4 +19,5 @@ export {
   Header,
   Pie,
   Slider,
+  MapView,
 };
