@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, linkTo } from '@kadira/storybook'; // eslint-disable-line
 import buttonStory from './Button.story';
+import leafletStory from './Leaflet.story';
 import storycardStory from './StoryCard.story';
 import editableStory from './Editable.story';
 import pieStory from './Pie.story';
@@ -22,6 +23,7 @@ storiesOf('Welcome', module)
 editableStory();
 coreStory();
 buttonStory();
+leafletStory();
 storycardStory();
 pieStory();
 barChartStory();
