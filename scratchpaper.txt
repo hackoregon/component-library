@@ -18,3 +18,13 @@ Try playing around some more with the LeafletMap story, and compare it to Button
 Just see how it's already been done, then try to imitate it.  Easy peasy, just takes focus and time.
 
 You can do this! 🎉
+
+-------
+
+Yeah yeah yeah map is rendering.  Now what?
+
+Whelp, gotta get some tests going.  Proooobably should've done that first but fuck it we're learning here.
+
+SO!  Testing!  Check out Button.test.js and mimic it, I guess.
+
+LATER we'll work on passing props.  Doesn't look too bad.
