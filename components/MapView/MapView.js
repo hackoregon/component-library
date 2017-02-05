@@ -24,4 +24,10 @@ class MapView extends Component {
   }
 }
 
+MapView.propTypes = {
+  center: React.PropTypes.array,
+  zoom: React.PropTypes.number,
+  ref: React.PropTypes.string,
+};
+
 export default MapView;
