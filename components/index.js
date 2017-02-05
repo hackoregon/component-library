@@ -7,7 +7,7 @@ import DropdownMenu from './DropdownMenu/DropdownMenu';
 import Pie from './Pie/Pie';
 import Slider from './Slider/Slider';
 import Header from './Core/Header';
-import Map from './Map/Map';
+import LeafletMap from './LeafletMap/LeafletMap';
 
 export {
   BarChart,
@@ -18,6 +18,6 @@ export {
   ChartData,
   Header,
   Pie,
-  Map,
+  LeafletMap,
   Slider,
 };
