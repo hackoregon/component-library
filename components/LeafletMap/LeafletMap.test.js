@@ -1,10 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from './Button';
+import leafletMap from './LeafletMap';
 
-describe('Button', () => {
-  const testString = 'Hello';
-  const wrapper = shallow(<Button>{testString}</Button>);
+describe('LeafletMap', () => {
   // const mapDiv = wrapper.find('div').shallow();
   // const leafletMap = mapDiv.find('Map');
   // describe('leafletMap', function() {
