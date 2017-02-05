@@ -2,3 +2,12 @@
   height: 400px;
   width: 90%;
 }
+
+/*.leaflet-tile-container {
+  display: flex;
+  flex-wrap: wrap;
+}*/
+
+/*img.leaflet-tile {
+  display: inline-block;
+}*/

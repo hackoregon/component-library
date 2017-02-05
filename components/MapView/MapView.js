@@ -13,11 +13,12 @@ class MapView extends Component {
   render() {
     const position = [45.523452, -122.676207];
     return(
-      <Map className={className} center={position} zoom={13}>
+      <Map className={className} center={position} zoom={13} ref="map">
         <TileLayer
+          className="tile-layer"
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          />
+        />
       </Map>
     );
   }
