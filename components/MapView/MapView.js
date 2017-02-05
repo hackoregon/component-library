@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 const className = cx({ mapDimensions: true });
 
-const data = {lat: 45.523452, long: -122.676207, zoom: 13, ref: "map" }
+export const data = {lat: 45.523452, long: -122.676207, zoom: 13, ref: "map" }
 
 class MapView extends Component {
   render() {
