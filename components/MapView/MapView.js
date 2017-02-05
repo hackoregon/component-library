@@ -6,7 +6,7 @@ import styles from './MapView.styles.css';
 
 const cx = classNames.bind(styles);
 
-const className = cx({ base: true });
+const className = cx({ mapDimensions: true });
 
 const data = {lat: 45.523452, long: -122.676207, zoom: 13, ref: "map" }
 
