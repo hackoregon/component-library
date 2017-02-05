@@ -3,15 +3,20 @@ import { shallow } from 'enzyme';
 import Leaflet from './Leaflet';
 
 describe('Leaflet', () => {
-  const testString = 'Hello';
-  const wrapper = shallow(<Leaflet>{testString}</Leaflet>);
-  it('should render a leaflet', () => {
-    expect(wrapper.find('leaflet')).to.have.length(1);
+  const data = 'data';
+
+  it('should render with Leaflet', () => {
+    const wrapper = shallow(<Leaflet data={data} />);
+    expect(wrapper).to.be.length(1);
   });
-  it('should render with class base', () => {
-    expect(wrapper.props().className).to.contain('base');
+
+  it('should render with class mapSize', () => {
+    const wrapper = shallow(<Leaflet data={data} />);
+    expect(wrapper.props().className).to.contain('mapSize');
   });
-  it('should have the appropriate child text', () => {
-    expect(wrapper.text()).to.eql(testString);
+
+  it('should render with zoom of 14', () => {
+    const wrapper = shallow(<Leaflet data={data} />);
+    expect(wrapper.props().zoom).to.equal(14);
   });
 });
