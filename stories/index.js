@@ -9,6 +9,7 @@ import barChartStory from './BarChart.story';
 import dropdownStory from './DropdownMenu.story';
 import coreStory from './Core.story';
 import Welcome from './Welcome';
+import mapStory from './Map.story';
 
 import '../components/global.styles.css';
 
@@ -27,3 +28,4 @@ pieStory();
 barChartStory();
 sliderStory();
 dropdownStory();
+mapStory();
