@@ -8,12 +8,12 @@ const cx = classNames.bind(styles);
 
 const className = cx({ base: true });
 
+const data = {lat: 45.523452, long: -122.676207, zoom: 13, ref: "map" }
 
 class MapView extends Component {
   render() {
-    const position = [45.523452, -122.676207];
     return(
-      <Map className={className} center={position} zoom={13} ref="map">
+      <Map className={className} center={[data.lat, data.long]} zoom={data.zoom} ref={data.ref}>
         <TileLayer
           className="tile-layer"
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
