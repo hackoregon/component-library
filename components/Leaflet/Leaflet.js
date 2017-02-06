@@ -4,25 +4,41 @@ import classNames from 'classnames/bind';
 import styles from './Leaflet.styles.css';
 
 const cx = classNames.bind(styles);
-
 const className = cx({ base: true });
-//TODO: The map isn't rendering, determine why via testing
-const Leaflet = geoJson => (
-  <Map center={45.5236111, -122.675} zoom={13}>
-    <TileLayer
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-    />
-    <Marker position={45.5236111, -122.675}>
-      <Popup>
-        <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
-      </Popup>
-    </Marker>
-  </Map>
-);
+
+class Leaflet extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      geoJson:{},
+      lat: 45.5236111,
+      lng: -122.675,
+      zoom: 11,
+    };
+  }
+
+  render() {
+    const position = [this.state.lat, this.state.lng];
+    return (
+      <Map center={position} zoom={this.state.zoom}>
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+        />
+        <Marker position={position}>
+          <Popup>
+            <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
+          </Popup>
+        </Marker>
+      </Map>
+    );
+  }
+}
 
 Leaflet.propTypes = {
   geoJson: React.PropTypes.object,
 };
+
+Leaflet.displayName = 'Leaflet';
 
 export default Leaflet;
