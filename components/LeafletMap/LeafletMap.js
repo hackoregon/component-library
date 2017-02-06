@@ -6,7 +6,7 @@ import styles from './LeafletMap.style.css';
 const cx = classNames.bind(styles);
 const className = cx({ mapStyles: true });
 
-const position = [45.5231, -122.6765];
+const position = [45.52, -122.67];
 const zoom = 11;
 
 const attribute = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
