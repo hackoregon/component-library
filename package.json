@@ -39,10 +39,12 @@
     "eslint-plugin-prefer-object-spread": "^1.1.0",
     "eslint-plugin-react": "^6.8.0",
     "ignore-styles": "^5.0.1",
+    "leaflet": "^1.0.3",
     "mocha": "^3.2.0",
     "react-addons-css-transition-group": "^15.4.1",
     "react-addons-shallow-compare": "^15.4.1",
     "react-addons-test-utils": "^15.4.1",
+    "react-leaflet": "^1.1.0",
     "sinon": "^1.17.7"
   },
   "dependencies": {
