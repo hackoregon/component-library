@@ -8,7 +8,7 @@ const description = `
   Basic usage of leaflet should produce a map for a given set of coordinates.`;
 
 const demoCode = () => (
-  <Leaflet data={[{ z: 14 }, { x: 45.5234500 }, { y: -122.6762100 }]} />
+  <Leaflet zoom={14} position={[45.5234500, -122.6762100]} />
 );
 
 const propDocs = { inline: true, propTables: [Leaflet] };
@@ -20,4 +20,3 @@ export default () => storiesOf(displayName, module)
     demoCode,
     propDocs,
   );
-  

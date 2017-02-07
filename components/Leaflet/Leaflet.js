@@ -5,21 +5,23 @@ import styles from './Leaflet.styles.css';
 
 const cx = classNames.bind(styles);
 const className = cx({ mapSize: true });
-const data = { z: 14, x: 45.5234500, y: -122.6762100 };
 
-const Leaflet = () => (
-  <Map className={className} center={[data.x, data.y]} zoom={data.z}>
-    <TileLayer
-      url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    />
-  </Map>
-);
+const Leaflet = ({ zoom, position }) => {
+  require('../../assets/leaflet.css');
+  return (
+    <Map className={className} center={position} zoom={zoom} >
+      <TileLayer
+        url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      />
+    </Map>
+  );
+};
 
 Leaflet.displayName = 'Leaflet';
 
 Leaflet.propTypes = {
-  center: React.PropTypes.array,
+  position: React.PropTypes.array,
   zoom: React.PropTypes.number,
 };
 

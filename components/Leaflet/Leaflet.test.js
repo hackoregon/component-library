@@ -16,7 +16,7 @@ describe('Leaflet', () => {
   });
 
   it('should render with zoom of 14', () => {
-    const wrapper = shallow(<Leaflet data={data} />);
+    const wrapper = shallow(<Leaflet zoom={14} position={[45.5234500, -122.6762100]} />);
     expect(wrapper.props().zoom).to.equal(14);
   });
 });
