@@ -12,11 +12,11 @@ const regularUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
 const LeafletMap = () => (
   <div>
     <Map center={mapCenter} zoom={zoomLevel}>
-      <TileLayer attribution={regularAttribute} url={regularUrl} />
+      <TileLayer attribution={stamenTonerAttr} url={stamenTonerTiles} />
     </Map>
   </div>
 );
 
-//LeafletMap.displayName = 'LeafletMap';
+LeafletMap.displayName = 'Map';
 
 export default LeafletMap;
