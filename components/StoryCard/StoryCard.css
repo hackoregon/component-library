@@ -1,9 +1,13 @@
 /* StoryCard Styles */
 
-.title {
-  color: #220f25;
+.Card {
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-p {
-  color: #706371;
+.Description {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
 }
