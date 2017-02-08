@@ -1,7 +1,7 @@
-#mapid {
+.mapid {
   height: 300px;
 }
 
-#mapid > * {
+.mapid > * {
   height: 300px;
 }

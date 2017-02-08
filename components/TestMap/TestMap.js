@@ -1,18 +1,17 @@
 import React from 'react';
 import { Map, TileLayer } from 'react-leaflet';
-import styles from './TestMap.styles.css';
 
 const TestMap = ({ position, zoom, url, attribution }) => {
+  require('./TestMap.styles.css');
   require('../../assets/leaflet.css');
+
   return (
-    <div id="mapid">
-      <Map center={position} zoom={zoom}>
-        <TileLayer
-          url={url}
-          attribution={attribution}
-        />
-      </Map>
-    </div>
+    <Map className="mapid" center={position} zoom={zoom}>
+      <TileLayer
+        url={url}
+        attribution={attribution}
+      />
+    </Map>
   );
 };
 TestMap.displayName = 'TestMap';

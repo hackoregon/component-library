@@ -29,7 +29,7 @@ const demoCode = () => {
       );
     }
   }
-  return (<DemoTestMap />)
+  return (<DemoTestMap />);
 };
 
 const propDocs = { inline: true, propTables: [TestMap] };
