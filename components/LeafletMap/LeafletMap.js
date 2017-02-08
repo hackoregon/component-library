@@ -5,7 +5,7 @@ import map from './LeafletMap.styles.css';
 
 const data = {
   position: [45.51, -122.68],
-  zoom: 13
+  zoom: 13,
 };
 
 const LeafletMap = () => {
