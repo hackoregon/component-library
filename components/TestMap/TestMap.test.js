@@ -17,20 +17,19 @@ describe('TestMap', () => {
     attribution={data.attribution}
   />);
 
-  // TESTS BELOW WORKED WHEN COMPONENT WAS INITIALLY SIMILAR TO BUTTON,
-  // BUT NOW TESTING BREAKS AND SAYS REFEENCE ERROR: WINDOW IS NOT DEFINED
+  it('should render with Leaflet', () => {
+    expect(wrapper).to.be.length(1);
+  });
 
-  // it('should render with id prop of mapid', () => {
-  //   expect(wrapper).to.not.be(true);
-  // });
-  // // Redundant to the first test, but helps feel out the Enzyme API
-  // it('should render with css id mapid', () => {
-  //   expect(wrapper.find('#mapid')).to.have.length(1);
-  // });
-  // it('should render with a child div', () => {
-  //   expect(wrapper.find('div')).to.have.length(1);
-  // });
-  // it('should have the appropriate text in the child div', () => {
-  //   expect(wrapper.find('div').children().text()).to.eql('YO');
-  // });
+  it('should render a Map component', () => {
+    expect(wrapper.find('Map')).to.have.length(1);
+  });
+
+  it('should render a TileLayer component', () => {
+    expect(wrapper.find('TileLayer')).to.have.length(1);
+  });
+
+  it('should have a property of zoom equaling 13', () => {
+    expect(wrapper.props().zoom).to.equal(13);
+  });
 });
