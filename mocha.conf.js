@@ -30,7 +30,7 @@ Object.keys(document.defaultView).forEach((property) => {
 
 // ref setup
 // windowRef = window;
-documentRef = document;
+// documentRef = document;
 
 // chai setup
 chai.use(sinonChai);

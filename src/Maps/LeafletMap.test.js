@@ -8,14 +8,14 @@ describe('LeafletMap', function() {
   const zoom = 10;
 
   it('should render a map', () => {
+    // debugger
     const wrapper = shallow(<LeafletMap postion={position} zoom={zoom} />);
-    debugger
-    expect(wrapper.find('mainMap')).to.have.length(1);
+    expect(wrapper.find('.mainMap')).to.have.length(1);
   });
 
-  // it('should render with class mapSize', () => {
-  //   const wrapper = shallow(<Leaflet postion={position} zoom={zoom} />);
-  //   expect(wrapper.props().className).to.contain('mapStyles');
+  // it('should render with class mapStyles', () => {
+  //   const wrapper = shallow(<LeafletMap postion={position} zoom={zoom} />);
+  //   expect(wrapper.props().className).to.contain('.mapStyles');
   // });
 
 

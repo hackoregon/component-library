@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "",
-     "test": "mocha --compilers js:babel-core/register --require ./mocha.conf.js --require jsdom-global/register --require ignore-styles --colors -w ./src/**/*.test.js",
+    "test": "mocha --compilers js:babel-core/register --require ./mocha.conf.js --require jsdom-global/register --require ignore-styles --colors -w ./src/**/*.test.js",
     "start": "start-storybook -p 6006",
     "lint": "eslint src stories --fix",
     "deploy-storybook": "storybook-to-ghpages",
@@ -27,6 +27,7 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-stage-1": "^6.16.0",
     "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
     "enzyme": "^2.7.0",
     "eslint": "^3.12.1",
     "eslint-config-airbnb": "^13.0.0",
@@ -48,6 +49,7 @@
     "react-addons-test-utils": "^15.4.1",
     "react-leaflet": "^1.1.0",
     "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0",
     "webpack": "^1.13.1"
   },
   "dependencies": {

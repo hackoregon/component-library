@@ -12,7 +12,7 @@ const zoom = 11;
 const attribute = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
 const url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
 
-const LeafletMap = () => {
+const LeafletMap = (props) => {
   require('../../assets/leaflet.css');
   return (
     <div>
