@@ -2,10 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import leafletMap from './LeafletMap';
 
-before(function(){
-  window={}
-});
-
 describe('<LeafletMap />', () => {
   // const mapDiv = wrapper.find('div').shallow();
   // const leafletMap = mapDiv.find('Map');
