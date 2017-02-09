@@ -27,5 +27,4 @@ li a {
 
 .NavRouterLink a:active {
     color: rgba(0,0,0,.85);
-    background-color: #fff;
 }
