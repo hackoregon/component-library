@@ -5,13 +5,13 @@ import storycardStory from './StoryCard.story';
 import editableStory from './Editable.story';
 import pieStory from './Pie.story';
 import sliderStory from './Slider.story';
-import leafletMapStory from './LeafletMap.story';
+import leafletStory from './Leaflet.story';
 import barChartStory from './BarChart.story';
 import dropdownStory from './DropdownMenu.story';
 import coreStory from './Core.story';
 import Welcome from './Welcome';
 
-import '../components/global.styles.css';
+import '../src/global.styles.css';
 
 // stories can be added directly here
 storiesOf('Welcome', module)
@@ -28,4 +28,4 @@ pieStory();
 barChartStory();
 sliderStory();
 dropdownStory();
-leafletMapStory();
+leafletStory();
