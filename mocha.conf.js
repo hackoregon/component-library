@@ -2,6 +2,7 @@
 const chai = require('chai');
 // stubbing/spying library
 const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
 // dom object in node
 const jsdom = require('jsdom').jsdom;
 
@@ -28,8 +29,8 @@ Object.keys(document.defaultView).forEach((property) => {
 });
 
 // ref setup
-windowRef = window;
-documentRef = document;
+// windowRef = window;
+// documentRef = document;
 
 // chai setup
 chai.use(sinonChai);
