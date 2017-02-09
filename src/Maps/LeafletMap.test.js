@@ -2,23 +2,37 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import leafletMap from './LeafletMap';
 
-describe('LeafletMap', () => {
+before(function(){
+  window={}
+});
+
+describe('<LeafletMap />', () => {
   // const mapDiv = wrapper.find('div').shallow();
   // const leafletMap = mapDiv.find('Map');
-  // describe('leafletMap', function() {
-  //   it('should have map', function() {
-  //     expect(leafletMap).to.have.length(1);
-  //     expect(leafletMap).shallow().props()).to.have.property('position', )
-  //   });
-  // });
 
-  it('should render a button', () => {
-    expect(wrapper.find('button')).to.have.length(1);
+  it('should have map', function() {
+    expect(leafletMap).to.have.length(1);
+    expect(leafletMap).shallow().props()).to.have.property('position', )
   });
-  it('should render with class base', () => {
-    expect(wrapper.props().className).to.contain('base');
+
+
+describe('<LeafletMap />', () => {
+  // const mapDiv = wrapper.find('div').shallow();
+  // const leafletMap = mapDiv.find('Map');
+  describe('leafletMap', function() {
+    it('should have map', function() {
+      expect(leafletMap).to.have.length(1);
+      expect(leafletMap).shallow().props()).to.have.property('position', )
+    });
   });
-  it('should have the appropriate child text', () => {
-    expect(wrapper.text()).to.eql(testString);
-  });
+
+  // it('should render a button', () => {
+  //   expect(wrapper.find('button')).to.have.length(1);
+  // });
+  // it('should render with class base', () => {
+  //   expect(wrapper.props().className).to.contain('base');
+  // });
+  // it('should have the appropriate child text', () => {
+  //   expect(wrapper.text()).to.eql(testString);
+  // });
 });
