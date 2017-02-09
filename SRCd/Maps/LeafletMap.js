@@ -13,7 +13,7 @@ const attribute = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> c
 const url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 
 const LeafletMap = () => (
-  // require('../../assets/leaflet.css')
+  require('../../assets/leaflet.css')
   <div>
     <Map className={className} center={position} zoom={zoom}>
       <TileLayer
