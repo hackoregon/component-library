@@ -29,7 +29,7 @@ Object.keys(document.defaultView).forEach((property) => {
 });
 
 // ref setup
-windowRef = window;
+// windowRef = window;
 documentRef = document;
 
 // chai setup
