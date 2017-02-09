@@ -8,7 +8,7 @@ const description = `
   A Leaflet tile map using react-leaflet that centers on given coordinates and a zoom level.`;
 
 const demoCode = () => (
-	<LeafletMap center={[45.51, -122.68]} zoom={13} />
+  <LeafletMap center={[45.51, -122.68]} zoom={13} />
 );
 
 const propDocs = { inline: true, propTables: [LeafletMap] };

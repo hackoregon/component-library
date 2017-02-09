@@ -6,14 +6,16 @@ import map from './LeafletMap.styles.css';
 const data = {
   position: [45.51, -122.68],
   zoom: 13,
+  // url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+  // attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 };
 
 const LeafletMap = () => {
   require('../../assets/leaflet.css');
   return (
-    <Map id='map' center={data.position} zoom={data.zoom}>
+    <Map id="map" center={data.position} zoom={data.zoom}>
       <TileLayer
-        url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+        url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
     </Map>
@@ -39,5 +41,3 @@ LeafletMap.propTypes = {
 };
 
 export default LeafletMap;
-
-
