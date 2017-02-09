@@ -11,9 +11,9 @@ import barChartStory from './BarChart.story';
 import dropdownStory from './DropdownMenu.story';
 import headerStory from './Header.story';
 import Welcome from './Welcome';
-import TestMap from './TestMap.story';
+import LeafletMap from './LeafletMap.story';
 
-import '../components/global.styles.css';
+import '../SRC/global.styles.css';
 
 // stories can be added directly here
 storiesOf('Welcome', module)
@@ -32,4 +32,4 @@ pieStory();
 barChartStory();
 sliderStory();
 dropdownStory();
-TestMap();
+LeafletMap();

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Map, TileLayer } from 'react-leaflet';
 
-const TestMap = ({ position, zoom, url, attribution }) => {
-  require('./TestMap.styles.css');
+const LeafletMap = ({ position, zoom, url, attribution }) => {
+  require('./LeafletMap.css');
   require('../../assets/leaflet.css');
 
   return (
@@ -14,13 +14,13 @@ const TestMap = ({ position, zoom, url, attribution }) => {
     </Map>
   );
 };
-TestMap.displayName = 'TestMap';
+LeafletMap.displayName = 'LeafletMap';
 
-TestMap.propTypes = {
+LeafletMap.propTypes = {
   position: React.PropTypes.array,
   zoom: React.PropTypes.number,
   url: React.PropTypes.string,
   attribution: React.PropTypes.string,
 };
 
-export default TestMap;
+export default LeafletMap;

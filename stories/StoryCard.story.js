@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { StoryCard, Chart, ChartData, Pie } from '../components';
+import { StoryCard, Chart, ChartData, Pie } from '../SRC';
 import { getRandomValuesArray, getColors, randomizer, wallOfText } from './shared';
 
 const labels = ['A', 'B', 'C', 'D', 'E', 'F'];

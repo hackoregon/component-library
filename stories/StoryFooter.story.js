@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import { withKnobs, text, object } from '@kadira/storybook-addon-knobs';
-import StoryFooter from '../components/StoryCard/StoryFooter';
-import { ICONS } from '../components/styleConstants';
+import StoryFooter from '../SRC/StoryCard/StoryFooter';
+import { ICONS } from '../SRC/styleConstants';
 
 const collectionId = 'collection-id';
 const cardId = 'cardId';

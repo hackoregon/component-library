@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { TestMap } from '../components';
+import { LeafletMap } from '../SRC';
 
-const displayName = TestMap.displayName || 'Test Map';
+const displayName = LeafletMap.displayName || 'Leaflet Map';
 const title = 'Simple usage';
 const description = `
   This map can show you anywhere on Earth, anywhere.`;
 
 const demoCode = () => {
-  class DemoTestMap extends React.Component {
+  class DemoLeafletMap extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -20,7 +20,7 @@ const demoCode = () => {
     }
     render() {
       return (
-        <TestMap
+        <LeafletMap
           position={this.state.position}
           zoom={this.state.zoom}
           url={this.state.url}
@@ -29,10 +29,10 @@ const demoCode = () => {
       );
     }
   }
-  return (<DemoTestMap />);
+  return (<DemoLeafletMap />);
 };
 
-const propDocs = { inline: true, propTables: [TestMap] };
+const propDocs = { inline: true, propTables: [LeafletMap] };
 
 export default () => storiesOf(displayName, module)
   .addWithInfo(
