@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "",
-    "test": "mocha --compilers js:babel-core/register --require ./mocha.conf.js --require jsdom-global/register --require ignore-styles --colors -w ./components/**/*.test.js",
-    "test:watch": "npm run test -- --watch",
+    "test": "mocha --compilers js:babel-core/register --require ./mocha.conf.js --require jsdom-global/register --require ignore-styles --colors -w ./src/**/*.test.js",
     "start": "start-storybook -p 6006",
-    "lint": "eslint components stories --fix",
+    "lint": "eslint src stories --fix",
     "deploy-storybook": "storybook-to-ghpages",
     "build-storybook": "build-storybook"
   },
@@ -52,6 +51,7 @@
   "dependencies": {
     "@kadira/storybook-addons": "^1.6.1",
     "classnames": "2.2.5",
+    "copy-to-clipboard": "^3.0.5",
     "d3": "3.5.6",
     "leaflet": "^1.0.0-rc.2",
     "rc-slider": "^5.4.0",

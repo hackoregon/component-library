@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map, TileLayer } from 'react-leaflet';
 import classNames from 'classnames/bind';
-import styles from './Leaflet.styles.css';
+import styles from './LeafletMap.styles.css';
 
 const cx = classNames.bind(styles);
 const className = cx({ mapSize: true });

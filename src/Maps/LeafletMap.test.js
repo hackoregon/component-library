@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Leaflet from './Leaflet';
+import Leaflet from './LeafletMap';
 
 describe('Leaflet', () => {
   const data = 'data';
