@@ -13,7 +13,7 @@ import headerStory from './Header.story';
 import Welcome from './Welcome';
 import LeafletMap from './LeafletMap.story';
 
-import '../SRC/global.styles.css';
+import '../src/global.styles.css';
 
 // stories can be added directly here
 storiesOf('Welcome', module)
