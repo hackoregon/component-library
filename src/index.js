@@ -8,16 +8,20 @@ import Pie from './Pie/Pie';
 import Slider from './Slider/Slider';
 import Header from './Core/Header';
 import LeafletMap from './Maps/LeafletMap';
+import Nav from './Navigation/Nav';
+import NavRouterLink from './Navigation/NavRouterLink';
 
 export {
   BarChart,
   Button,
-  DropdownMenu,
-  StoryCard,
   Chart,
   ChartData,
+  DropdownMenu,
   Header,
   Pie,
   Slider,
-  LeafletMap
+  LeafletMap,
+  StoryCard,
+  Nav,
+  NavRouterLink,
 };

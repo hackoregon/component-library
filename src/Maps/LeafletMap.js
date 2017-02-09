@@ -10,20 +10,20 @@ const position = [45.52, -122.67];
 const zoom = 11;
 
 const attribute = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
-const url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+const url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
 
 const LeafletMap = () => {
-    require('../../assets/leaflet.css');
+  require('../../assets/leaflet.css');
   return (
     <div>
-      <Map className={className} center={position} zoom={zoom}>
+      <Map className={className, 'mainMap'} center={position} zoom={zoom}>
         <TileLayer
           url={url}
           attribution={attribute}
-         />
+        />
       </Map>
     </div>
-  )
+  );
 };
 
 LeafletMap.displayName = 'LeafletMap';
