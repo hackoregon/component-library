@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { Leaflet } from '../components';
+import { Leaflet } from '../src';
 
 const displayName = Leaflet.displayName || 'Leaflet';
 const title = 'Simple usage';
