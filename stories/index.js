@@ -2,16 +2,18 @@ import React from 'react';
 import { storiesOf, linkTo } from '@kadira/storybook'; // eslint-disable-line
 import buttonStory from './Button.story';
 import storycardStory from './StoryCard.story';
+import storyLinkStory from './StoryLink.story';
+import storyFooterStory from './StoryFooter.story';
 import editableStory from './Editable.story';
 import pieStory from './Pie.story';
 import sliderStory from './Slider.story';
 import barChartStory from './BarChart.story';
 import dropdownStory from './DropdownMenu.story';
-import coreStory from './Core.story';
+import headerStory from './Header.story';
 import Welcome from './Welcome';
-import leafletmapStory from './LeafletMap.story';
+// import leafletmapStory from './LeafletMap.story';
 
-import '../components/global.styles.css';
+import '../src/global.styles.css';
 
 // stories can be added directly here
 storiesOf('Welcome', module)
@@ -21,11 +23,13 @@ storiesOf('Welcome', module)
 
 // or imported as functions from files then composed in the order you invoke them
 editableStory();
-coreStory();
+headerStory();
 buttonStory();
+storyLinkStory();
+storyFooterStory();
 storycardStory();
 pieStory();
 barChartStory();
 sliderStory();
 dropdownStory();
-leafletmapStory();
+// leafletmapStory();
