@@ -1,9 +1,8 @@
-/* eslint-disable */
-
 // chai syntax
 const chai = require('chai');
 // stubbing/spying library
 const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
 // dom object in node
 const jsdom = require('jsdom').jsdom;
 

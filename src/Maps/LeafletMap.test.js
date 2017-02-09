@@ -7,10 +7,6 @@ describe('LeafletMap', function() {
   const position = [45.52, -122.67];
   const zoom = 10;
 
-  // before(function() {
-  //   window = {};
-  // });
-
   it('should render a map', () => {
     const wrapper = shallow(<LeafletMap postion={position} zoom={zoom} />);
     debugger

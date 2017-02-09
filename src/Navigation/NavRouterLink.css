@@ -22,7 +22,12 @@ li a {
     text-decoration: none;
 }
 
+<<<<<<< HEAD
 .NavRouterLink:active {
     color: #000;
     background-color: #fff;
+=======
+.NavRouterLink a:active {
+    color: rgba(0,0,0,.85);
+>>>>>>> master
 }
