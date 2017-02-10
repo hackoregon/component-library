@@ -7,7 +7,7 @@ import DropdownMenu from './DropdownMenu/DropdownMenu';
 import Pie from './Pie/Pie';
 import Slider from './Slider/Slider';
 import Header from './Core/Header';
-import LeafletMap from './LeafletMap/LeafletMap';
+import LeafletMap from './Maps/LeafletMap';
 
 export {
   BarChart,
