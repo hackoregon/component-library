@@ -4,14 +4,16 @@ import Logo from '../Logo/Logo';
 import './Header.css';
 
 const Header = ({ title = 'Civic', children }) => (
-  <nav className={'Header'}>
-    <div className="logo">
+  <div className={'Header'}>
+    <nav>
+      <div className="logo">
 
-      <Logo alt={title} />
-    </div>
-    <Nav />
-    { children }
-  </nav>
+        <Logo alt={title} />
+      </div>
+      <Nav />
+      { children }
+    </nav>
+  </div>
 );
 
 Header.displayName = 'Header';
