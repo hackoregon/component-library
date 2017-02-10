@@ -34,6 +34,6 @@
 .Hero > .Container > .Content > h1 {
   font-size: 3em;
   line-height: 1.25em;
-  color: #fff;
-  font-weight: 100 !important;
+  color: rgba(255,255,255,1);
+  font-weight: 100;
 }
