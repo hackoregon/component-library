@@ -6,8 +6,11 @@ const displayName = 'LeafletMap';
 const title = 'LeafletMap';
 const description = 'LeafletMap goes here!';
 
+const position = [45.52, -122.67];
+const zoom = 11;
+
 const demoCode = () => (
-  <LeafletMap />
+  <LeafletMap position={position} zoom={zoom} />
 );
 
 const propDocs = { inline: true, propTables: [LeafletMap] };

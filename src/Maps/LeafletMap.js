@@ -6,17 +6,15 @@ import styles from './LeafletMap.style.css';
 const cx = classNames.bind(styles);
 const className = cx({ mapStyles: true });
 
-const position = [45.52, -122.67];
-const zoom = 11;
-
 const attribute = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
 const url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
 
-const LeafletMap = (props) => {
+const LeafletMap = ({ zoom, position }) => {
   require('../../assets/leaflet.css');
+  debugger
   return (
-    <div>
-      <Map className={className, 'mainMap'} center={position} zoom={zoom}>
+    <div className={'mainMap'}>
+      <Map className={className} center={position} zoom={zoom}>
         <TileLayer
           url={url}
           attribution={attribute}
