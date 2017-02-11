@@ -23,7 +23,6 @@ global.window    = document.defaultView;
 
 // we're going to emulate the dom with this part here
 const exposedProperties = ['window', 'navigator', 'document'];
->>>>>>> 94ebfd457be20f581cd938ec4376741ee8add9f7
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {
     exposedProperties.push(property);
@@ -31,16 +30,6 @@ Object.keys(document.defaultView).forEach((property) => {
   }
 });
 
-<<<<<<< HEAD
-// ref setup
-// windowRef = window;
-// documentRef = document;
-
 // chai setup
 chai.use(sinonChai);
 chai.use(require('chai-enzyme')());
-=======
-// chai setup
-chai.use(sinonChai);
-chai.use(require('chai-enzyme')());
->>>>>>> 94ebfd457be20f581cd938ec4376741ee8add9f7

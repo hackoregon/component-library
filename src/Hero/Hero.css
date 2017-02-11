@@ -12,16 +12,10 @@
   top: 0px;
   background-size: cover;
   background-position: center center;
-<<<<<<< HEAD
-}
-
-.Hero .Container {
-=======
   z-index: -100;
 }
 
 .Hero > .Container {
->>>>>>> 94ebfd457be20f581cd938ec4376741ee8add9f7
   position: absolute;
   width: 100%;
   top: 50%;
@@ -30,21 +24,13 @@
   transform: translateY(-50%);
 }
 
-<<<<<<< HEAD
-.Hero .Container .Content {
-=======
 .Hero > .Container > .Content {
->>>>>>> 94ebfd457be20f581cd938ec4376741ee8add9f7
   position: relative;
   max-width: 800px;
   margin: 0 auto;
 }
 
-<<<<<<< HEAD
-.Hero .Container .Content h1 { 
-=======
 .Hero > .Container > .Content > h1 {
->>>>>>> 94ebfd457be20f581cd938ec4376741ee8add9f7
   font-size: 3em;
   line-height: 1.25em;
   color: #fff;
