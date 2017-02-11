@@ -1,26 +1,29 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // chai syntax
-const chai = require('chai');
-// stubbing/spying library
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
+const chai  = require('chai');
 // dom object in node
 const jsdom = require('jsdom').jsdom;
+
+// stubbing/spying library
+const sinon     = require('sinon');
+const sinonChai = require('sinon-chai');
 
 // global setup
 global.assert = chai.assert;
 global.expect = chai.expect;
-global.chai = chai;
-global.sinon = sinon;
+global.chai   = chai;
+global.sinon  = sinon;
 
 // dom setup
-global.document = jsdom('');
+global.document  = jsdom('');
 global.navigator = {
   userAgent: 'node.js',
 };
-global.window = document.defaultView;
+global.window    = document.defaultView;
 
-const exposedProperties = ['window', 'navigator', 'document'];
 // we're going to emulate the dom with this part here
+const exposedProperties = ['window', 'navigator', 'document'];
+>>>>>>> 94ebfd457be20f581cd938ec4376741ee8add9f7
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {
     exposedProperties.push(property);
@@ -28,6 +31,7 @@ Object.keys(document.defaultView).forEach((property) => {
   }
 });
 
+<<<<<<< HEAD
 // ref setup
 // windowRef = window;
 // documentRef = document;
@@ -35,3 +39,8 @@ Object.keys(document.defaultView).forEach((property) => {
 // chai setup
 chai.use(sinonChai);
 chai.use(require('chai-enzyme')());
+=======
+// chai setup
+chai.use(sinonChai);
+chai.use(require('chai-enzyme')());
+>>>>>>> 94ebfd457be20f581cd938ec4376741ee8add9f7
