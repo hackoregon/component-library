@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import map from './LeafletMap.styles.css';
 // import . from '../../assets/leaflet.css';
 
@@ -36,8 +36,8 @@ LeafletMap.displayName = 'LeafletMap';
 LeafletMap.propTypes = {
   center: React.PropTypes.array,
   zoom: React.PropTypes.number,
-  url: React.PropTypes.string,
-  attribution: React.PropTypes.string,
+  // url: React.PropTypes.string,
+  // attribution: React.PropTypes.string,
 };
 
 export default LeafletMap;

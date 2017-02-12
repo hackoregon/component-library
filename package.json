@@ -62,6 +62,7 @@
     "react": "^15.4.2",
     "react-addons-transition-group": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-leaflet": "^1.1.0",
     "react-motion": "^0.4.7",
     "react-router": "^3.0.0",
     "react-selectize": "^2.1.0",
