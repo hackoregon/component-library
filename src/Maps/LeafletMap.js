@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import map from './LeafletMap.styles.css';
 // import . from '../../assets/leaflet.css';
 
