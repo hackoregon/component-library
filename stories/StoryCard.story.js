@@ -2,11 +2,7 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import { StoryCard, Chart, ChartData, Pie } from '../src';
-<<<<<<< HEAD
-import { getRandomValuesArray, getColors, randomizer, wallOfText } from './shared';
-=======
 import { getRandomValuesArray, getColors, randomizer, wallOfRichText } from './shared';
->>>>>>> 94ebfd457be20f581cd938ec4376741ee8add9f7
 
 const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
 const width = 300;
