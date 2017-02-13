@@ -16,7 +16,6 @@ describe('LeafletMap', function() {
 
   it('should render with class mapStyles', () => {
     const wrapper = shallow(<LeafletMap postion={position} zoom={zoom} />);
-    console.log(wrapper.find('.mapStyles'));
     expect(wrapper.find('.mapStyles')).to.have.length(1);
   });
 
