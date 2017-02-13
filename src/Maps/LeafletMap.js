@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import classNames from 'classnames/bind';
 import styles from './LeafletMap.styles.css';
-// import . from '../../assets/leaflet.css';
+import neighborhoodregionsJSON from './Neighborhoods_regions.json';
 
 // const data = {
 //   position: [45.51, -122.68],
@@ -22,6 +22,7 @@ const LeafletMap = (props) => {
         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
+      <GeoJSON data={neighborhoodregionsJSON} />
       <Marker position={props.center} >
         <Popup>
           <span>A pretty CSS3 popup. <br />Currently set to the center coordinates.</span>
