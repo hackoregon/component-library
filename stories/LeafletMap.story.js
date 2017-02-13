@@ -17,6 +17,7 @@ const demoCode = () => {
         zoom: 13,
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        maxBounds: [[45.195681, -123.410041], [45.741425, -122.231894]],
       };
     }
     render() {
@@ -28,6 +29,7 @@ const demoCode = () => {
           url={this.state.url}
           attribution={this.state.attribution}
           data={neighborhoodsRegions}
+          maxBounds={this.state.maxBounds}
         />
       );
     }
