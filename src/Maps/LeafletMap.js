@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import map from './LeafletMap.styles.css';
+import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
+import classNames from 'classnames/bind';
+import styles from './LeafletMap.styles.css';
 // import . from '../../assets/leaflet.css';
 
 // const data = {
@@ -10,6 +11,9 @@ import map from './LeafletMap.styles.css';
 //   // attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 // };
 
+const cx = classNames.bind(styles);
+const className = cx({ base: true });
+
 const LeafletMap = (props) => {
   require('../../assets/leaflet.css');
   return (
@@ -18,6 +22,11 @@ const LeafletMap = (props) => {
         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
+      <Marker position={props.center} >
+        <Popup>
+          <span>A pretty CSS3 popup. <br />Currently set to the center coordinates.</span>
+        </Popup>
+      </Marker>
     </Map>
   );
 };
