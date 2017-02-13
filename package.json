@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "",
-    "test": "mocha --opts ./mocha.options ./src/**/*.test.js",
+    "test": "mocha --compilers js:babel-core/register --require ./mocha.conf.js --require jsdom-global/register --require ignore-styles --colors ./src/**/*.test.js",
     "test:watch": "npm run test -- -w",
     "start": "start-storybook -p 6006",
     "lint": "eslint src stories --fix",

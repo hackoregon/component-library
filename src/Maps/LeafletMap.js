@@ -1,19 +1,52 @@
 import React from 'react';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { divIcon } from 'leaflet';
 import classNames from 'classnames/bind';
 import styles from './LeafletMap.styles.css';
 
 const cx = classNames.bind(styles);
-const className = cx({ mapSize: true });
+const classMap = cx({ mapSize: true });
 
-const Leaflet = ({ zoom, position }) => {
+const icon = divIcon({
+  className: 'my-div-icon',
+  iconSize: [30, 30],
+});
+
+const fired = (marker) => {
+  console.log(marker.neighborhood);
+};
+
+const Leaflet = ({ map, markers }) => {
   require('../../assets/leaflet.css');
+  const neighborhoods = markers.map(marker => (
+    <Marker
+      key={marker.neighborhood}
+      position={marker.position}
+      icon={icon}
+      onMouseOver={() => fired(marker)}
+    >
+      <Popup>
+        <span>
+          {marker.neighborhood} <br />
+          {marker.popText}
+        </span>
+      </Popup>
+    </Marker>
+    ),
+  );
   return (
-    <Map className={className} center={position} zoom={zoom} >
+    <Map
+      className={classMap}
+      center={map.position}
+      maxBounds={map.maxBounds}
+      zoom={map.zoom}
+      minZoom={map.minZoom}
+    >
       <TileLayer
         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
+      {neighborhoods}
     </Map>
   );
 };
@@ -21,8 +54,8 @@ const Leaflet = ({ zoom, position }) => {
 Leaflet.displayName = 'Leaflet';
 
 Leaflet.propTypes = {
-  position: React.PropTypes.array,
-  zoom: React.PropTypes.number,
+  map: React.PropTypes.object,
+  markers: React.PropTypes.array,
 };
 
 export default Leaflet;

@@ -2,3 +2,11 @@
     height: 600px;
     width: 50%;
 }
+
+.my-div-icon {
+  background: url('../../assets/marker-icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 25px;
+}
