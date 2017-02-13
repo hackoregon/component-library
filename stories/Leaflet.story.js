@@ -11,7 +11,7 @@ const zoom = 10;
 const maxzoom = 10;
 
 const demoCode = () => (
-  <LeafletMap position={position} zoom={zoom} maxzoom={maxzoom} />
+  <LeafletMap position={position} zoom={zoom} maxzoom={maxzoom} zoom={zoom} zoomControl={false} dragging={false} scrollWheelZoom={false} doubleClickZoom={false} />
 );
 
 const propDocs = { inline: true, propTables: [LeafletMap] };
