@@ -1,10 +1,10 @@
 import React from 'react';
-import { mount, shallow, render } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Leaflet from './LeafletMap';
 
 describe('Leaflet', () => {
   const markers = [
-    { neighborhood: 'Lauralhurst', position: [45.5234500, -122.6762100], popText: 'Marker One.', popUpKey: '1 pop' },
+    { neighborhood: 'Laurelhurst', position: [45.5234500, -122.6762100], popText: 'Marker One.', popUpKey: '1 pop' },
     { neighborhood: 'Ladds Addition', position: [45.5204500, -122.6562100], popText: 'Marker Two.', popUpKey: '2 pop' },
   ];
 
@@ -33,37 +33,15 @@ describe('Leaflet', () => {
   });
 
   describe('Marker', () => {
-    it('should render with Map', () => {
+    it('should render on Map', () => {
       const wrapper = mount(<Leaflet map={map} markers={markers} />);
-      console.log(wrapper.nodes[0].props);
-      expect(wrapper.nodes[0].markers).to.have.length(markers.length);
+      expect(wrapper.nodes[0].props.markers).to.have.length(2);
     });
 
-    it('should render with class mapSize', () => {
-      const wrapper = shallow(<Leaflet map={map} markers={markers} />);
-      expect(wrapper.props().className).to.contain('mapSize');
-    });
-
-    it('should render with zoom of 14', () => {
-      const wrapper = shallow(<Leaflet map={map} markers={markers} />);
-      expect(wrapper.props().zoom).to.equal(14);
-    });
-  });
-
-  describe('Popup', () => {
-    it('should render with Leaflet', () => {
-      const wrapper = shallow(<Leaflet map={map} markers={markers} />);
-      expect(wrapper).to.be.length(1);
-    });
-
-    it('should render with class mapSize', () => {
-      const wrapper = shallow(<Leaflet map={map} markers={markers} />);
-      expect(wrapper.props().className).to.contain('mapSize');
-    });
-
-    it('should render with zoom of 14', () => {
-      const wrapper = shallow(<Leaflet map={map} markers={markers} />);
-      expect(wrapper.props().zoom).to.equal(14);
+    it('should render with Neighborhood tag', () => {
+      const wrapper = mount(<Leaflet map={map} markers={markers} />);
+      const marker = wrapper.nodes[0].props.markers;
+      expect(marker[0].neighborhood).to.contain('Laurelhurst');
     });
   });
 });
