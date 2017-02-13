@@ -20,6 +20,7 @@ describe('LeafletMap', () => {
         coordinates: [45.521, -122.664],
       },
     },
+    maxBounds: [[45.195681, -123.410041], [45.741425, -122.231894]],
   };
 
   const wrapper = shallow(<LeafletMap
@@ -28,6 +29,7 @@ describe('LeafletMap', () => {
     url={data.url}
     attribution={data.attribution}
     data={data.geoJSONFeature}
+    maxBounds={data.maxBounds}
   />);
 
   it('should render with Leaflet', () => {
@@ -52,5 +54,9 @@ describe('LeafletMap', () => {
 
   it('should have a name of Coors Field in the geoJSONFeature', () => {
     expect(wrapper.props().data.properties.name).to.equal('Coors Field');
+  });
+
+  it('should have a property maxBounds', () => {
+    expect(wrapper.find('Map')).to.have.prop('maxBounds');
   });
 });
