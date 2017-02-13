@@ -11,7 +11,6 @@ const url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
 
 const LeafletMap = ({ zoom, position }) => {
   require('../../assets/leaflet.css');
-  debugger
   return (
     <div className={'mainMap'}>
       <Map className={className} center={position} zoom={zoom}>
