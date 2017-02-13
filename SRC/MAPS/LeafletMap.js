@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, TileLayer, GeoJSON, Popup, Marker } from 'react-leaflet';
+import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 
 const LeafletMap = ({ position, zoom, url, attribution, data }) => {
   require('./LeafletMap.css');
@@ -12,11 +12,6 @@ const LeafletMap = ({ position, zoom, url, attribution, data }) => {
         attribution={attribution}
       />
       <GeoJSON data={data} />
-      <Marker position={position}>
-        <Popup>
-          <span>A pretty CSS3 popup.</span>
-        </Popup>
-      </Marker>
     </Map>
   );
 };
