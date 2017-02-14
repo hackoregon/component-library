@@ -35,12 +35,12 @@ describe('Leaflet', () => {
   describe('Marker', () => {
     it('should render on Map', () => {
       const wrapper = mount(<Leaflet map={map} markers={markers} />);
-      expect(wrapper.nodes[0].props.markers).to.have.length(2);
+      expect(wrapper.node.props.markers).to.have.length(2);
     });
 
     it('should render with Neighborhood tag', () => {
       const wrapper = mount(<Leaflet map={map} markers={markers} />);
-      const marker = wrapper.nodes[0].props.markers;
+      const marker = wrapper.node.props.markers;
       expect(marker[0].neighborhood).to.contain('Laurelhurst');
     });
   });

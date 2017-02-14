@@ -12,10 +12,6 @@ const icon = divIcon({
   iconSize: [30, 30],
 });
 
-const fired = (marker) => {
-  console.log(marker.neighborhood);
-};
-
 const Leaflet = ({ map, markers }) => {
   require('../../assets/leaflet.css');
   const neighborhoods = markers.map(marker => (
@@ -23,7 +19,6 @@ const Leaflet = ({ map, markers }) => {
       key={marker.neighborhood}
       position={marker.position}
       icon={icon}
-      onMouseOver={() => fired(marker)}
     >
       <Popup>
         <span>
