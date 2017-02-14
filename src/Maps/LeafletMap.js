@@ -12,6 +12,11 @@ const icon = divIcon({
   iconSize: [30, 30],
 });
 
+const clickMe = (e) => {
+  const clickHere = e.target._icon;
+  clickHere.click();
+};
+
 const Leaflet = ({ map, markers }) => {
   require('../../assets/leaflet.css');
   const neighborhoods = markers.map(marker => (
@@ -19,6 +24,7 @@ const Leaflet = ({ map, markers }) => {
       key={marker.neighborhood}
       position={marker.position}
       icon={icon}
+      onmouseover={e => clickMe(e)}
     >
       <Popup>
         <span>
