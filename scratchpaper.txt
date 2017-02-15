@@ -1,0 +1,30 @@
+OK OK OK
+
+You got the LeafletMap element to render!  Just from poking around!  Good job!!
+
+What's next?
+
+Assignment is to:
+  - get the map to render portland
+  - have tests passing
+  - maybe pass data in to the map through props
+
+So!  Let's break that down.
+
+First priority is getting the map to render.  Getting it to render PDX shouldn't be a huge issue since it's just a lat and long thatcha just slap right on in there.  Just, mm.  Hardcoded.
+
+Try playing around some more with the LeafletMap story, and compare it to Button and StoryCard.  Those are good.
+
+Just see how it's already been done, then try to imitate it.  Easy peasy, just takes focus and time.
+
+You can do this! 🎉
+
+-------
+
+Yeah yeah yeah map is rendering.  Now what?
+
+Whelp, gotta get some tests going.  Proooobably should've done that first but fuck it we're learning here.
+
+SO!  Testing!  Check out Button.test.js and mimic it, I guess.
+
+LATER we'll work on passing props.  Doesn't look too bad.
