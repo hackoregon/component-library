@@ -87,7 +87,6 @@
 .leaflet-marker-pane  { z-index: 600; }
 .leaflet-tooltip-pane   { z-index: 650; }
 .leaflet-popup-pane   { z-index: 700; }
-
 .leaflet-map-pane canvas { z-index: 100; }
 .leaflet-map-pane svg    { z-index: 200; }
 
@@ -378,8 +377,10 @@
 /* Default icon URLs */
 /*.leaflet-default-icon-path {
   background-image: url(images/marker-icon.png);
+  }*/
+  .leaflet-default-icon-path {
+    background-image: url(https://unpkg.com/leaflet@0.7.7/dist/images/marker-icon.png);
   }
-*/
 
 /* attribution and scale controls */
 

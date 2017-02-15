@@ -4,15 +4,18 @@ import classNames from 'classnames/bind';
 import styles from './LeafletMap.styles.css';
 import neighborhoodregionsJSON from './Neighborhoods_regions.json';
 
-// const data = {
-//   position: [45.51, -122.68],
-//   zoom: 13,
-//   // url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
-//   // attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-// };
-
 const cx = classNames.bind(styles);
 const className = cx({ base: true });
+
+// function addGeoData(data, component) {
+//   return class BoundGeoData extends Component {
+//     constructor() {
+//       super();
+//       center: props.position,
+//     }
+//   };
+// }
+
 
 const LeafletMap = (props) => {
   require('../../assets/leaflet.css');
