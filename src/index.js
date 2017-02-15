@@ -10,6 +10,8 @@ import LeafletMap from './Maps/LeafletMap';
 import Header from './Navigation/Header';
 import Nav from './Navigation/Nav';
 import NavRouterLink from './Navigation/NavRouterLink';
+import HOC from './HOC/HOC';
+
 
 export {
   BarChart,
@@ -24,4 +26,5 @@ export {
   StoryCard,
   Nav,
   NavRouterLink,
+  HOC,
 };

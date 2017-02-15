@@ -58,5 +58,6 @@ describe('LeafletMap', () => {
 
   it('should have a property maxBounds', () => {
     expect(wrapper.find('Map')).to.have.prop('maxBounds');
+    console.log(wrapper.debug())
   });
 });
