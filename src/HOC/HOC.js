@@ -20,17 +20,37 @@ function addGeoData(WrappedComponent, gd, options) {
         zoom: props.zoom || options.zoom,
         attribute: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        color: 'red',
       };
     }
+
+    // onEachFeature = (feature, layer) => {
+    //   layer.on({
+    //     mouseover: this.handleHover(feature, layer),
+    //     click: this.handleClick,
+    //   });
+    // }
+
   // Could add a handle click, which
     handleHover = (feature, layer) => {
       if (feature.properties && feature.properties.NAME) {
         layer.bindPopup(feature.properties.NAME);
         layer.on('mouseover', (e) => {
-                    // console.log(e);
+                    // console.log(e.target);
           e.target.openPopup();
         });
       }
+    }
+
+    handleClick = (feature, layer) => {
+      layer.on('click', (e) => {
+        e.target.setStyle({
+          weight: 5,
+          color: '#666',
+          dashArray: '',
+          fillOpacity: 0.7,
+        });
+      });
     }
 
     render() {
@@ -42,6 +62,8 @@ function addGeoData(WrappedComponent, gd, options) {
           center={this.state.center}
           zoom={this.state.zoom}
           handleHover={this.handleHover}
+          handleClick={this.handleClick}
+          color={this.state.color}
         />);
     }
     };
@@ -61,7 +83,7 @@ const BareLeafletMap = (props) => {
         doubleClickZoom={false}
       >
         <TileLayer url={props.url} attribution={props.attribute} />
-        <GeoJSON data={props.data} onEachFeature={props.handleHover} />
+        <GeoJSON data={props.data} onEachFeature={props.handleClick} color={props.color} />
       </Map>
     </div>
   );

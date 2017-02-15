@@ -11,7 +11,10 @@ const LeafletMap = ({ position, zoom, url, attribution, data, maxBounds }) => {
         url={url}
         attribution={attribution}
       />
-      <GeoJSON data={data} />
+      <GeoJSON
+        data={data}
+        color={'green'}
+      />
     </Map>
   );
 };
