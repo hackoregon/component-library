@@ -11,6 +11,9 @@ const className = cx({ mapStyles: true });
 function addGeoData(WrappedComponent, gd, options) {
   return class extends Component {
     static displayName = `WithGeoData(<${WrappedComponent.displayName} />`;
+    static propTypes = {
+      zoom: React.PropTypes.number.isRequired,
+    }
 
     constructor(props) {
       super(props);
@@ -31,7 +34,6 @@ function addGeoData(WrappedComponent, gd, options) {
     //   });
     // }
 
-  // Could add a handle click, which
     handleHover = (feature, layer) => {
       if (feature.properties && feature.properties.NAME) {
         layer.bindPopup(feature.properties.NAME);
