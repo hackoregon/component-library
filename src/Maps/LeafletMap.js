@@ -35,15 +35,6 @@ const LeafletMap = (props) => {
   );
 };
 
-// const LeafletMap = ({ data }) => (
-//   <Map id='map' center={[45.51, -122.68]} zoom={13}>
-//     <TileLayer
-    // url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-//       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-//     />
-//   </Map>
-// );
-
 LeafletMap.displayName = 'LeafletMap';
 
 LeafletMap.propTypes = {
