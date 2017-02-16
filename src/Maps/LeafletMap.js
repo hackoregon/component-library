@@ -16,12 +16,17 @@ const icon = divIcon({
 function wrapMyComponent(WrappedComponent, GeoWrapper) {
   return class extends Component {
     static displayName = `GeoWrapper(<${WrappedComponent.displayName} />`;
+    static propTypes = {
+      data: React.PropTypes.object,
+    };
 
     constructor(props) {
       super(props);
       this.state = {
         center: props.data.map.position,
+        maxBounds: props.data.map.maxBounds,
         zoom: props.data.map.zoom,
+        minZoom: props.data.map.minZoom,
         geoData: GeoWrapper,
         markers: props.data.markers,
       };
@@ -29,17 +34,27 @@ function wrapMyComponent(WrappedComponent, GeoWrapper) {
     }
 
     clickHere = (e) => {
-      console.log(e);
       e.target._icon.click();
     };
+
+    handleHover = (feature, layer) => {
+      if (feature.properties && feature.properties.NAME) {
+        layer.bindPopup(feature.properties.NAME);
+        layer.on('mouseover', (e) => {
+          e.target.openPopup();
+        });
+      }
+    }
 
     render() {
       return (
         <WrappedComponent
           data={this.state.geoData}
           center={this.state.center}
+          maxBounds={this.state.maxBounds}
           markers={this.state.markers}
           zoom={this.state.zoom}
+          minZoom={this.state.minZoom}
           clickHere={this.clickHere}
         />
       );
@@ -93,6 +108,7 @@ BareLeafletMap.propTypes = {
   zoom: React.PropTypes.number,
   minZoom: React.PropTypes.number,
   markers: React.PropTypes.array,
+  data: React.PropTypes.object,
 };
 
 const PDXLeafletMap = wrapMyComponent(
