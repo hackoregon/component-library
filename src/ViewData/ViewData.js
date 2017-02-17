@@ -16,7 +16,7 @@ export default class ViewData extends React.Component {
     super(props);
 
     this.state = {
-
+      target: {},
     };
     this.goFetch = this.goFetch.bind(this);
   }
@@ -24,15 +24,27 @@ export default class ViewData extends React.Component {
   goFetch = () => {
     fetch('http://54.213.83.132/hackoregon/http/current_candidate_transactions_out/931/')
       .then(response =>  response.json())
-      .then(stories => console.log(stories))
+      .then(stories => this.setState({ target: stories }))
       .catch(ex => console.log('failed', ex));
   };
 
   render() {
+    const getInfo = this.state.target;
+    const info = [];
+
+    for (let i = 0; i < getInfo.length; i += 1) {
+      const pullInfo = Object.keys(getInfo[i]).map((key) => {
+        return (
+          <li key={key}>{key}: {getInfo[i][key]}</li>
+        );
+      });
+      info.push(pullInfo);
+    }
+
     return (
       <div id="layout-content" className="layout-content-wrapper">
         <Button onClick={this.goFetch}> get my data </Button>
-        <div className="panel-list">Return data here!</div>
+        <div className="panel-list">{info}</div>
       </div>
     );
   }
