@@ -7,13 +7,13 @@ import neighborhoodregionsJSON from './Neighborhoods_regions.json';
 const cx = classNames.bind(styles);
 const className = cx({ base: true });
 
-function addGeoData(data, component) {
+function addGeoData(WrappedComponent, gd, options) {
   return class BoundGeoData extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
         geoData: gd,
-        center: options.position,
+        center: options.center,
         zoom: props.zoom || options.zoom,
         attribute: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
@@ -54,7 +54,7 @@ const BareLeafletMap = (props) => {
         dragging={false}
         scrollWheelZoom={false}
         doubleClickZoom={false}
-        >
+      >
         <TileLayer url={props.url} attribution={props.attribution} />
         <GeoJSON data={props.data} onEachFeature={props.handleHover} />
       </Map>
@@ -65,7 +65,7 @@ const BareLeafletMap = (props) => {
 const PDXLeafletMap = addGeoData(
   BareLeafletMap,
   neighborhoodregionsJSON,
-  { center: [45.51, -122.68], zoom: 13 },
+  { center: [45.51, -122.68], zoom: 11 },
 );
 
 // const LeafletMap = (props) => {
@@ -86,13 +86,13 @@ const PDXLeafletMap = addGeoData(
 //   );
 // };
 
-LeafletMap.displayName = 'LeafletMap';
+PDXLeafletMap.displayName = 'PDXLeafletMap';
 
-LeafletMap.propTypes = {
+PDXLeafletMap.propTypes = {
   center: React.PropTypes.array,
   zoom: React.PropTypes.number,
   // url: React.PropTypes.string,
   // attribution: React.PropTypes.string,
 };
 
-export default LeafletMap;
+export default PDXLeafletMap;
