@@ -87,7 +87,7 @@ export default class ViewData extends React.Component {
       // builds rows list from each mapped record
       rows.push(pullInfo);
     }
-    // warps each row with a <tr> tag
+    // wraps each row with a <tr> tag
     rows = rows.map((row, i) =>
       <tr key={i}>{row}</tr>,
     );
@@ -95,7 +95,6 @@ export default class ViewData extends React.Component {
     return (
       <div>
         <input
-          className="dontHaveOne"
           type="text"
           value={this.state.input}
           onChange={this.updateInput}
@@ -107,7 +106,6 @@ export default class ViewData extends React.Component {
         <br />
         <Button
           onClick={this.goFetch}
-          className="dontHaveOne"
           type="submit"
         >Fetch
         </Button>

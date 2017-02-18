@@ -5,8 +5,8 @@ import { ViewData } from '../src';
 const displayName = ViewData.displayName || 'ViewData';
 const title = 'Simple usage';
 const description = `
-  This is some basic usage with the button with providing a label to show the text.
-  Clicking should trigger an action.`;
+  This is some basic usage with ViewData. Enter an interger in the input field and select a value (in/out).
+  Clicking Fetch should return a table of data from the API.`;
 const targertId = 931;
 
 const demoCode = () => (
