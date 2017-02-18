@@ -10,7 +10,7 @@ const description = `
 const targertId = 931;
 
 const demoCode = () => (
-  <ViewData data={targertId} />
+  <ViewData />
 );
 
 const propDocs = { inline: true, propTables: [ViewData] };
