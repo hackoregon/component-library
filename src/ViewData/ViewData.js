@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import classNames from 'classnames/bind';
-import styles from './Button.styles.css';
+import fetch from 'isomorphic-fetch';
 
-const cx = classNames.bind(styles);
-const className = cx({ base: true });
-
-const campaigndata = 'http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/5591/';
 
 class ViewData extends Component {
   constructor(props) {
@@ -13,33 +8,46 @@ class ViewData extends Component {
     // some local state to manage passing
     // data
     this.state = {
-      records: [],
+      data: [],
       // Before the component renders, it hasn't reached out to
       // the API yet, so we write a placeholder for the data first,
       // and later update it with a life cycle method.
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     require('es6-promise').polyfill();
     require('isomorphic-fetch');
-    fetch(campaigndata).then(function(response) {
+
+    // const campaigndata = fetch('http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/5591/')
+    //   .then((response) => {
+    //     return response.json();
+    //   }
+    // );
+
+
+    fetch('http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/5591/').then((response) => {
       // this.setState({
       //   id:
       //   records:
       // })
       if (response.status >= 400) {
-        throw new Error("Bad response from server");
+        throw new Error('Bad response from server');
       }
       return response.json();
+    }).then((data) => {
+      this.state.data = data;
+      this.setState(this.state);
     });
   }
 
   render() {
     return (
-
+      <div>
+        {this.state.data}
+      </div>
     );
   }
-};
+}
 
 export default ViewData;
