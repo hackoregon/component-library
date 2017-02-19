@@ -10,6 +10,7 @@ import Header from './Navigation/Header';
 import Nav from './Navigation/Nav';
 import NavRouterLink from './Navigation/NavRouterLink';
 import LeafletMap from './Maps/LeafletMap';
+import ViewData from './ViewData/ViewData';
 
 export {
   BarChart,
@@ -24,4 +25,5 @@ export {
   Nav,
   NavRouterLink,
   LeafletMap,
+  ViewData,
 };
