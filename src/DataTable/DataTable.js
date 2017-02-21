@@ -30,6 +30,11 @@ export default class DataTable extends React.Component {
     this.fetchData();
   }
 
+  componentWillReceiveProps() {
+    //
+
+  }
+
   fetchData = () => {
     this.setState({ data: {} });
 
