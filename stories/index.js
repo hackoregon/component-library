@@ -11,6 +11,7 @@ import leafletStory from './Leaflet.story';
 import barChartStory from './BarChart.story';
 import dropdownStory from './DropdownMenu.story';
 import headerStory from './Header.story';
+import dataTableStory from './DataTable.story'
 import Welcome from './Welcome';
 
 import '../src/global.styles.css';
@@ -33,3 +34,4 @@ barChartStory();
 sliderStory();
 dropdownStory();
 leafletStory();
+dataTableStory();

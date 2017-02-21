@@ -10,12 +10,14 @@ import Header from './Core/Header';
 import LeafletMap from './Maps/LeafletMap';
 import Nav from './Navigation/Nav';
 import NavRouterLink from './Navigation/NavRouterLink';
+import DataTable from './DataTable/DataTable';
 
 export {
   BarChart,
   Button,
   Chart,
   ChartData,
+  DataTable,
   DropdownMenu,
   Header,
   Pie,
