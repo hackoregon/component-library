@@ -8,6 +8,8 @@ export default class ViewData extends Component {
     this.state = {
       value: '',
       responseData: '',
+      divContent: '',
+      searchYear: '2016',
     };
     this.onValueChange = this.onValueChange.bind(this);
   }
@@ -30,8 +32,28 @@ export default class ViewData extends Component {
       return response.json();
     })
     .then(function addAJAX(data) {
-      this.setState({ responseData: data })
+      const currentYear = this.state.searchYear;
+
+      function getYear(value) {
+        return value.tran_date.substring(0, 4) === currentYear;
+      }
+      const firstYear = data.filter(getYear);
+
+      const divMarkup = firstYear.map((item, idx) => {
+        return `<li key=${idx}>${item.contributor_payee} contibuted $${item.amount}</li>`
+      })
+
+      this.setState({
+        responseData: data,
+        divContent: `
+        <h2>${currentYear}</h2>}
+        <ul>${divMarkup}</ul>
+        `,
+       })
+
+      document.getElementsByClassName('Data')[0].innerHTML = this.state.divContent
     }.bind(this));
+
   }
 
   componentWillReceiveProps(nextProps) {
