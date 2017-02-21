@@ -17,46 +17,21 @@ export default class DataTable extends React.Component {
       input: '',
       direction: '',
     };
-    this.goFetch = this.goFetch.bind(this);
+    this.fetchData = this.fetchData.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.setDirection = this.setDirection.bind(this);
   }
 
-  // console.log all the LifeCycle Methods
-  componentWillMount() {
-    console.log('Component will mount');
-  }
-
   componentDidMount() {
-    console.log('Component did mount');
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('Component will receive props', nextProps);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('Should component update', nextProps, nextState);
-    return true;
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    console.log('Component will update', nextProps, nextState);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('Component did update', prevProps, prevState);
-  }
-
-  componentWillUnmount() {
-    console.log('Component will unmount');
+    // get all the data
+    this.fetchData();
   }
 
   setDirection(e) {
     this.setState({ direction: e.target.value });
   }
 
-  goFetch = () => {
+  fetchData = () => {
     this.setState({ input: '' });
     fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_${this.state.direction}/${this.state.input}/`)
       .then(response =>  response.json())
@@ -105,7 +80,7 @@ export default class DataTable extends React.Component {
         </div>
         <br />
         <Button
-          onClick={this.goFetch}
+          onClick={this.fetchData}
           type="submit"
         >Fetch
         </Button>
