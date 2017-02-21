@@ -9,7 +9,7 @@ export default class ViewData extends Component {
       value: '',
       responseData: '',
       divContent: '',
-      searchYear: '2016',
+      searchYear: '2015',
     };
     this.onValueChange = this.onValueChange.bind(this);
   }
@@ -32,29 +32,23 @@ export default class ViewData extends Component {
       return response.json();
     })
     .then(function addAJAX(data) {
+      this.setState({ responseData: data });
+    }.bind(this))
+    .then(function addInitialYear() {
       const currentYear = this.state.searchYear;
-
-      function getYear(value) {
-        return value.tran_date.substring(0, 4) === currentYear;
-      }
-      const firstYear = data.filter(getYear);
-
+      const firstYear = this.filterByYear();
       const divMarkup = firstYear.map((item, idx) => {
-        return `<li key=${idx}>${item.contributor_payee} contibuted $${item.amount}</li>`
-      })
-
+        return `<li key=${idx}>${item.contributor_payee} contributed $${item.amount}</li>`
+      });
       this.setState({
-        responseData: data,
         divContent: `
-        <h2>${currentYear}</h2>}
+        <h2>${currentYear}</h2>
         <ul>${divMarkup}</ul>
         `,
-       })
-
-      document.getElementsByClassName('Data')[0].innerHTML = this.state.divContent
-    }.bind(this));
-
-  }
+      });
+      document.getElementsByClassName('Data')[0].innerHTML = this.state.divContent;
+    }.bind(this))
+  };
 
   componentWillReceiveProps(nextProps) {
     console.log('Component will receive props', nextProps);
@@ -81,6 +75,12 @@ export default class ViewData extends Component {
     const value = e.target.value;
     this.setState({ value });
   };
+
+  filterByYear() {
+    return (this.state.responseData.filter((value) => {
+      return value.tran_date.substring(0, 4) === this.state.searchYear;
+    }));
+  }
 
   clickHandler(input, data) {
     document.getElementsByClassName('Data')[0].innerHTML = `
