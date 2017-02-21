@@ -2,8 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import LeafletMap from './LeafletMap';
 
-
-
 describe('LeafletMap', function() {
 
   const position = [45.52, -122.67];
