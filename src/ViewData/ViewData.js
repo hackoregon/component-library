@@ -37,6 +37,7 @@ export default class ViewData extends Component {
       const currentYear = this.state.searchYear;
       const firstYear = this.filterByYear(currentYear);
       const divMarkup = this.prepareJSX(firstYear);
+      const maxReturn = this.getMax(firstYear);
       this.setState({
         divContent: divMarkup,
       });
@@ -75,6 +76,17 @@ export default class ViewData extends Component {
     }));
   }
 
+  getMax(targetRange) {
+    let maxContribution = 0;
+    for (let i = 0; i < targetRange.length; i++) {
+      if (targetRange[i].amount > maxContribution) {
+        maxContribution = targetRange[i].amount;
+      }
+    }
+    console.log(maxContribution);
+    return maxContribution;
+  }
+
   prepareJSX(yearArray) {
     return (yearArray.map((item, idx) => {
       return <li key={idx}>{item.contributor_payee} contributed ${item.amount}</li>
@@ -85,6 +97,8 @@ export default class ViewData extends Component {
     this.setState({ searchYear: input });
     const targetYearData = this.filterByYear(input);
     const divMarkup = this.prepareJSX(targetYearData);
+    const maxReturn = this.getMax(targetYearData);
+
     this.setState({
       divContent: divMarkup,
     });
