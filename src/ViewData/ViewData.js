@@ -13,54 +13,35 @@ export default class ViewData extends React.Component {
     super(props);
 
     this.state = {
-      target: {},
-      input: '',
-      direction: '',
+      initialData: {},
+      filteredData: {},
+      input: '2016',
+      candidate: '931',
     };
     this.goFetch = this.goFetch.bind(this);
+    this.filterData = this.filterData.bind(this);
     this.updateInput = this.updateInput.bind(this);
-    this.setDirection = this.setDirection.bind(this);
-  }
-
-  // console.log all the LifeCycle Methods
-  componentWillMount() {
-    console.log('Component will mount');
+    this.setCandidate = this.setCandidate.bind(this);
   }
 
   componentDidMount() {
-    console.log('Component did mount');
+    this.goFetch();
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('Component will receive props', nextProps);
+  setCandidate(e) {
+    this.setState({ candidate: e.target.value });
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('Should component update', nextProps, nextState);
-    return true;
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    console.log('Component will update', nextProps, nextState);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('Component did update', prevProps, prevState);
-  }
-
-  componentWillUnmount() {
-    console.log('Component will unmount');
-  }
-
-  setDirection(e) {
-    this.setState({ direction: e.target.value });
+  filterData() {
+    const myFilter = this.state.initialData.filter(item => item.tran_date.substring(0, 4).indexOf(this.state.input) !== -1);
+    this.setState({ filteredData: myFilter });
   }
 
   goFetch = () => {
-    this.setState({ input: '' });
-    fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_${this.state.direction}/${this.state.input}/`)
-      .then(response =>  response.json())
-      .then(stories => this.setState({ target: stories }))
+    console.log(this.state.candidate);
+    fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_out/${this.state.candidate}/`)
+      .then(response => response.json())
+      .then(stories => this.setState({ initialData: stories }))
       .catch(ex => console.log('failed', ex));
   };
 
@@ -69,7 +50,7 @@ export default class ViewData extends React.Component {
   }
 
   render() {
-    const getInfo = this.state.target;
+    const getInfo = this.state.filteredData;
     let header = [];
     let rows = [];
     //  if not empty, grabs a record to pull header tags
@@ -94,20 +75,25 @@ export default class ViewData extends React.Component {
 
     return (
       <div>
+        <div onChange={this.setCandidate}>
+          <input type="radio" value="5591" name="candidate" /> Ted
+          <span>     </span>
+          <input type="radio" value="931" name="candidate" /> Kate
+        <Button
+          onClick={this.goFetch}
+          type="submit"
+        >Fetch
+        </Button>
+        </div>
         <input
           type="text"
           value={this.state.input}
           onChange={this.updateInput}
         />
-        <div onChange={this.setDirection}>
-          <input type="radio" value="in" name="direction" /> In
-          <input type="radio" value="out" name="direction" /> Out
-        </div>
-        <br />
         <Button
-          onClick={this.goFetch}
+          onClick={this.filterData}
           type="submit"
-        >Fetch
+        >Filter
         </Button>
         <table>
           <thead>
