@@ -8,7 +8,12 @@ const cx = classNames.bind(styles);
 const className = cx({ base: true });
 
 function addGeoData(WrappedComponent, gd, options) {
-  return class BoundGeoData extends Component {
+  // addGeoData takes in a component, augments it with data and other
+  // methods, and returns the improved component. As a class
+  // component, the wrapper component able to maintain local state and
+  // pass data as props, but the wrapped component that gets "improved"
+  // doesn't have local state.
+  return class extends Component {
     constructor(props) {
       super(props);
       this.state = {
