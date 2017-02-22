@@ -13,8 +13,7 @@ export default class ViewData extends Component {
     };
     this.onValueChange = this.onValueChange.bind(this);
   }
-
-  // console.log all the LifeCycle Methods
+  
   componentWillMount() {
     console.log('Component will mount');
   }
@@ -36,17 +35,11 @@ export default class ViewData extends Component {
     }.bind(this))
     .then(function addInitialYear() {
       const currentYear = this.state.searchYear;
-      const firstYear = this.filterByYear();
-      const divMarkup = firstYear.map((item, idx) => {
-        return `<li key=${idx}>${item.contributor_payee} contributed $${item.amount}</li>`
-      });
+      const firstYear = this.filterByYear(currentYear);
+      const divMarkup = this.prepareJSX(firstYear);
       this.setState({
-        divContent: `
-        <h2>${currentYear}</h2>
-        <ul>${divMarkup}</ul>
-        `,
+        divContent: divMarkup,
       });
-      document.getElementsByClassName('Data')[0].innerHTML = this.state.divContent;
     }.bind(this))
   };
 
@@ -76,23 +69,26 @@ export default class ViewData extends Component {
     this.setState({ value });
   };
 
-  filterByYear() {
+  filterByYear(year) {
     return (this.state.responseData.filter((value) => {
-      return value.tran_date.substring(0, 4) === this.state.searchYear;
+      return value.tran_date.substring(0, 4) === year;
     }));
   }
 
-  clickHandler(input, data) {
-    document.getElementsByClassName('Data')[0].innerHTML = `
-      <h3>This contributor: ${data[input].contributor_payee}</h3>
-      <h3>Contributed this amount: $${data[input].amount}</h3>`
+  prepareJSX(yearArray) {
+    return (yearArray.map((item, idx) => {
+      return <li key={idx}>{item.contributor_payee} contributed ${item.amount}</li>
+    }));
   }
-    // Attempt at matching zip code
-    // function filterCondition(dataInstance) {
-    //   dataInstance.zip === parseInt(input, 10)
-    // }
-    // const filteredArray = data.filter(filterCondition)
-    // console.log(filteredArray);
+
+  clickHandler(input) {
+    this.setState({ searchYear: input });
+    const targetYearData = this.filterByYear(input);
+    const divMarkup = this.prepareJSX(targetYearData);
+    this.setState({
+      divContent: divMarkup,
+    });
+  }
 
   render() {
     return (
@@ -103,10 +99,17 @@ export default class ViewData extends Component {
           onChange={this.onValueChange}
           placeholder="Enter a number"
         />
-        <button onClick={() => this.clickHandler(this.state.value, this.state.responseData)}>
+        <button onClick={() => this.clickHandler(this.state.value)}>
           Fetch Data
         </button>
-        <div className={'Data'} />
+        <div className={'Data'}>
+          <h2>
+            {this.state.searchYear}
+          </h2>
+          <ul>
+            {this.state.divContent}
+          </ul>
+        </div>
       </div>
     );
   }
