@@ -8,7 +8,7 @@ export default class ViewData extends Component {
     // some local state to manage passing
     // data
     this.state = {
-      data: '',
+      data: [],
       // Before the component renders, it hasn't reached out to
       // the API yet, so we write a placeholder for the data first,
       // and later update it with a life cycle method.
@@ -46,13 +46,14 @@ export default class ViewData extends Component {
 
   render() {
     // const info = this.state.data;
-    // const records = info.map((obj, idx) => {
-    // //   return <
-    // });
+    console.log(this.state.data, ' this.state.data?');
 
+    const records = this.state.data.map((obj, idx) => {
+      return <li key={idx}>{obj.tran_id}</li>
+    });
     return (
       <div>
-        {this.state.data}
+        {records}
       </div>
     );
   }
