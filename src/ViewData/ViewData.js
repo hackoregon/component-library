@@ -8,12 +8,12 @@ export default class ViewData extends Component {
     this.state = {
       value: '',
       responseData: '',
-      divContent: '',
+      divContent: 'Please wait while loading',
       searchYear: '2015',
     };
     this.onValueChange = this.onValueChange.bind(this);
   }
-  
+
   componentWillMount() {
     console.log('Component will mount');
   }
