@@ -15,12 +15,12 @@ export default class ViewData extends React.Component {
     this.state = {
       initialData: {},
       filteredData: {},
-      input: '2016',
-      candidate: '931',
+      filterYear: '2016',
+      candidate: '5591',
     };
     this.goFetch = this.goFetch.bind(this);
     this.filterData = this.filterData.bind(this);
-    this.updateInput = this.updateInput.bind(this);
+    this.updatefilterYear = this.updatefilterYear.bind(this);
     this.setCandidate = this.setCandidate.bind(this);
   }
 
@@ -33,45 +33,23 @@ export default class ViewData extends React.Component {
   }
 
   filterData() {
-    const myFilter = this.state.initialData.filter(item => item.tran_date.substring(0, 4).indexOf(this.state.input) !== -1);
-    this.setState({ filteredData: myFilter });
+    const toFilter = this.state.initialData.filter(item => item.tran_date.substring(0, 4).indexOf(2016) !== -1);
+    this.setState({ filteredData: toFilter });
   }
 
   goFetch = () => {
-    console.log(this.state.candidate);
-    fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_out/${this.state.candidate}/`)
+    fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/${this.state.candidate}/`)
       .then(response => response.json())
       .then(stories => this.setState({ initialData: stories }))
       .catch(ex => console.log('failed', ex));
   };
 
-  updateInput(e) {
-    this.setState({ input: e.target.value });
+  updatefilterYear(e) {
+    this.setState({ filterYear: e.target.value });
   }
 
   render() {
     const getInfo = this.state.filteredData;
-    let header = [];
-    let rows = [];
-    //  if not empty, grabs a record to pull header tags
-    if (Object.keys(getInfo).length !== 0 && getInfo.constructor !== Object) {
-      const forHeader = getInfo[0];
-      header = Object.keys(forHeader).map(key =>
-        <th key={key}>{key}</th>,
-      );
-    }
-    // wraps each item in a <td> tag
-    for (let i = 0; i < getInfo.length; i += 1) {
-      const pullInfo = Object.keys(getInfo[i]).map(key =>
-        <td key={key}>{getInfo[i] !== null ? getInfo[i][key] : 'null'}</td>,
-      );
-      // builds rows list from each mapped record
-      rows.push(pullInfo);
-    }
-    // wraps each row with a <tr> tag
-    rows = rows.map((row, i) =>
-      <tr key={i}>{row}</tr>,
-    );
 
     return (
       <div>
@@ -87,24 +65,19 @@ export default class ViewData extends React.Component {
         </div>
         <input
           type="text"
-          value={this.state.input}
-          onChange={this.updateInput}
+          value={this.state.filterYear}
+          onChange={this.updatefilterYear}
         />
         <Button
           onClick={this.filterData}
           type="submit"
         >Filter
         </Button>
-        <table>
-          <thead>
-            <tr>
-              {header}
-            </tr>
-          </thead>
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
+        <Button
+          onClick={this.filterData}
+          type="submit"
+        >Top Contribs
+        </Button>
       </div>
     );
   }
