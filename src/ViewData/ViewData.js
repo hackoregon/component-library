@@ -13,15 +13,13 @@ export default class ViewData extends React.Component {
     super(props);
 
     this.state = {
-      initialData: {},
       dataByYear: {},
       filterYear: '2016',
       candidate: '5591',
+      topFiveContrib: [5, 4, 3, 2, 1],
     };
     this.goFetch = this.goFetch.bind(this);
     this.whatData = this.whatData.bind(this);
-    this.filterData = this.filterData.bind(this);
-    this.filterByYear = this.filterByYear.bind(this);
     this.updatefilterYear = this.updatefilterYear.bind(this);
     this.setCandidate = this.setCandidate.bind(this);
   }
@@ -34,32 +32,27 @@ export default class ViewData extends React.Component {
     this.setState({ candidate: e.target.value });
   }
 
-  filterByYear  = (transactions) => {
-    const dataByYear = {};
-    transactions.forEach((t) => {
-      const year = t.tran_date.substring(0, 4);
-      const yearToUpdate = dataByYear[year];
-      if (yearToUpdate) {
-        dataByYear[year].push(t);
-      } else {
-        dataByYear[year] = [t];
-      }
-    });
-    this.setState({ dataByYear });
-  };
-
   whatData() {
     console.log(this.state.dataByYear);
-  }
-
-  filterData() {
-    this.filterByYear(this.state.initialData);
   }
 
   goFetch = () => {
     fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/${this.state.candidate}/`)
       .then(response => response.json())
-      .then(stories => this.setState({ initialData: stories }))
+      .then((transactions) => {
+        const dataByYear = {};
+        transactions.forEach((t) => {
+          const year = t.tran_date.substring(0, 4);
+          const yearToUpdate = dataByYear[year];
+          if (yearToUpdate) {
+            dataByYear[year].push(t);
+          } else {
+            dataByYear[year] = [t];
+          }
+        });
+        return dataByYear;
+      })
+      .then(dataByYear => this.setState({ dataByYear }))
       .catch(ex => console.log('failed', ex));
   };
 
@@ -75,7 +68,7 @@ export default class ViewData extends React.Component {
         <div onChange={this.setCandidate}>
           <input type="radio" value="5591" name="candidate" /> Ted
           <span>     </span>
-          <input type="radio" value="931" name="candidate" /> Kate
+          <input type="radio" value="5588" name="candidate" /> Faye
         <Button
           onClick={this.goFetch}
           type="submit"
@@ -87,11 +80,6 @@ export default class ViewData extends React.Component {
           value={this.state.filterYear}
           onChange={this.updatefilterYear}
         />
-        <Button
-          onClick={this.filterData}
-          type="submit"
-        >Filter
-        </Button>
         <Button
           onClick={this.whatData}
           type="submit"
