@@ -14,12 +14,14 @@ export default class ViewData extends React.Component {
 
     this.state = {
       initialData: {},
-      filteredData: {},
+      dataByYear: {},
       filterYear: '2016',
       candidate: '5591',
     };
     this.goFetch = this.goFetch.bind(this);
+    this.whatData = this.whatData.bind(this);
     this.filterData = this.filterData.bind(this);
+    this.filterByYear = this.filterByYear.bind(this);
     this.updatefilterYear = this.updatefilterYear.bind(this);
     this.setCandidate = this.setCandidate.bind(this);
   }
@@ -32,9 +34,26 @@ export default class ViewData extends React.Component {
     this.setState({ candidate: e.target.value });
   }
 
+  filterByYear  = (transactions) => {
+    const dataByYear = {};
+    transactions.forEach((t) => {
+      const year = t.tran_date.substring(0, 4);
+      const yearToUpdate = dataByYear[year];
+      if (yearToUpdate) {
+        dataByYear[year].push(t);
+      } else {
+        dataByYear[year] = [t];
+      }
+    });
+    this.setState({ dataByYear });
+  };
+
+  whatData() {
+    console.log(this.state.dataByYear);
+  }
+
   filterData() {
-    const toFilter = this.state.initialData.filter(item => item.tran_date.substring(0, 4).indexOf(2016) !== -1);
-    this.setState({ filteredData: toFilter });
+    this.filterByYear(this.state.initialData);
   }
 
   goFetch = () => {
@@ -74,7 +93,7 @@ export default class ViewData extends React.Component {
         >Filter
         </Button>
         <Button
-          onClick={this.filterData}
+          onClick={this.whatData}
           type="submit"
         >Top Contribs
         </Button>
