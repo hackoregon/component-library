@@ -8,7 +8,7 @@ export default class ViewData extends Component {
     // some local state to manage passing
     // data
     this.state = {
-      data: [],
+      data: null,
       // Before the component renders, it hasn't reached out to
       // the API yet, so we write a placeholder for the data first,
       // and later update it with a life cycle method.
@@ -16,6 +16,8 @@ export default class ViewData extends Component {
       // The ViewData class component has an input property to hold
       // query terms by the user.
     };
+    this.updateInput = this.updateInput.bind(this);
+    this.filterByYear = this.filterByYear.bind(this);
   }
 
 
@@ -47,27 +49,34 @@ export default class ViewData extends Component {
   //   }
   // }
 
+  updateInput(event) {
+    this.setState({ input: event.target.value });
+  }
+
   filterByYear() {
     const filtered = (this.state.data.filter((record) => {
       return record.tran_date.substring(0, 4).indexOf(this.state.input) !== -1;
     }));
-    this.setState({ data: filtered });
+    return filtered;
+    // this.setState({ filtered: filtered });
   }
 
   render() {
     // const info = this.state.data;
-    console.log(this.state.data, ' this.state.data?');
+    // console.log(this.state.data, ' this.state.data?');
 
-    const records = this.state.data.map((obj, idx) => {
+    const records = (data) => data.map((obj, idx) => {
       return (
-        <div>
-          <li key={idx}>{obj.tran_id}</li>
-        </div>
+        <li key={idx}>{obj.tran_id}</li>
       );
     });
+    const filtered = this.state.data && this.filterByYear(this.state.data)
+
     return (
       <div>
-        {records}
+        <input type="text" value={this.state.input} onChange={this.updateInput} />
+        <h1>raw data | filtered</h1>
+        {this.state.data && filtered ? records(filtered) : (this.state.data && records(this.state.data))}
       </div>
     );
   }
