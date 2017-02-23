@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import fetch from 'isomorphic-fetch';
+import { Chart, ChartData, Pie } from './src';
 
 
 export default class ViewData extends Component {
@@ -72,12 +73,44 @@ export default class ViewData extends Component {
     });
     const filtered = this.state.data && this.filterByYear(this.state.data)
 
+    const localColors = [
+      '#a6cee3',
+      '#1f78b4',
+      '#b2df8a',
+      '#33a02c',
+      '#fb9a99',
+      '#e31a1c',
+      '#fdbf6f',
+      '#ff7f00',
+      '#cab2d6',
+      '#6a3d9a',
+      '#ffff99',
+      '#b15928',
+      '#8dd3c7',
+      '#fb8072',
+      '#80b1d3',
+      '#bebada',
+      '#ffed6f',
+      '#fdb462',
+      '#b3de69',
+      '#fccde5',
+      '#d9d9d9',
+      '#bc80bd',
+      '#ccebc5',
+      '#ffffb3',
+    ];
+
     return (
       <div>
         <input type="text" value={this.state.input} onChange={this.updateInput} />
         <h1>raw data | filtered</h1>
         {this.state.data && filtered ? records(filtered) : (this.state.data && records(this.state.data))}
       </div>
+
+      <Pie innerRadius={innerRadius} outerRadius={110}
+        style={(d, i) => ({ fill: localColors(i) })}
+      </Pie>
+
     );
   }
 }
