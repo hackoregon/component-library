@@ -6,6 +6,7 @@ import ChartData from './ChartData/ChartData';
 import DropdownMenu from './DropdownMenu/DropdownMenu';
 import Pie from './Pie/Pie';
 import Slider from './Slider/Slider';
+import ViewData from './ViewData/ViewData';
 import Header from './Navigation/Header';
 import Nav from './Navigation/Nav';
 import NavRouterLink from './Navigation/NavRouterLink';
@@ -20,6 +21,7 @@ export {
   Pie,
   Slider,
   StoryCard,
+  ViewData,
   Nav,
   NavRouterLink,
 };

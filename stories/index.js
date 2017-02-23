@@ -9,6 +9,7 @@ import pieStory from './Pie.story';
 import sliderStory from './Slider.story';
 import barChartStory from './BarChart.story';
 import dropdownStory from './DropdownMenu.story';
+import viewDataStory from './ViewData.story';
 import headerStory from './Header.story';
 import Welcome from './Welcome';
 
@@ -31,3 +32,4 @@ pieStory();
 barChartStory();
 sliderStory();
 dropdownStory();
+viewDataStory();
