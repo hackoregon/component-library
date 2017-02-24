@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Chart, ChartData, Pie } from '../';
-import { colors, getRandomValuesArray, randomizer } from '../../stories/shared';
 
-// AVOID IMPORTING COLORS TO AVOID CIRCULAR DEPENDENCY
+// Add filter validation like Evan !Nan
 
 // function getMax(targetRange) {
 //   let maxContribution = 0;
@@ -14,19 +13,54 @@ import { colors, getRandomValuesArray, randomizer } from '../../stories/shared';
 //   return maxContribution;
 // }
 
+const colors = [
+  '#a6cee3',
+  '#1f78b4',
+  '#b2df8a',
+  '#33a02c',
+  '#fb9a99',
+  '#e31a1c',
+  '#fdbf6f',
+  '#ff7f00',
+  '#cab2d6',
+  '#6a3d9a',
+  '#ffff99',
+  '#b15928',
+  '#8dd3c7',
+  '#fb8072',
+  '#80b1d3',
+  '#bebada',
+  '#ffed6f',
+  '#fdb462',
+  '#b3de69',
+  '#fccde5',
+  '#d9d9d9',
+  '#bc80bd',
+  '#ccebc5',
+  '#ffffb3',
+];
+
+function getTopFive(targetRange) {
+  const topFiveObjects = targetRange.slice(0, 5);
+  const topFiveAmounts = topFiveObjects.map((item) => {
+    return item.amount;
+  });
+  return topFiveAmounts;
+}
+
 function prepareJSX(yearArray) {
   return (yearArray.map((item, idx) => {
-    return <li key={idx}>{item.contributor_payee} contributed ${item.amount}</li>
+    return <li key={idx}>{item.contributor_payee} contributed ${item.amount}</li>;
   }));
 }
 
-function giveMePie() {
+function giveMePie(topFiveData) {
   const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
-  const numberOfData = 3;
+  const numberOfData = 5;
   const getRandomColors = colors.slice(0, numberOfData);
   const getColors = (datum, idx) =>
   (arguments.length === 2 ? getRandomColors[idx] : getRandomColors[datum]);
-  const values = [3, 4, 10];
+  const values = topFiveData;
   const style = {
     width: 600,
     height: 250,
@@ -75,6 +109,7 @@ export default class ViewData extends Component {
       responseData: '',
       divContent: 'Please wait while loading',
       searchYear: '2015',
+      topFiveData: [1, 2, 3, 4, 5],
     };
     this.onValueChange = this.onValueChange.bind(this);
   }
@@ -105,9 +140,11 @@ export default class ViewData extends Component {
       const currentYear = this.state.searchYear;
       const firstYear = this.filterByYear(currentYear);
       const divMarkup = prepareJSX(firstYear);
+      const topFive = getTopFive(firstYear);
       // const maxReturn = this.getMax(firstYear);
       this.setState({
         divContent: divMarkup,
+        topFiveData: topFive,
       });
     });
   };
@@ -162,13 +199,13 @@ export default class ViewData extends Component {
           type="text"
           value={this.state.value}
           onChange={this.onValueChange}
-          placeholder="Enter a number"
+          placeholder="Enter a year"
         />
         <button onClick={() => this.clickHandler(this.state.value)}>
-          Fetch Data
+          Show New Year
         </button>
         <div className={'PieHere'}>
-          {giveMePie()}
+          {giveMePie(this.state.topFiveData)}
         </div>
         <div className={'Data'}>
           <h2>
