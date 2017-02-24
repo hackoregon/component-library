@@ -43,7 +43,7 @@ const colors = [
 function getTopFive(targetRange) {
   const topFiveObjects = targetRange.slice(0, 5);
   const topFiveAmounts = topFiveObjects.map((item) => {
-    return item.amount;
+    return [item.amount, `${item.contributor_payee} contributed $${item.amount}`];
   });
   return topFiveAmounts;
 }
@@ -55,29 +55,33 @@ function prepareJSX(yearArray) {
 }
 
 function giveMePie(topFiveData) {
-  const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const labels = topFiveData.map((item) => {
+    return item[1];
+  });
   const numberOfData = 5;
   const getRandomColors = colors.slice(0, numberOfData);
   const getColors = (datum, idx) =>
   (arguments.length === 2 ? getRandomColors[idx] : getRandomColors[datum]);
-  const values = topFiveData;
+  const values = topFiveData.map((item) => {
+    return item[0];
+  });
   const style = {
     width: 600,
     height: 250,
   };
-  const titleText = 'TITLE';
-  const subtitleText = 'subtitle';
+  const titleText = 'TOP FIVE';
+  const subtitleText = 'click for info';
   const titleFontSize = 24;
   const subtitleFontSize = 14;
-  const innerRadius = 75;
+  const innerRadius = 85;
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-around', margin: '10% auto' }} >
       <Chart width={style.width} height={style.height}>
         <ChartData data={values}>
           <Pie
-            innerRadius={innerRadius} outerRadius={110}
-            onClick={(e, v, i) => console.log(`${labels[i]} clicked`)}
+            innerRadius={innerRadius} outerRadius={125}
+            onClick={(e, v, i) => {alert(`${labels[i]}`)}}
             style={(d, i) => ({ fill: getColors(i) })}
           >
             <text
@@ -108,8 +112,9 @@ export default class ViewData extends Component {
       value: '',
       responseData: '',
       divContent: 'Please wait while loading',
-      searchYear: '2015',
-      topFiveData: [1, 2, 3, 4, 5],
+      searchYear: '2016',
+      topFiveData: [],
+      totalYearContributions: '',
     };
     this.onValueChange = this.onValueChange.bind(this);
   }
@@ -141,10 +146,12 @@ export default class ViewData extends Component {
       const firstYear = this.filterByYear(currentYear);
       const divMarkup = prepareJSX(firstYear);
       const topFive = getTopFive(firstYear);
+      const totalContributions = firstYear.length;
       // const maxReturn = this.getMax(firstYear);
       this.setState({
         divContent: divMarkup,
         topFiveData: topFive,
+        totalYearContributions: totalContributions,
       });
     });
   };
@@ -185,16 +192,22 @@ export default class ViewData extends Component {
     this.setState({ searchYear: input });
     const targetYearData = this.filterByYear(input);
     const divMarkup = prepareJSX(targetYearData);
-    // const maxReturn = getMax(targetYearData);
+    const topFive = getTopFive(targetYearData);
+    const totalContributions = targetYearData.length;
 
     this.setState({
       divContent: divMarkup,
+      topFiveData: topFive,
+      totalYearContributions: totalContributions,
     });
   }
 
   render() {
     return (
       <div>
+        <p>
+          Enter a year for campaign contribution data from Friends of Ted Wheeler
+        </p>
         <input
           type="text"
           value={this.state.value}
@@ -205,12 +218,16 @@ export default class ViewData extends Component {
           Show New Year
         </button>
         <div className={'PieHere'}>
+          <h2>
+            Curently showing {this.state.searchYear}
+          </h2>
+          <p>
+            Top 5 contributors in the donut<br />
+            All {this.state.totalYearContributions + 1} contributions below the donut
+          </p>
           {giveMePie(this.state.topFiveData)}
         </div>
         <div className={'Data'}>
-          <h2>
-            {this.state.searchYear}
-          </h2>
           <ul>
             {this.state.divContent}
           </ul>
