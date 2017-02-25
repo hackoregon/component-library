@@ -54,15 +54,34 @@ function prepareJSX(yearArray) {
   }));
 }
 
-function mungeData(year) {
-  const yearObject = {
-    year: []
+function mungeData(allData) {
+  const yearsObject = {
+    Y2010: [],
+    Y2011: [],
+    Y2012: [],
+    Y2013: [],
+    Y2014: [],
+    Y2015: [],
+    Y2016: [],
   };
-  yearObject.year = year.map((item) => {
-    yearObject.year.push([item.contributor_payee, item.amount]);
-    return yearObject.year;
+  allData.map((item) => {
+    if (item.tran_date.substring(0, 4) === '2010') {
+      let returnAway = yearsObject.Y2010.push(item.amount);
+    } else if (item.tran_date.substring(0, 4) === '2011') {
+      let returnAway = yearsObject.Y2011.push(item.amount);
+    } else if (item.tran_date.substring(0, 4) === '2012') {
+      let returnAway = yearsObject.Y2012.push(item.amount);
+    } else if (item.tran_date.substring(0, 4) === '2013') {
+      let returnAway = yearsObject.Y2013.push(item.amount);
+    } else if (item.tran_date.substring(0, 4) === '2014') {
+      let returnAway = yearsObject.Y2014.push(item.amount);
+    } else if (item.tran_date.substring(0, 4) === '2015') {
+      let returnAway = yearsObject.Y2015.push(item.amount);
+    } else if (item.tran_date.substring(0, 4) === '2016') {
+      let returnAway = yearsObject.Y2016.push(item.amount);
+    }
   });
-  return yearObject;
+  return yearsObject;
 }
 
 function giveMePie(topFiveData) {
@@ -114,16 +133,55 @@ function giveMePie(topFiveData) {
   );
 }
 
-// LEFT OFF HERE
-
-// function getYearTotals(targetRange) {
-//   const sumAmounts = targetRange.reduce(function(acc, val) {
-//   return acc + val;
-// }, 0);
-//   return topFiveAmounts;
-//   { name: 'David', x: 200, y: 300 }
-// }
-
+function getYearTotals(mungedData) {
+  const annualSums =
+    [
+      {
+        name: 2010,
+        x: mungedData.Y2010.reduce((a, b) => {
+          return a + b;
+        }, 0),
+      },
+      {
+        name: 2011,
+        y: mungedData.Y2011.reduce((a, b) => {
+          return a + b;
+        }, 0),
+      },
+      {
+        name: 2012,
+        x: mungedData.Y2012.reduce((a, b) => {
+          return a + b;
+        }, 0),
+      },
+      {
+        name: 2013,
+        y: mungedData.Y2013.reduce((a, b) => {
+          return a + b;
+        }, 0),
+      },
+      {
+        name: 2014,
+        x: mungedData.Y2014.reduce((a, b) => {
+          return a + b;
+        }, 0),
+      },
+      {
+        name: 2015,
+        y: mungedData.Y2015.reduce((a, b) => {
+          return a + b;
+        }, 0),
+      },
+      {
+        name: 2016,
+        x: mungedData.Y2016.reduce((a, b) => {
+          return a + b;
+        }, 0),
+      },
+    ]
+  console.log(annualSums);
+  return annualSums;
+}
 
 
 export default class ViewData extends Component {
@@ -170,12 +228,14 @@ export default class ViewData extends Component {
       const divMarkup = prepareJSX(firstYear);
       const topFive = getTopFive(firstYear);
       const totalContributions = firstYear.length;
-      const currentYearMungedData = mungeData(firstYear);
+      const mungedData = mungeData(this.state.responseData);
+      const barGraphReturn = getYearTotals(mungedData);
       this.setState({
         divContent: divMarkup,
         topFiveData: topFive,
         totalYearContributions: totalContributions,
-        mungedData: currentYearMungedData,
+        reducedDataObject: mungedData,
+        barGraphData: barGraphReturn,
       });
     });
   };
@@ -218,18 +278,23 @@ export default class ViewData extends Component {
     const divMarkup = prepareJSX(targetYearData);
     const topFive = getTopFive(targetYearData);
     const totalContributions = targetYearData.length;
-    const currentYearMungedData = this.filterByYear2(targetYearData);
     this.setState({
       divContent: divMarkup,
       topFiveData: topFive,
       totalYearContributions: totalContributions,
-      mungedData: currentYearMungedData,
     });
   }
 
   render() {
     return (
       <div>
+        <h2>
+          Total annual contributions
+        </h2>
+        <BarChart data={this.state.barGraphData} />
+        <h2>
+          Contribution breakdown
+        </h2>
         <p>
           Enter a year for campaign contribution data from Friends of Ted Wheeler
         </p>
@@ -243,10 +308,9 @@ export default class ViewData extends Component {
           Show New Year
         </button>
         <div className={'PieHere'}>
-          <BarChart data={[{ name: 'David', x: 200, y: 300 }, { name: 'Robert', x: 200, y: 300 }]} />
-          <h2>
+          <h3>
             Curently showing {this.state.searchYear}
-          </h2>
+          </h3>
           <p>
             Top 5 contributors in the donut<br />
             All {this.state.totalYearContributions + 1} contributions below the donut
