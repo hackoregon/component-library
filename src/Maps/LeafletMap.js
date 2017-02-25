@@ -3,9 +3,8 @@ import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
 import { divIcon } from 'leaflet';
 import classNames from 'classnames/bind';
 import styles from './LeafletMap.styles.css';
-import neighborhoodGeoJson from '../../assets/Zip_Code_Boundaries_GeoJson.json';
-
-// Zip_Code_Boundaries_GeoJson  neighborhoodGeoJson
+// neighborhoodGeoJson  Zip_Code_GeoJson
+import neighborhoodGeoJson from '../../assets/Zip_Code_GeoJson.json';
 
 const cx = classNames.bind(styles);
 const classMap = cx({ mapSize: true });
@@ -37,7 +36,6 @@ function wrapMyComponent(WrappedComponent, GeoWrapper) {
     }
 
     clickHere = (e) => {
-      console.log(e);
       e.target._icon.click();
     };
 
@@ -45,7 +43,6 @@ function wrapMyComponent(WrappedComponent, GeoWrapper) {
       if (feature.properties && feature.properties.ZIPCODE) {
         layer.bindPopup(feature.properties.ZIPCODE.toString());
         layer.on('mouseover', (e) => {
-          console.log(feature.properties.ZIPCODE);
           e.target.openPopup();
         });
       }
