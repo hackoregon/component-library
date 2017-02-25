@@ -9,6 +9,8 @@ import Slider from './Slider/Slider';
 import Header from './Navigation/Header';
 import Nav from './Navigation/Nav';
 import NavRouterLink from './Navigation/NavRouterLink';
+import ViewData from './ViewData/ViewData';
+
 
 export {
   BarChart,
@@ -21,5 +23,5 @@ export {
   Slider,
   StoryCard,
   Nav,
-  NavRouterLink,
+  ViewData,
 };
