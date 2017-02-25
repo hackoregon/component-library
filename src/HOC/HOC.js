@@ -3,12 +3,13 @@ import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 import classNames from 'classnames/bind';
 import styles from './LeafletMap.style.css';
 // data from http://gis-pdx.opendata.arcgis.com/datasets/neighborhoods-regions/data
-import neighborhoodGeoJson from './neighborhoodGeoJson.json';
+import zipCodeGeoJSON from './zipCodeBoundaries.json';
 
 const cx = classNames.bind(styles);
 const className = cx({ mapStyles: true });
+const contributed = { 97140: 506070, 97132: 20 }
 
-function addGeoData(WrappedComponent, gd, options) {
+function addGeoData(WrappedComponent, gd, contributionData, options) {
   return class extends Component {
     static displayName = `WithGeoData(<${WrappedComponent.displayName} />`;
     static propTypes = {
@@ -19,6 +20,7 @@ function addGeoData(WrappedComponent, gd, options) {
       super(props);
       this.state = {
         geoData: gd,
+        contData: contributionData,
         center: options.center,
         zoom: props.zoom || options.zoom,
         attribute: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -27,18 +29,19 @@ function addGeoData(WrappedComponent, gd, options) {
       };
     }
 
+    // ATTEMPT AT ADDING MULTIPLE EVENTS
     // onEachFeature = (feature, layer) => {
     //   layer.on({
     //     mouseover: this.handleHover(feature, layer),
     //     click: this.handleClick,
     //   });
     // }
+    // console.log(e.target);
 
     handleHover = (feature, layer) => {
-      if (feature.properties && feature.properties.NAME) {
-        layer.bindPopup(feature.properties.NAME);
+      if (feature.properties && feature.properties.NAME && feature.properties.ZIPCODE) {
+        layer.bindPopup(`${feature.properties.NAME}: ${feature.properties.ZIPCODE} contributed ${this.state.contData[feature.properties.ZIPCODE]}`);
         layer.on('mouseover', (e) => {
-                    // console.log(e.target);
           e.target.openPopup();
         });
       }
@@ -85,7 +88,7 @@ const BareLeafletMap = (props) => {
         doubleClickZoom={false}
       >
         <TileLayer url={props.url} attribution={props.attribute} />
-        <GeoJSON data={props.data} onEachFeature={props.handleClick} color={props.color} />
+        <GeoJSON data={props.data} onEachFeature={props.handleHover} color={props.color} />
       </Map>
     </div>
   );
@@ -93,7 +96,8 @@ const BareLeafletMap = (props) => {
 
 const PDXLeafletMap = addGeoData(
   BareLeafletMap,
-  neighborhoodGeoJson,
+  zipCodeGeoJSON,
+  contributed,
   { center: [45.57, -122.67], zoom: 11 },
 );
 

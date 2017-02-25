@@ -7,7 +7,7 @@ const title = 'HOC';
 const description = 'HOC goes here!';
 
 const position = [45.57, -122.67];
-const zoom = 10;
+const zoom = 9;
 const maxzoom = 10;
 
 const demoCode = () => (
