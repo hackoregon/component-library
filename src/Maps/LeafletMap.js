@@ -3,7 +3,9 @@ import { Map, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
 import { divIcon } from 'leaflet';
 import classNames from 'classnames/bind';
 import styles from './LeafletMap.styles.css';
-import neighborhoodGeoJson from '../../assets/neighborhoodGeoJson.json';
+import neighborhoodGeoJson from '../../assets/Zip_Code_Boundaries_GeoJson.json';
+
+// Zip_Code_Boundaries_GeoJson  neighborhoodGeoJson
 
 const cx = classNames.bind(styles);
 const classMap = cx({ mapSize: true });
@@ -31,16 +33,19 @@ function wrapMyComponent(WrappedComponent, GeoWrapper) {
         markers: props.data.markers,
       };
       this.clickHere = this.clickHere.bind(this);
+      this.handleHover = this.handleHover.bind(this);
     }
 
     clickHere = (e) => {
+      console.log(e);
       e.target._icon.click();
     };
 
     handleHover = (feature, layer) => {
-      if (feature.properties && feature.properties.NAME) {
-        layer.bindPopup(feature.properties.NAME);
+      if (feature.properties && feature.properties.ZIPCODE) {
+        layer.bindPopup(feature.properties.ZIPCODE.toString());
         layer.on('mouseover', (e) => {
+          console.log(feature.properties.ZIPCODE);
           e.target.openPopup();
         });
       }
@@ -56,6 +61,7 @@ function wrapMyComponent(WrappedComponent, GeoWrapper) {
           zoom={this.state.zoom}
           minZoom={this.state.minZoom}
           clickHere={this.clickHere}
+          handleHover={this.handleHover}
         />
       );
     }

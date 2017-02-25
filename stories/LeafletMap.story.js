@@ -14,10 +14,10 @@ const markers = [
   { neighborhood: 'Laurelhurst', position: [45.5300000, -122.6260000], popText: 'Marker Four.' },
 ];
 const map = {
-  zoom: 14,
-  minZoom: 12,
+  zoom: 12,
+  minZoom: 10,
   position: [45.5234500, -122.6762100],
-  maxBounds: [[45.6500000, -122.8000000], [45.4000000, -122.5000000]],
+  maxBounds: [[45.8000000, -122.8000000], [45.4000000, -122.5000000]],
 };
 const data = { map, markers };
 
