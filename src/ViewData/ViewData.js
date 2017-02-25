@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Chart, ChartData, Pie } from '../';
+import { Chart, ChartData, Pie, BarChart } from '../';
 
 // Add filter validation like Evan !Nan
 
@@ -54,6 +54,17 @@ function prepareJSX(yearArray) {
   }));
 }
 
+function mungeData(year) {
+  const yearObject = {
+    year: []
+  };
+  yearObject.year = year.map((item) => {
+    yearObject.year.push([item.contributor_payee, item.amount]);
+    return yearObject.year;
+  });
+  return yearObject;
+}
+
 function giveMePie(topFiveData) {
   const labels = topFiveData.map((item) => {
     return item[1];
@@ -103,6 +114,18 @@ function giveMePie(topFiveData) {
   );
 }
 
+// LEFT OFF HERE
+
+// function getYearTotals(targetRange) {
+//   const sumAmounts = targetRange.reduce(function(acc, val) {
+//   return acc + val;
+// }, 0);
+//   return topFiveAmounts;
+//   { name: 'David', x: 200, y: 300 }
+// }
+
+
+
 export default class ViewData extends Component {
   static displayName = 'View Data'
 
@@ -147,11 +170,12 @@ export default class ViewData extends Component {
       const divMarkup = prepareJSX(firstYear);
       const topFive = getTopFive(firstYear);
       const totalContributions = firstYear.length;
-      // const maxReturn = this.getMax(firstYear);
+      const currentYearMungedData = mungeData(firstYear);
       this.setState({
         divContent: divMarkup,
         topFiveData: topFive,
         totalYearContributions: totalContributions,
+        mungedData: currentYearMungedData,
       });
     });
   };
@@ -194,11 +218,12 @@ export default class ViewData extends Component {
     const divMarkup = prepareJSX(targetYearData);
     const topFive = getTopFive(targetYearData);
     const totalContributions = targetYearData.length;
-
+    const currentYearMungedData = this.filterByYear2(targetYearData);
     this.setState({
       divContent: divMarkup,
       topFiveData: topFive,
       totalYearContributions: totalContributions,
+      mungedData: currentYearMungedData,
     });
   }
 
@@ -218,6 +243,7 @@ export default class ViewData extends Component {
           Show New Year
         </button>
         <div className={'PieHere'}>
+          <BarChart data={[{ name: 'David', x: 200, y: 300 }, { name: 'Robert', x: 200, y: 300 }]} />
           <h2>
             Curently showing {this.state.searchYear}
           </h2>
