@@ -4,6 +4,7 @@ import { Chart, ChartData, Pie } from '../';
 
 
 export default class ViewData extends Component {
+  static displayName = 'ViewData';
   constructor(props) {
     super(props);
     // some local state to manage passing
@@ -16,6 +17,9 @@ export default class ViewData extends Component {
       input: '',
       // The ViewData class component has an input property to hold
       // query terms by the user.
+      top5: {},
+      // State for the object holding the top 5 contributors for a
+      // given year.
     };
     this.updateInput = this.updateInput.bind(this);
     this.filterByYear = this.filterByYear.bind(this);
@@ -35,14 +39,6 @@ export default class ViewData extends Component {
       // .then(console.log(this.state.data));
   }
 
-  // Filter jsondata from AJAX request to render only the objects with
-  // the given query.
-  // filterByYear() {
-  //   jsondata.filter((record) => {
-  //   return Object.keys(jsondata) === record;
-  //   }
-  // }
-
   updateInput(event) {
     this.setState({ input: event.target.value });
   }
@@ -52,7 +48,8 @@ export default class ViewData extends Component {
       return record.tran_date.substring(0, 4).indexOf(this.state.input) !== -1;
     }));
     return filtered;
-    // this.setState({ filtered: filtered });
+    // filtered is the jsondata object containing only the transactions of
+    // a queried year
   }
 
   render() {
@@ -64,6 +61,7 @@ export default class ViewData extends Component {
         <li key={idx}>Filer: {obj.filer} Contributor Payee: {obj.contributor_payee} Amount: ${obj.amount}</li>
       );
     });
+
     const filtered = this.state.data && this.filterByYear(this.state.data)
 
     const localColors = [
