@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import fetch from 'isomorphic-fetch';
-import { Chart, ChartData, Pie } from './src';
+import { Chart, ChartData, Pie } from '../';
 
 
 export default class ViewData extends Component {
@@ -20,13 +20,6 @@ export default class ViewData extends Component {
     this.updateInput = this.updateInput.bind(this);
     this.filterByYear = this.filterByYear.bind(this);
   }
-
-
-  // const campaigndata = fetch('http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/5591/')
-  //   .then((response) => {
-  //     return response.json();
-  //   }
-  // );
 
   componentDidMount = () => {
     require('es6-promise').polyfill();
@@ -68,7 +61,7 @@ export default class ViewData extends Component {
 
     const records = (data) => data.map((obj, idx) => {
       return (
-        <li key={idx}>{obj.tran_id}</li>
+        <li key={idx}>Filer: {obj.filer} Contributor Payee: {obj.contributor_payee} Amount: ${obj.amount}</li>
       );
     });
     const filtered = this.state.data && this.filterByYear(this.state.data)
@@ -106,10 +99,6 @@ export default class ViewData extends Component {
         <h1>raw data | filtered</h1>
         {this.state.data && filtered ? records(filtered) : (this.state.data && records(this.state.data))}
       </div>
-
-      <Pie innerRadius={innerRadius} outerRadius={110}
-        style={(d, i) => ({ fill: localColors(i) })}
-      </Pie>
 
     );
   }
