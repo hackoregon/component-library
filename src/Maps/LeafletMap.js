@@ -26,14 +26,19 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
         geoJsonData: GeoJsonWrapper,
         dataByYear: {},
         dataByZip: {},
+        zipYear: 2016,
       };
       this.goFetch = this.goFetch.bind(this);
-      this.testMyValue = this.testMyValue.bind(this);
       this.byZip = this.byZip.bind(this);
-      this.countZip = this.countZip.bind(this);
-      this.handleHover = this.handleHover.bind(this);
+      this.zipCount = this.zipCount.bind(this);
       this.getColor = this.getColor.bind(this);
       this.style = this.style.bind(this);
+      this.handleYearChange = this.handleYearChange.bind(this);
+
+      this.highlightFeature = this.highlightFeature.bind(this);
+      this.resetHighlight = this.resetHighlight.bind(this);
+      this.onEachFeature = this.onEachFeature.bind(this);
+      this.showMe = this.showMe.bind(this);
     }
 
     componentDidMount() {
@@ -58,11 +63,14 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
           return dataByYear;
         })
         .then(dataByYear => this.setState({ dataByYear }))
-        .catch(ex => console.log('failed', ex));
+        .catch(ex => console.log('failed', ex))
+        .then(() => this.byZip())
+        .then(() => this.zipCount());
     };
 
     byZip = () => {
-      const myYear = this.state.dataByYear[2016];
+      console.log(this.state.zipYear);
+      const myYear = this.state.dataByYear[this.state.zipYear];
       const dataByZip = {};
       myYear.forEach((t) => {
         const zip = t.zip;
@@ -76,36 +84,39 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
       this.setState({ dataByZip });
     };
 
-    countZip = () => {
+    zipCount = () => {
+      console.log(this.state.zipYear);
       const geoData = this.state.geoJsonData;
       const findZip = this.state.dataByZip;
-      geoData.features.map((t) => {
+      geoData.features.forEach((t) => {
         const zip = t.properties.ZIPCODE;
         let count = 0;
         if (findZip[zip] !== undefined) {
           count = findZip[zip].length;
         }
         t.properties.COUNT = count;
-        console.log(zip, count);
       });
       this.setState({ geoJsonData: geoData });
+    };
+
+    showMe = () => {
+      console.log(this.state);
     }
 
-    testMyValue = () => {
-      console.log(this.state.geoJsonData);
+    handleYearChange = (e) => {
+      const zipYear = Number(e.target.value);
+      this.setState({ zipYear });
     }
 
     // Build Map Functions
-
     getColor(d) {
-      return d > 100 ? '#800026' :
-            d > 50  ? '#BD0026' :
-            d > 25  ? '#E31A1C' :
-            d > 15  ? '#FC4E2A' :
-            d > 10   ? '#FD8D3C' :
-            d > 5   ? '#FEB24C' :
-            d > 1   ? '#FED976' :
-                     '#FFEDA0';
+      return d > 50 ? '#084594' :
+            d > 50  ? '#2171b5' :
+            d > 30  ? '#4292c6' :
+            d > 20  ? '#6baed6' :
+            d > 10  ? '#9ecae1' :
+            d > 5   ? '#c6dbef' :
+                     '#eff3ff';
     }
 
     style(feature) {
@@ -119,18 +130,36 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
       };
     }
 
-/*
-    geojson_layer.eachLayer(function (layer) {
-      if(layer.feature.properties.NAME == 'feature 1') {
-        layer.setStyle({fillColor :'blue'})
-      }
-    });
-*/
-    handleHover = (feature, layer) => {
+  // Hover and Interactive Functions
+    highlightFeature(e) {
+      const layer = e.target;
+      layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7,
+      });
+      layer.openPopup();
+    }
+
+    resetHighlight(e) {
+      const layer = e.target;
+      layer.setStyle({
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7,
+      });
+      layer.closePopup();
+    }
+
+    onEachFeature(feature, layer) {
       if (feature.properties && feature.properties.ZIPCODE) {
         layer.bindPopup(feature.properties.ZIPCODE.toString());
-        layer.on('mouseover', (e) => {
-          e.target.openPopup();
+        layer.on({
+          mouseover: this.highlightFeature,
+          mouseout: this.resetHighlight,
         });
       }
     }
@@ -143,11 +172,16 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
           maxBounds={this.state.maxBounds}
           zoom={this.state.zoom}
           minZoom={this.state.minZoom}
+          zipYear={this.state.zipYear}
+          choices={this.state.dataByYear}
+
+          handleYearChange={this.handleYearChange}
           byZip={this.byZip}
-          testMyValue={this.testMyValue}
-          countZip={this.countZip}
-          handleHover={this.handleHover}
+          zipCount={this.zipCount}
+          showMe={this.showMe}
           style={this.style}
+          onEachFeature={this.onEachFeature}
+
         />
       );
     }
@@ -156,23 +190,37 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
 
 const BareLeafletMap = (props) => {
   require('../../assets/leaflet.css');
+  let options = [];
+  if (props.choices !== undefined) {
+    options = Object.keys(props.choices).map((key) => {
+      return (
+        <option key={key} value={key} >{key}</option>
+      );
+    });
+  }
 
   return (
     <div>
+      <select
+        value={props.zipYear}
+        onChange={props.handleYearChange}
+      >
+        {options}
+      </select>
       <Button
         onClick={props.byZip}
         type="submit"
-      >by Zip
+      >By Zip
       </Button>
       <Button
-        onClick={props.countZip}
+        onClick={props.zipCount}
         type="submit"
-      >Count Zip
+      >Zip Count
       </Button>
       <Button
-        onClick={props.testMyValue}
+        onClick={props.showMe}
         type="submit"
-      >Test my value
+      >Show me State
       </Button>
       <Map
         className={classMap}
@@ -185,7 +233,11 @@ const BareLeafletMap = (props) => {
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <GeoJSON data={props.data} style={props.style} onEachFeature={props.handleHover} />
+        <GeoJSON
+          data={props.data}
+          style={props.style}
+          onEachFeature={props.onEachFeature}
+        />
       </Map>
     </div>
   );
@@ -197,7 +249,16 @@ BareLeafletMap.propTypes = {
   maxBounds: React.PropTypes.array,
   zoom: React.PropTypes.number,
   minZoom: React.PropTypes.number,
+  zipYear: React.PropTypes.number,
   data: React.PropTypes.object,
+  choices: React.PropTypes.object,
+  style: React.PropTypes.func,
+  zipCount: React.PropTypes.func,
+  byZip: React.PropTypes.func,
+  showMe: React.PropTypes.func,
+  handleYearChange: React.PropTypes.func,
+  forPopUp: React.PropTypes.func,
+  onEachFeature: React.PropTypes.func,
 };
 
 const PDXLeafletMap = wrapMyComponent(
