@@ -14,6 +14,7 @@ export default class ViewData extends Component {
       // Before the component renders, it hasn't reached out to
       // the API yet, so we write a placeholder for the data first,
       // and later update it with a life cycle method.
+      hashMap: '',
       input: '',
       // The ViewData class component has an input property to hold
       // query terms by the user.
@@ -23,6 +24,7 @@ export default class ViewData extends Component {
     };
     this.updateInput = this.updateInput.bind(this);
     this.filterByYear = this.filterByYear.bind(this);
+    this.yearHashMap = this.yearHashMap.bind(this);
   }
 
   componentDidMount = () => {
@@ -39,6 +41,28 @@ export default class ViewData extends Component {
       // .then(console.log(this.state.data));
   }
 
+  // componentDidMount = () => {
+  //   require('es6-promise').polyfill();
+  //   require('isomorphic-fetch');
+  //   // console.log('fired?');
+  //   fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/${this.state.candidate}/`)
+  //   .then(response => response.json())
+  //   .then((transactions) => {
+  //     const dataByYear = {};
+  //     transactions.forEach((t) => {
+  //       const year = t.tran_date.substring(0, 4);
+  //       const yearToUpdate = dataByYear[year];
+  //       if (yearToUpdate) {
+  //         dataByYear[year].push(t);
+  //       } else {
+  //         dataByYear[year] = [t];
+  //       }
+  //     });
+  //     return dataByYear;
+  //   })
+  // .then(dataByYear => this.setState({ data: dataByYear }))
+  // }
+
   updateInput(event) {
     this.setState({ input: event.target.value });
   }
@@ -47,30 +71,48 @@ export default class ViewData extends Component {
     const filtered = (this.state.data.filter((record) => {
       return record.tran_date.substring(0, 4).indexOf(this.state.input) !== -1;
     }));
+    console.log(typeof filtered);   // object
     return filtered;
     // filtered is the jsondata object containing only the transactions of
     // a queried year
+  }
+
+  yearHashMap() {
+    // converts jsondata into a hashmap with years as keys
+    const dataByYear = {};
+    this.state.data.forEach((t) => {
+      const year = t.tran_date.substring(0, 4);
+      // assigns the year part of the tran_date string to 'year'
+      const yearToUpdate = dataByYear[year];
+      if (yearToUpdate) {
+        dataByYear[year].push(t);
+      } else {
+        dataByYear[year] = [t];
+      }
+    });
+    // return dataByYear;
+    this.setState({ hashMap: dataByYear });
+  }
+
+  topFiveContrib() {
+    // If the inputted year matches the tran_date year substring,
+    // return the first five records in that list.
+    // const topFiveOfYear = [];
+    this.state.hashMap.forEach((t) => {
+      if (this.state.hashMap.year === this.state.input) {
+        const topFiveOfYear = this.state.hashMap.year.slice(0, 5);
+        const topFiveAmounts = [];
+        topFiveOfYear.forEach(t => topFiveAmounts.push(t.amount));
+        this.setState({ top5: topFiveAmounts });
+      }
+    });
   }
 
   render() {
     // const info = this.state.data;
     // console.log(this.state.data, ' this.state.data?');
 
-    // const yearHash = (filtered) => {
-    //   const dataByYear = {};
-    //   filtered.forEach((t) => {
-    //     const year = splitForYear(t.tran_date);
-    //     const yearToUpdate = dataByYear[year];
-    //     if (yearToUpdate) {
-    //       dataByYear[year].push(t);
-    //     } else {
-    //       dataByYear[year] = [t];
-    //     }
-    //   });
-    //   return dataByYear;
-    // };
-
-    const records = (data) => data.map((obj, idx) => {
+    const records = data => data.map((obj, idx) => {
       // produces JSX
       return (
         <li key={idx}>Filer: {obj.filer} Contributor Payee: {obj.contributor_payee} Amount: ${obj.amount}</li>
