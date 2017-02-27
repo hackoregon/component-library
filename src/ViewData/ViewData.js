@@ -28,7 +28,7 @@ export default class ViewData extends Component {
   componentDidMount = () => {
     require('es6-promise').polyfill();
     require('isomorphic-fetch');
-    console.log('fired?');
+    // console.log('fired?');
     fetch('http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/5591/')
       .then(response => response.json())
       .then((jsondata) => {
@@ -56,7 +56,22 @@ export default class ViewData extends Component {
     // const info = this.state.data;
     // console.log(this.state.data, ' this.state.data?');
 
+    // const yearHash = (filtered) => {
+    //   const dataByYear = {};
+    //   filtered.forEach((t) => {
+    //     const year = splitForYear(t.tran_date);
+    //     const yearToUpdate = dataByYear[year];
+    //     if (yearToUpdate) {
+    //       dataByYear[year].push(t);
+    //     } else {
+    //       dataByYear[year] = [t];
+    //     }
+    //   });
+    //   return dataByYear;
+    // };
+
     const records = (data) => data.map((obj, idx) => {
+      // produces JSX
       return (
         <li key={idx}>Filer: {obj.filer} Contributor Payee: {obj.contributor_payee} Amount: ${obj.amount}</li>
       );
