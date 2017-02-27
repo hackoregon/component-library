@@ -7,6 +7,7 @@ import {
 import { Chart, ChartData, Pie } from '../src';
 import { colors, getRandomValuesArray, randomizer } from './shared';
 
+
 export default () => storiesOf('Pie/Donut visualization').addDecorator(withKnobs)
 .addWithInfo(
   'simple usage',

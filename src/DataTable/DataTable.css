@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+/* @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
 
 body {
   background-color: white;
@@ -28,7 +28,7 @@ div.table-title {
 
 
 /*** Table Styles **/
-
+/*
 .table-fill {
   background: white;
   border-radius:3px;
@@ -141,4 +141,4 @@ td.text-center {
 
 td.text-right {
   text-align: right;
-}
+} */

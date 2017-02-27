@@ -10,6 +10,9 @@ const HorizontalBarChart = ({ data }) =>
     <CartesianGrid strokeDasharray="3 3" />
     <Tooltip />
     <Legend />
+    bars.forEach( function(element, index) {
+      // statements
+    });
     <Bar dataKey="x" fill="#8884d8" />
     <Bar dataKey="y" fill="#82ca9d" />
   </BarChart>;

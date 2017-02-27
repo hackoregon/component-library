@@ -2,67 +2,157 @@ import React from 'react';
 import fetch from 'isomorphic-fetch';
 import classNames from 'classnames/bind';
 import styles from './DataTable.css';
-import { Button } from '../../src';
+import { BarChart, Button, Chart, ChartData, Pie } from '../../src';
+import { SimpleSelect } from 'react-selectize';
 
 export default class DataTable extends React.Component {
   static displayName = 'DataTable';
-  static props = {
-    //  children: React.PropTypes.string,
-  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      data: {},
-      search_data: {},
-      search_input: '',
+      data: [],
+      searchData: [],
+      largestContributors: [],
+      annualContributions: {},
+      searchInput: '',
       input: '5591',
+      hasData: false,
+      titleText: 'Top 5',
+      subtitleText: 'Contributors',
+      yearOptions: []
     };
 
     this.fetchData = this.fetchData.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.updateSearchInput = this.updateSearchInput.bind(this);
-    this.updateSearchDate = this.updateSearchDate.bind(this);
+    this.updateDataByYear = this.updateDataByYear.bind(this);
+    this.updateYearBasedState = this.updateYearBasedState.bind(this);
+    // this.calculateAnnualContributions = this.calculateAnnualContributions(this);
   }
 
   componentDidMount() {
-    // get all the data
+    // get all the data from the api
     this.fetchData();
   }
 
-  componentWillReceiveProps() {
-    //
-
-  }
-
   fetchData = () => {
-    this.setState({ data: {} });
+    // reset the state data to an array w an empty object
+    this.setState({ data: [{}] });
 
     fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/${this.state.input}/`)
       .then(response =>  response.json())
-      .then(data => this.setState({ data: data }))
+      .then(data => this.updateYearBasedState(this.updateDataByYear(data)))
       .catch(ex => console.log('failed', ex));
   };
 
-  updateInput(e) {
-    this.setState({ input: e.target.value });
+  updateInput(option) {
+    this.setState({ input: option });
   }
 
-  updateSearchInput(e) {
-    this.setState({ search_input: e.target.value });
+  updateSearchInput(option) {
+    const yearData = this.state.data[option.value];
+    this.setState({ searchInput: option, searchData: yearData, largestContributors: yearData.slice(0, 5) });
   }
 
-  updateSearchDate(){
-    let filtered_data = this.state.data.filter(
-      (item) => {
-       return item["tran_date"].indexOf(this.state.search_input) !== -1;
+  updateDataByYear(records){
+    // group the records by year in an object, and calculate annualContributions
+    const dataByYear = {};
+    const annualContributions = {};
+    records.forEach((record) => {
+      const year = record.tran_date.slice(0, 4)
+      const yearToUpdate = dataByYear[year];
+      if (yearToUpdate) {
+        dataByYear[year].push(record);
+        annualContributions[year] += record.amount;
+      } else {
+        dataByYear[year] = [record];
+        annualContributions[year] = record.amount;
       }
-    );
-    this.setState({ search_data: filtered_data });
+    });
+
+    return { dataByYear: dataByYear, annualContributions: annualContributions};
+  };
+
+  updateYearBasedState(data) {
+
+    let dataByYear = data.dataByYear;
+    let annualContributions = data.annualContributions;
+
+    const firstYear = dataByYear[Object.keys(dataByYear)[0]];
+
+    const yearOptions = Object.keys(dataByYear).map(function(key) {
+      let yearOption = {};
+      yearOption['value'] = key;
+      yearOption['label'] = key;
+      return yearOption
+    });
+
+
+    this.setState({ data: dataByYear, searchData: firstYear, largestContributors: firstYear.slice(0, 5), searchInput: Object.keys(dataByYear)[0], yearOptions: yearOptions, annualContributions: annualContributions, hasData: true})
+  }
+
+  onHoverPieChart=(label, value)=> {
+    this.setState({titleText: label, subtitleText: value});
   }
 
   render() {
-    const data = this.state.search_data.length > 0 ? this.state.search_data :  this.state.data;
+    // pie chart vars
+    const labels = this.state.largestContributors.map(function(obj) {
+      return obj.contributor_payee;
+    });
+    const numberOfData = 5;
+    const colors = [
+      '#a6cee3',
+      '#1f78b4',
+      '#b2df8a',
+      '#33a02c',
+      '#fb9a99',
+      '#e31a1c',
+      '#fdbf6f',
+      '#ff7f00',
+      '#cab2d6',
+      '#6a3d9a',
+      '#ffff99',
+      '#b15928',
+      '#8dd3c7',
+      '#fb8072',
+      '#80b1d3',
+      '#bebada',
+      '#ffed6f',
+      '#fdb462',
+      '#b3de69',
+      '#fccde5',
+      '#d9d9d9',
+      '#bc80bd',
+      '#ccebc5',
+      '#ffffb3'
+    ];
+    const getRandomValuesArray = (numsOf, func) => [...new Array(numsOf)].map(func);
+    const randomizer = () => Math.random() * 100;
+    const getColors = (datum, idx) => (arguments.length === 2 ? colors[idx] : colors[datum]);
+
+    const getRandomColors = colors.slice(0, numberOfData);
+    const values = this.state.largestContributors.map(function(obj) {
+      return obj.amount;
+    });
+
+    //styling for drop down
+    require('react-selectize/dist/index.css');
+
+    const style = {
+      width: 600,
+      height: 350,
+    };
+
+    const titleFontSize = 24;
+    const subtitleFontSize = 14;
+    const innerRadius = 65;
+    const outerRadius = 130;
+
+    // data table vars
+    const data = this.state.searchData.length > 0 ? this.state.searchData :  this.state.data;
     let header = [];
     let rows = [];
     //  if not empty, grabs a record to pull header tags
@@ -85,8 +175,39 @@ export default class DataTable extends React.Component {
       <tr key={i}>{row}</tr>,
     );
 
+    // debugger
     return (
       <div>
+        { this.state.hasData == true ?
+          <div>
+            <BarChart data={[{ name: 'Annual Contributions', bars: this.state.annualContributions }]} />
+            <div style={{ display: 'flex', justifyContent: 'space-around', margin: '10% auto' }} >
+            <Chart width={style.width} height={style.height}>
+              <ChartData data={values}>
+                <Pie
+                  innerRadius={innerRadius} outerRadius={outerRadius}
+                  style={(d, i) => ({ fill: getColors(i)})}
+                  onClick={(e, d, i) => { console.log(labels[i]) }}
+                  onMouseOver={(e, d, i) => { this.onHoverPieChart(labels[i], values[i]) }}
+                >
+                  <text
+                    className="donut-title" textAnchor="middle"
+                    x={0} y={0} fontSize={titleFontSize}
+                  >
+                    {this.state.titleText}
+                  </text>
+                  <text
+                    className="donut-subtitle" textAnchor="middle"
+                    x={0} y={18} fontSize={subtitleFontSize}
+                  >
+                    {this.state.subtitleText}
+                  </text>
+                </Pie>
+              </ChartData>
+            </Chart>
+            </div>
+          </div>
+        : <h2> Data Loading </h2> }
         <label>Enter Candidate Transactions</label>
         <br />
         <input
@@ -99,13 +220,18 @@ export default class DataTable extends React.Component {
         <br />
         <label>Search by Year</label>
         <br />
-        <input
-          type="text"
-          value={this.state.search}
-          onChange={this.updateSearchInput}
+        <SimpleSelect
+          placeholder = "Select a Year"
+          options={this.state.yearOptions}
+          theme="default"
+          transitionEnter
+          transitionLeave
+          hideResetButton={true}
+          defaultValue={this.state.searchInput}
+          onValueChange={this.updateSearchInput}
         />
         <br />
-        <Button onClick={this.updateSearchDate} type="submit">Sort Data</Button>
+
         <table>
           <thead>
             <tr>
