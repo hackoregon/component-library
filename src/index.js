@@ -4,6 +4,7 @@ import StoryCard from './StoryCard/StoryCard';
 import Chart from './Chart/Chart';
 import ChartData from './ChartData/ChartData';
 import DropdownMenu from './DropdownMenu/DropdownMenu';
+import Leaflet from './Maps/LeafletMap';
 import Pie from './Pie/Pie';
 import Slider from './Slider/Slider';
 import Header from './Navigation/Header';
@@ -17,6 +18,7 @@ export {
   ChartData,
   DropdownMenu,
   Header,
+  Leaflet,
   Pie,
   Slider,
   StoryCard,
