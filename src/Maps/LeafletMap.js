@@ -156,7 +156,9 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
 
     onEachFeature(feature, layer) {
       if (feature.properties && feature.properties.ZIPCODE) {
-        layer.bindPopup(feature.properties.ZIPCODE.toString());
+        const count = feature.properties.COUNT.toString();
+        const zip = feature.properties.ZIPCODE.toString();
+        layer.bindPopup(` ZIP: ${zip} <br /> Contribs: ${count}`);
         layer.on({
           mouseover: this.highlightFeature,
           mouseout: this.resetHighlight,
@@ -257,7 +259,6 @@ BareLeafletMap.propTypes = {
   byZip: React.PropTypes.func,
   showMe: React.PropTypes.func,
   handleYearChange: React.PropTypes.func,
-  forPopUp: React.PropTypes.func,
   onEachFeature: React.PropTypes.func,
 };
 
