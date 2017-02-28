@@ -3,7 +3,6 @@ import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 import fetch from 'isomorphic-fetch';
 import classNames from 'classnames/bind';
 import styles from './LeafletMap.styles.css';
-import { Button } from '../../src';
 import myGeoJsonData from '../../assets/Zip_Code_GeoJson.json';
 
 const cx = classNames.bind(styles);
@@ -28,16 +27,8 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
         dataByZip: {},
         zipYear: 2016,
       };
-      this.byZip = this.byZip.bind(this);
-      this.zipCount = this.zipCount.bind(this);
-      this.getColor = this.getColor.bind(this);
       this.style = this.style.bind(this);
-      this.handleYearChange = this.handleYearChange.bind(this);
-
-      this.highlightFeature = this.highlightFeature.bind(this);
-      this.resetHighlight = this.resetHighlight.bind(this);
       this.onEachFeature = this.onEachFeature.bind(this);
-      this.showMe = this.showMe.bind(this);
     }
 
     componentDidMount() {
@@ -62,19 +53,16 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
           return dataByYear;
         })
         .then((dataByYear) => {
-          const dataByZip = this.byZip(dataByYear);
-          const geoJsonData = this.zipCount(dataByZip);
+          const dataByZip = this.sortByZip(dataByYear, 2016);
+          const geoJsonData = this.countByZip(dataByZip);
           this.setState({ dataByYear, dataByZip, geoJsonData });
         })
-        .catch(ex => console.log('failed', ex))// eslint-disable-line
-
-        // .then(this.byZip)
-        // .then(() => this.zipCount());
+        .catch(ex => console.log('failed', ex)) // eslint-disable-line
     };
 
-    byZip = (dataByYear) => {
-      const yearData = this.state.dataByYear || dataByYear;
-      const myYear = yearData[this.state.zipYear];
+    sortByZip = (dataByYear, zipYear) => {
+      const yearData = dataByYear || this.state.dataByYear;
+      const myYear = yearData[zipYear];
       const dataByZip = {};
       myYear.forEach((t) => {
         const zip = t.zip;
@@ -88,44 +76,51 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
       return dataByZip;
     };
 
-    zipCount = (dataByZip) => {
+    countByZip = (dataByZip) => {
       const geoData = this.state.geoJsonData;
-      const findZip = this.state.dataByZip;
+      const findZip = dataByZip || this.state.dataByZip;
       geoData.features.forEach((t) => {
+        const geoRecord = t;
         const zip = t.properties.ZIPCODE;
         let count = 0;
         if (findZip[zip] !== undefined) {
           count = findZip[zip].length;
         }
-        t.properties.COUNT = count;
+        geoRecord.properties.COUNT = count;
       });
-      return geoJsonData;
+      return geoData;
     };
 
-    showMe = () => {
-      console.log(this.state);
-    }
-
-    upDateYear = () => {
-      const dataByZip = this.byZip(this.state.dataByYear);
-      const geoJsonData = this.zipCount();
-      this.setState({ dataByZip, geoJsonData });
-    }
-
-    handleYearChange = (e) => {
+    upDateYear = (e) => {
       const zipYear = Number(e.target.value);
-      this.setState({ zipYear });
+      const dataByZip = this.sortByZip(this.dataByYear, zipYear);
+      const geoJsonData = this.countByZip(dataByZip);
+
+      this.setState({ dataByZip, geoJsonData, zipYear });
+    }
+
+    showMe = () => {
+      console.log(this.state); // eslint-disable-line
     }
 
     // Build Map Functions
     getColor(d) {
-      return d > 50 ? '#084594' :
-            d > 40  ? '#2171b5' :
-            d > 20  ? '#4292c6' :
-            d > 10  ? '#6baed6' :
-            d > 5   ? '#9ecae1' :
-            d > 1   ? '#c6dbef' :
-                     '#eff3ff';
+      switch (true) {
+        case (d > 50):
+          return '#084594';
+        case (d > 40):
+          return '#2171b5';
+        case (d > 20):
+          return '#4292c6';
+        case (d > 10):
+          return '#6baed6';
+        case (d > 5):
+          return '#9ecae1';
+        case (d > 1):
+          return '#c6dbef';
+        default:
+          return '#eff3ff';
+      }
     }
 
     style(feature) {
@@ -185,9 +180,7 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
           zipYear={this.state.zipYear}
           choices={this.state.dataByYear}
 
-          handleYearChange={this.handleYearChange}
-          byZip={this.byZip}
-          zipCount={this.zipCount}
+          upDateYear={this.upDateYear}
           showMe={this.showMe}
           style={this.style}
           onEachFeature={this.onEachFeature}
@@ -202,36 +195,23 @@ const BareLeafletMap = (props) => {
   require('../../assets/leaflet.css');
   let options = [];
   if (props.choices !== undefined) {
-    options = Object.keys(props.choices).map((key) => {
-      return (
-        <option key={key} value={key} >{key}</option>
+    options = Object.keys(props.choices).map(key =>
+      <option key={key} value={key} >{key}</option>,
       );
-    });
   }
 
   return (
     <div>
       <select
         value={props.zipYear}
-        onChange={props.handleYearChange}
+        onChange={props.upDateYear}
+        style={{
+          width: '100px',
+          height: '25px',
+        }}
       >
         {options}
       </select>
-      <Button
-        onClick={props.byZip}
-        type="submit"
-      >By Zip
-      </Button>
-      <Button
-        onClick={props.zipCount}
-        type="submit"
-      >Zip Count
-      </Button>
-      <Button
-        onClick={props.showMe}
-        type="submit"
-      >Show me State
-      </Button>
       <Map
         className={classMap}
         center={props.center}
@@ -263,10 +243,7 @@ BareLeafletMap.propTypes = {
   data: React.PropTypes.object,
   choices: React.PropTypes.object,
   style: React.PropTypes.func,
-  zipCount: React.PropTypes.func,
-  byZip: React.PropTypes.func,
-  showMe: React.PropTypes.func,
-  handleYearChange: React.PropTypes.func,
+  upDateYear: React.PropTypes.func,
   onEachFeature: React.PropTypes.func,
 };
 
