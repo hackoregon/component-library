@@ -27,7 +27,6 @@ export default class DataTable extends React.Component {
       yearOptions: []
     };
 
-    this.fetchData = this.fetchData.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.updateSearchInput = this.updateSearchInput.bind(this);
     this.updateDataByYear = this.updateDataByYear.bind(this);
@@ -91,7 +90,6 @@ export default class DataTable extends React.Component {
       return yearOption
     });
 
-
     this.setState({ data: dataByYear, searchData: firstYear, largestContributors: firstYear.slice(0, 5), searchInput: Object.keys(dataByYear)[0], yearOptions: yearOptions, annualContributions: annualContributions, hasData: true})
   }
 
@@ -100,7 +98,7 @@ export default class DataTable extends React.Component {
   }
 
   render() {
-    if (this.state.hasData == true ) {
+    // if (this.state.hasData == true ) {
       // pie chart vars
       const labels = this.state.largestContributors.map(function(obj) {
         return obj.contributor_payee;
@@ -154,16 +152,17 @@ export default class DataTable extends React.Component {
       const innerRadius = 65;
       const outerRadius = 130;
 
-      // let barsMap = [];
-      // if (Object.keys(this.state.annualContributions).length > 0) {
-      //   let annualContributions = this.state.annualContributions;
-      //   // debugger
-      //   for (let [year, amount] of Object.entries(annualContributions)) {
-      //     barsMap.push({name: year, pv: amount});
-      //   }
-      //   this.state.barsMap = barsMap;
-      // }
-      //
+      let barsMap = [];
+      if (Object.keys(this.state.annualContributions).length > 0) {
+        let annualContributions = this.state.annualContributions;
+        // debugger
+        for (let [year, amount] of Object.entries(annualContributions)) {
+          barsMap.push({name: year, pv: amount});
+        }
+        this.state.barsMap = barsMap;
+      }
+
+      // debugger
 
       // data table vars
       const data = this.state.searchData.length > 0 ? this.state.searchData :  this.state.data;
@@ -188,15 +187,14 @@ export default class DataTable extends React.Component {
       rows = rows.map((row, i) =>
         <tr key={i}>{row}</tr>,
       );
-      debugger
-    }
+    // }
 
     return (
       <div>
         { this.state.hasData == true ?
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-around', margin: '10% auto' }} >
-              <BarChart layout="horizontal" width={730} height={250} data={[{name: '2016', pv: 5000}]}>
+              <BarChart layout="horizontal" width={730} height={250} data={this.state.barsMap}>
                 <XAxis dataKey="name" />
                 <YAxis />
                 <CartesianGrid strokeDasharray="3 3" />
