@@ -9,7 +9,7 @@ import Slider from './Slider/Slider';
 import Header from './Navigation/Header';
 import Nav from './Navigation/Nav';
 import NavRouterLink from './Navigation/NavRouterLink';
-import ViewData from './ViewData/ViewData';
+import BarChartFromScratch from './ViewData/BarChartFromScratch';
 
 
 export {
@@ -23,5 +23,5 @@ export {
   Slider,
   StoryCard,
   Nav,
-  ViewData,
+  BarChartFromScratch,
 };
