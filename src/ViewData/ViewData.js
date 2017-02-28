@@ -148,11 +148,43 @@ export default class ViewData extends Component {
       '#ffffb3',
     ];
 
+    const getColors = (data, idx) => {
+      arguments.length === 2 ? localColors[idx] : localColors[data]
+    };
+
     return (
       <div>
-        <input type="text" value={this.state.input} onChange={this.updateInput} />
-        <h1>raw data | filtered</h1>
-        {this.state.data && filtered ? records(filtered) : (this.state.data && records(this.state.data))}
+        <div>
+          <input type="text" value={this.state.input} onChange={this.updateInput} />
+          <h1>raw data | filtered</h1>
+          {this.state.data && filtered ? records(filtered) : (this.state.data && records(this.state.data))}
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'space-around', margin: '10% auto' }} >
+              <Chart width={600} height={250}>
+                <ChartData data={this.state.top5}>
+                  <Pie
+                    innerRadius={100} outerRadius={125}
+                    onClick={(e, v, i) => {alert(`${labels[i]}`)}}
+                    style={(d, i) => ({ fill: getColors(i) })}
+                  >
+                    <text
+                      className="donut-title" textAnchor="middle"
+                      x={0} y={0} fontSize={20}
+                    >
+                      {'Top 5 Contributions for the Year'}
+                    </text>
+                    <text
+                      className="donut-subtitle" textAnchor="middle"
+                      x={0} y={18} fontSize={16}
+                    >
+                      {'(Filler Text)'}
+                    </text>
+                  </Pie>
+                </ChartData>
+              </Chart>
+        </div>
+
       </div>
 
     );
