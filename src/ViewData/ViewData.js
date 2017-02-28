@@ -101,7 +101,7 @@ export default class ViewData extends Component {
     this.state.hashMap.forEach((t) => {
       if (this.state.hashMap.year === this.state.input) {
         const topFiveOfYear = this.state.hashMap.year.slice(0, 5);
-        const topFiveAmounts = [];
+        let topFiveAmounts = [];
         topFiveOfYear.forEach(t => topFiveAmounts.push(t.amount));
         this.setState({ top5: topFiveAmounts });
       }
@@ -111,7 +111,12 @@ export default class ViewData extends Component {
   render() {
     // const info = this.state.data;
     // console.log(this.state.data, ' this.state.data?');
+    console.log(this.state.data); // eslint-disable-line
+    debugger
 
+    // Instead of rendering the filtered complete data and/or
+    // the queried data, we can use an '||' for the object
+    // that we render.
     const records = data => data.map((obj, idx) => {
       // produces JSX
       return (

@@ -46,6 +46,10 @@ const Pie = (props, context) => {
         {arcStyles => (
           <g className="slices">
             {arcStyles.map(config => (
+              // arcStyles is an array of styles. We're
+              // going to map over each style.
+              // keys help make React diff better and therefore
+              // makes our code more performant
               <Motion
                 defaultStyle={{
                   ...config.style,
