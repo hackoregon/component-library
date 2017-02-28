@@ -28,7 +28,6 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
         dataByZip: {},
         zipYear: 2016,
       };
-      this.goFetch = this.goFetch.bind(this);
       this.byZip = this.byZip.bind(this);
       this.zipCount = this.zipCount.bind(this);
       this.getColor = this.getColor.bind(this);
@@ -62,15 +61,20 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
           });
           return dataByYear;
         })
-        .then(dataByYear => this.setState({ dataByYear }))
-        .catch(ex => console.log('failed', ex))
-        .then(() => this.byZip())
-        .then(() => this.zipCount());
+        .then((dataByYear) => {
+          const dataByZip = this.byZip(dataByYear);
+          const geoJsonData = this.zipCount(dataByZip);
+          this.setState({ dataByYear, dataByZip, geoJsonData });
+        })
+        .catch(ex => console.log('failed', ex))// eslint-disable-line
+
+        // .then(this.byZip)
+        // .then(() => this.zipCount());
     };
 
-    byZip = () => {
-      console.log(this.state.zipYear);
-      const myYear = this.state.dataByYear[this.state.zipYear];
+    byZip = (dataByYear) => {
+      const yearData = this.state.dataByYear || dataByYear;
+      const myYear = yearData[this.state.zipYear];
       const dataByZip = {};
       myYear.forEach((t) => {
         const zip = t.zip;
@@ -81,11 +85,10 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
           dataByZip[zip] = [t];
         }
       });
-      this.setState({ dataByZip });
+      return dataByZip;
     };
 
-    zipCount = () => {
-      console.log(this.state.zipYear);
+    zipCount = (dataByZip) => {
       const geoData = this.state.geoJsonData;
       const findZip = this.state.dataByZip;
       geoData.features.forEach((t) => {
@@ -96,11 +99,17 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
         }
         t.properties.COUNT = count;
       });
-      this.setState({ geoJsonData: geoData });
+      return geoJsonData;
     };
 
     showMe = () => {
       console.log(this.state);
+    }
+
+    upDateYear = () => {
+      const dataByZip = this.byZip(this.state.dataByYear);
+      const geoJsonData = this.zipCount();
+      this.setState({ dataByZip, geoJsonData });
     }
 
     handleYearChange = (e) => {
@@ -111,11 +120,11 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
     // Build Map Functions
     getColor(d) {
       return d > 50 ? '#084594' :
-            d > 50  ? '#2171b5' :
-            d > 30  ? '#4292c6' :
-            d > 20  ? '#6baed6' :
-            d > 10  ? '#9ecae1' :
-            d > 5   ? '#c6dbef' :
+            d > 40  ? '#2171b5' :
+            d > 20  ? '#4292c6' :
+            d > 10  ? '#6baed6' :
+            d > 5   ? '#9ecae1' :
+            d > 1   ? '#c6dbef' :
                      '#eff3ff';
     }
 
@@ -156,9 +165,8 @@ function wrapMyComponent(WrappedComponent, GeoJsonWrapper) {
 
     onEachFeature(feature, layer) {
       if (feature.properties && feature.properties.ZIPCODE) {
-        const count = feature.properties.COUNT.toString();
         const zip = feature.properties.ZIPCODE.toString();
-        layer.bindPopup(` ZIP: ${zip} <br /> Contribs: ${count}`);
+        layer.bindPopup(` ZIP: ${zip}`);
         layer.on({
           mouseover: this.highlightFeature,
           mouseout: this.resetHighlight,
