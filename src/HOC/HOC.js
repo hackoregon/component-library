@@ -7,9 +7,13 @@ import zipCodeGeoJSON from './zipCodeBoundaries.json';
 
 const cx = classNames.bind(styles);
 const className = cx({ mapStyles: true });
-const contributed = { 97140: 506070, 97132: 20 }
 
-function addGeoData(WrappedComponent, gd, contributionData, options) {
+// Hardcoding data format
+// Instead, will want to add an attribute to the GeoJSON object
+function mungeData() { return { 97140: 506070, 97132: 20 }; }
+const contributed = { 97140: 506070, 97132: 20 };
+
+function addGeoData(WrappedComponent, gd, options) {
   return class extends Component {
     static displayName = `WithGeoData(<${WrappedComponent.displayName} />`;
     static propTypes = {
@@ -20,14 +24,76 @@ function addGeoData(WrappedComponent, gd, contributionData, options) {
       super(props);
       this.state = {
         geoData: gd,
-        contData: contributionData,
+        contData: '',
+        reducedDataObject: '',
         center: options.center,
         zoom: props.zoom || options.zoom,
         attribute: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         color: 'red',
       };
+
+      this.fetchData = this.fetchData.bind(this);
     }
+
+    componentDidMount = () => {
+      this.fetchData()
+    }
+
+    fetchData = () => {
+      require('es6-promise').polyfill();
+      require('isomorphic-fetch');
+
+      fetch('http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/5591/')
+      .then((response) => {
+        // Handle fetch response
+        if (response.status >= 400) {
+          throw new Error('Bad response from server');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Add fetch response to state
+        this.setState({ contData: data });
+      })
+      .then(() => {
+        const mungedData = mungeData(this.state.constData);
+        this.setState({
+          reducedDataObject: mungedData,
+        });
+      });
+    };
+
+  //   byZip = () => {
+  //      console.log(this.state.zipYear);
+  //      const myYear = this.state.dataByYear[this.state.zipYear];
+  //      const dataByZip = {};
+  //      myYear.forEach((t) => {
+  //        const zip = t.zip;
+  //        const zipToUpdate = dataByZip[zip];
+  //        if (zipToUpdate) {
+  //          dataByZip[zip].push(t);
+  //        } else {
+  //          dataByZip[zip] = [t];
+  //        }
+  //      });
+  //      this.setState({ dataByZip });
+  //    };
+  //
+  //   zipCount = () => {
+  //   //  console.log(this.state.zipYear);
+  //    const geoData = this.state.geoJsonData;
+  //    const findZip = this.state.dataByZip;
+  //    geoData.features.forEach((t) => {
+  //      const zip = t.properties.ZIPCODE;
+  //      let count = 0;
+  //      if (findZip[zip] !== undefined) {
+  //        count = findZip[zip].length;
+  //      }
+  //      t.properties.COUNT = count;
+  //    });
+  //    this.setState({ geoJsonData: geoData });
+  //  };
 
     // ATTEMPT AT ADDING MULTIPLE EVENTS
     // onEachFeature = (feature, layer) => {
@@ -39,8 +105,9 @@ function addGeoData(WrappedComponent, gd, contributionData, options) {
     // console.log(e.target);
 
     handleHover = (feature, layer) => {
+      // let contributedAmount =  this.state.reducedDataObject[feature.properties.ZIPCODE];
       if (feature.properties && feature.properties.NAME && feature.properties.ZIPCODE) {
-        layer.bindPopup(`${feature.properties.NAME}: ${feature.properties.ZIPCODE} contributed ${this.state.contData[feature.properties.ZIPCODE]}`);
+        layer.bindPopup(`${feature.properties.NAME}: ${feature.properties.ZIPCODE} contributed ${this.state.reducedDataObject[feature.properties.ZIPCODE]}`);
         layer.on('mouseover', (e) => {
           e.target.openPopup();
         });
@@ -97,7 +164,6 @@ const BareLeafletMap = (props) => {
 const PDXLeafletMap = addGeoData(
   BareLeafletMap,
   zipCodeGeoJSON,
-  contributed,
   { center: [45.57, -122.67], zoom: 11 },
 );
 
