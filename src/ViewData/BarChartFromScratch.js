@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-// function sumAnnualContributions(contributionData) {
-//
-//
 //   const annualSums =
 //     [
 //       {
@@ -60,16 +57,17 @@ export default class BarChartFromScratch extends Component {
     this.state = {
       contributionData: '',
       divContent: 'Please wait while loading',
-      searchYear: '2016',
-      totalYearContributions: '',
+      contributionYear: '2015',
+      annualContributionSum: '',
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     // console.log('Component did mount');
-    require('es6-promise').polyfill();
-    require('isomorphic-fetch');
+    this.fetchData();
+  }
 
+  fetchData = () => {
     fetch('http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/5591/')
     .then((response) => {
       // Handle fetch response
@@ -79,12 +77,34 @@ export default class BarChartFromScratch extends Component {
       return response.json();
     })
     .then((contributionData) => {
-      this.setState({ contributionData });
-    })
+      const targetYearData = this.filterByYear(contributionData, this.state.contributionYear);
+      const targetYearAmounts = this.mungeAmounts(targetYearData);
+      const annualContributionSum = this.sumAnnualContributions(targetYearAmounts);
+      console.log(annualContributionSum);
+      this.setState({ contributionData, annualContributionSum });
+    });
   }
 
-    // this.sumAnnualContributions(data);
+  filterByYear(contributionData, contributionYear) {
+    const contributionsFilteredByYear = contributionData.filter((value) => {
+      return value.tran_date.substring(0, 4) === contributionYear;
+    });
+    return contributionsFilteredByYear;
+  }
 
+  mungeAmounts(targetYearData) {
+    const targetYearAmounts = targetYearData.map((value) => {
+      return value.amount;
+    });
+    return targetYearAmounts;
+  }
+
+  sumAnnualContributions = (targetYearData) => {
+    const annualContributionSum = targetYearData.reduce((a, b) => {
+      return a + b;
+    }, 0);
+    return annualContributionSum;
+  }
 
   //
   //   .then(() => {
@@ -106,19 +126,13 @@ export default class BarChartFromScratch extends Component {
   //   });
   // };
 
-  // filterByYear(year) {
-  //   return (this.state.responseData.filter((value) => {
-  //     return value.tran_date.substring(0, 4) === year;
-  //   }));
-  // }
-
   render() {
     return (
       <div>
         <h2>
           Total annual contributions
         </h2>
-        <div style={{ height: 200, width: 200, backgroundColor: 'red' }} />
+        <div style={{ height: this.state.annualContributionSum / 1000, width: 200, backgroundColor: 'red' }} />
       </div>
     );
   }
