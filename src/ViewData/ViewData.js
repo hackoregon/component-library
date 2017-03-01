@@ -6,7 +6,7 @@ function filterByYear(data, input) {
   const filtered = (data.filter((record) => {
     return record.tran_date.substring(0, 4).indexOf(input) !== -1;
   }));
-  console.log(typeof filtered);   // object
+  console.log(typeof filtered, ' check type of filtered');   // object
   return filtered;
   // filtered is the jsondata object containing only the transactions of
   // a queried year
@@ -52,6 +52,9 @@ export default class ViewData extends Component {
       // given year.
     };
     // this.updateInput = this.updateInput.bind(this);
+    // this.filterByYear = this.filterByYear.bind(this);
+    // this.makeDataByYear = this.makeDataByYear.bind(this);
+    // this.topFiveContrib = this.topFiveContrib.bind(this);
   }
 
   componentDidMount = () => {
@@ -65,6 +68,8 @@ export default class ViewData extends Component {
         // console.log(this, " this");
         const dataByYear = makeDataByYear(jsondata);
         this.setState({ data: jsondata, dataByYear });
+        console.log(this.state.data, dataByYear);
+        debugger
       });
       // .then(console.log(this.state.data));
   }
@@ -72,8 +77,10 @@ export default class ViewData extends Component {
   updateInput(event) {
     const year = event.target.value;
     // ^so we can easily reference the input year
-    const matchedYear = this.state.dataByYear[year];
+    const matchedYear = console.log(this.state.dataByYear[year]); // eslint-disable-line
     // ^array of transaction objects of the input year
+    console.log(matchedYear);
+
     if (matchedYear && matchedYear.length > 0) {
       const topFiveContributors = topFiveContrib(matchedYear);
       this.setState({ topFiveContributors });
