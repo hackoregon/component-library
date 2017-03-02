@@ -1,0 +1,17 @@
+.bar {
+  width: 20px;
+  background-color: tomato;
+  padding-left: 35px;
+  padding-right: 35px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: darkgray;
+}
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  width: 100%;
+  background-color: powderblue;
+}

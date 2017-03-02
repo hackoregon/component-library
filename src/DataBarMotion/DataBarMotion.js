@@ -8,6 +8,12 @@ import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar,
 } from 'recharts';
 import { TransitionMotion, Motion, spring } from 'react-motion';
 
+const willLeaveStyle = ({ style }) => ({
+  ...style,
+  // put your changed property here
+  // startAngle: style.endAngle,
+});
+
 export default class DataBarMotion extends React.Component {
   static displayName = 'Data Bar Motion';
 
@@ -17,8 +23,6 @@ export default class DataBarMotion extends React.Component {
     this.state = {
       data: [],
       barsMap: [],
-      searchData: [],
-      largestContributors: [],
       annualContributions: {},
       input: '5591',
       hasData: false,
@@ -27,6 +31,7 @@ export default class DataBarMotion extends React.Component {
     this.updateInput = this.updateInput.bind(this);
     this.updateDataByYear = this.updateDataByYear.bind(this);
     this.updateYearBasedState = this.updateYearBasedState.bind(this);
+    this.createDataForBars = this.createDataForBars.bind(this);
   }
 
   componentDidMount() {
@@ -68,76 +73,40 @@ export default class DataBarMotion extends React.Component {
   };
 
   updateYearBasedState(data) {
-
     let dataByYear = data.dataByYear;
     let annualContributions = data.annualContributions;
 
-    const firstYear = dataByYear[Object.keys(dataByYear)[0]];
+    const barsMap = this.createDataForBars(annualContributions);
 
-    this.setState({ data: dataByYear, searchData: firstYear, largestContributors: firstYear.slice(0, 5), searchInput: Object.keys(dataByYear)[0], annualContributions: annualContributions, hasData: true})
+    this.setState({ data: dataByYear, searchInput: Object.keys(dataByYear)[0], annualContributions: annualContributions, barsMap: barsMap, hasData: true})
+  }
+
+  createDataForBars(annualContributions) {
+    let barsMap = [];
+
+    if (Object.keys(annualContributions).length > 0) {
+      for (let [year, amount] of Object.entries(annualContributions)) {
+        barsMap.push({year, amount});
+      }
+    }
+
+    return barsMap
   }
 
   render() {
-
-      const labels = this.state.largestContributors.map(function(obj) {
-        return obj.contributor_payee;
-      });
-      const numberOfData = 5;
-      const colors = [
-        '#a6cee3',
-        '#1f78b4',
-        '#b2df8a',
-        '#33a02c',
-        '#fb9a99',
-        '#e31a1c',
-        '#fdbf6f',
-        '#ff7f00',
-        '#cab2d6',
-        '#6a3d9a',
-        '#ffff99',
-        '#b15928',
-        '#8dd3c7',
-        '#fb8072',
-        '#80b1d3',
-        '#bebada',
-        '#ffed6f',
-        '#fdb462',
-        '#b3de69',
-        '#fccde5',
-        '#d9d9d9',
-        '#bc80bd',
-        '#ccebc5',
-        '#ffffb3'
-      ];
-      const getRandomValuesArray = (numsOf, func) => [...new Array(numsOf)].map(func);
-      const randomizer = () => Math.random() * 100;
-      const getColors = (datum, idx) => (arguments.length === 2 ? colors[idx] : colors[datum]);
-
-      const getRandomColors = colors.slice(0, numberOfData);
-      const values = this.state.largestContributors.map(function(obj) {
-        return obj.amount;
-      });
-
-      const titleFontSize = 24;
-      const subtitleFontSize = 14;
-      const innerRadius = 65;
-      const outerRadius = 130;
-
-      let barsMap = [];
-      if (Object.keys(this.state.annualContributions).length > 0) {
-        let annualContributions = this.state.annualContributions;
-        // debugger
-        for (let [year, amount] of Object.entries(annualContributions)) {
-          barsMap.push({year, amount});
-        }
-        // this.state.barsMap = barsMap;
-      }
+    let bars = [];
+    let barsMap = this.state.barsMap
+    for (var bar of barsMap) {
+      bars.push(<div willLeave={willLeaveStyle} className='bar' style={{height: bar.amount/1000}} key={bar.amount}>{bar.year}</div>);
+    }
 
     return (
       <div>
         { this.state.hasData == true ?
           <div>
-
+            <div className='chart'>
+              {bars}
+            </div>
             <label>Enter Candidate Transactions</label>
             <br />
             <input
@@ -148,6 +117,7 @@ export default class DataBarMotion extends React.Component {
             <br />
             <Button onClick={this.fetchData} type="submit">Fetch Data</Button>
             <br />
+          </div>
         : <h2> Data Loading </h2> }
       </div>
     );
