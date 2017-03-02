@@ -1,53 +1,5 @@
 import React, { Component } from 'react';
-
-//   const annualSums =
-//     [
-//       {
-//         name: 2010,
-//         x: mungedData.Y2010.reduce((a, b) => {
-//           return a + b;
-//         }, 0),
-//       },
-//       {
-//         name: 2011,
-//         y: mungedData.Y2011.reduce((a, b) => {
-//           return a + b;
-//         }, 0),
-//       },
-//       {
-//         name: 2012,
-//         x: mungedData.Y2012.reduce((a, b) => {
-//           return a + b;
-//         }, 0),
-//       },
-//       {
-//         name: 2013,
-//         y: mungedData.Y2013.reduce((a, b) => {
-//           return a + b;
-//         }, 0),
-//       },
-//       {
-//         name: 2014,
-//         x: mungedData.Y2014.reduce((a, b) => {
-//           return a + b;
-//         }, 0),
-//       },
-//       {
-//         name: 2015,
-//         y: mungedData.Y2015.reduce((a, b) => {
-//           return a + b;
-//         }, 0),
-//       },
-//       {
-//         name: 2016,
-//         x: mungedData.Y2016.reduce((a, b) => {
-//           return a + b;
-//         }, 0),
-//       },
-//     ]
-//   console.log(annualSums);
-//   return annualSums;
-// }
+import { TransitionMotion, Motion, spring } from 'react-motion';
 
 export default class BarChartFromScratch extends Component {
   static displayName = 'BarChartFromScratch'
@@ -55,9 +7,9 @@ export default class BarChartFromScratch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contributionData: '',
+      contributionData: null,
       divContent: 'Please wait while loading',
-      annualContributionSums: '',
+      annualContributionSums: 0,
     };
   }
 
@@ -77,11 +29,8 @@ export default class BarChartFromScratch extends Component {
     })
     .then((contributionData) => {
       const dataSortedByYear = this.sortByYear(contributionData);
-      // const targetYearData = this.filterByYear(contributionData, this.state.contributionYear);
-      // const targetYearAmounts = this.mungeAmounts(targetYearData);
       const annualContributionSums = this.sumAnnualContributions(dataSortedByYear);
-      // const barDivs = this.makeBarDivs(annualContributionSums)
-      console.log(annualContributionSums);
+
       this.setState({ contributionData, annualContributionSums });
     });
   }
@@ -95,58 +44,43 @@ export default class BarChartFromScratch extends Component {
       } else {
         returnData[localYear] = [object.amount];
       }
-    })
+    });
     return returnData;
   }
 
   sumAnnualContributions = (dataSortedByYear) => {
     const annualContributionSums = dataSortedByYear;
     for (const year in dataSortedByYear) {
-      annualContributionSums[year] = dataSortedByYear[year].reduce((a, b) => { return a + b; }, 0);
+      annualContributionSums[year] = dataSortedByYear[year].reduce((a, b) => a + b, 0);
     }
     return annualContributionSums;
   }
 
-  // makeBarDivs = (annualContributionSums) => {
-  //   let barDivs = '';
-  //   for (const year in annualContributionSums) {
-  //     barDivs += `<div key=${year} style={{ height: ${annualContributionSums[year] / 1000}, width: 200, backgroundColor: 'red' }} />`
+  // MAKE BAR DIVS
+  makeBarDivs = (annualContributionSums) => {
+    let barDivs = null;
+    for (const year in annualContributionSums) {
+      barDivs +=   (<Motion defaultStyle={{ x: 0 }} style={{ x: spring(this.state.annualContributionSums[year]) }}>
+        {value => <div key={year} style={{ height: value.x / 1900, width: 200, color: 'white', backgroundColor: 'blue' }}>year</div>}
+      </Motion>);
+    }
+    return barDivs;
+  }
+
+// <div key={year} style={{ height: {annualContributionSums[year] / 1000}, width: 200, backgroundColor: 'red' }}/>
+
+  // FORMER POINTS IN PROMISE SEQUENCE
+  // const targetYearData = this.filterByYear(contributionData, this.state.contributionYear);
+  // const targetYearAmounts = this.mungeAmounts(targetYearData);
+  // const barDivs = this.makeBarDivs(annualContributionSums);
+
+  // LEAVING OFF ARRAY OF BARS
+  // const barsMap = this.state.annualContributionSums;
+  //   for (const bar of barsMap) {
+  //     bars.push(<Motion defaultStyle={{ x: 0 }} style={{ x: spring(this.state.annualContributionSums[bar]) }}>
+  //       {value => <div key={bar} style={{ height: value.x / 1900, width: 200, color: 'white', backgroundColor: 'blue' }}>{bar}</div>}
+  //     </Motion>);
   //   }
-  //   return barDivs;
-  // }
-
-  // filterByYear(contributionData, contributionYear) {
-  //   const contributionsFilteredByYear = contributionData.filter((value) => {
-  //     return value.tran_date.substring(0, 4) === contributionYear;
-  //   });
-  //   return contributionsFilteredByYear;
-  // }
-
-  // mungeAmounts(targetYearData) {
-  //   const targetYearAmounts = targetYearData.map((value) => {
-  //     return value.amount;
-  //   });
-  //   return targetYearAmounts;
-  // }
-  //
-  //   .then(() => {
-  //     // Add initial year
-  //     const currentYear = this.state.searchYear;
-  //     const firstYear = this.filterByYear(currentYear);
-  //     const divMarkup = prepareJSX(firstYear);
-  //     const topFive = getTopFive(firstYear);
-  //     const totalContributions = firstYear.length;
-  //     const mungedData = mungeData(this.state.responseData);
-  //     const barGraphReturn = getYearTotals(mungedData);
-  //     this.setState({
-  //       divContent: divMarkup,
-  //       topFiveData: topFive,
-  //       totalYearContributions: totalContributions,
-  //       reducedDataObject: mungedData,
-  //       barGraphData: barGraphReturn,
-  //     });
-  //   });
-  // };
 
   render() {
     return (
@@ -154,15 +88,32 @@ export default class BarChartFromScratch extends Component {
         <h2>
           Total annual contributions
         </h2>
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end' }}>
-          <div key={2010} style={{ height: this.state.annualContributionSums[2010] / 1900, width: 200, color: 'white', backgroundColor: 'red' }}>2010</div>
-          <div key={2011} style={{ height: this.state.annualContributionSums[2011] / 1900, width: 200, color: 'white', backgroundColor: 'blue' }}>2011</div>
-          <div key={2012} style={{ height: this.state.annualContributionSums[2012] / 1900, width: 200, color: 'white', backgroundColor: 'red' }}>2012</div>
-          <div key={2013} style={{ height: this.state.annualContributionSums[2013] / 1900, width: 200, color: 'white', backgroundColor: 'blue' }}>2013</div>
-          <div key={2014} style={{ height: this.state.annualContributionSums[2014] / 1900, width: 200, color: 'white', backgroundColor: 'red' }}>2014</div>
-          <div key={2015} style={{ height: this.state.annualContributionSums[2015] / 1900, width: 200, color: 'white', backgroundColor: 'blue' }}>2015</div>
-          <div key={2016} style={{ height: this.state.annualContributionSums[2016] / 1900, width: 200, color: 'white', backgroundColor: 'red' }}>2016</div>
-        </div>
+        {this.state.annualContributionSums &&
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end' }}>
+            <Motion defaultStyle={{ x: 0 }} style={{ x: spring(this.state.annualContributionSums[2010]) }}>
+              {value => <div key={2010} style={{ height: value.x / 3000, width: 125, color: 'white', backgroundColor: 'blue' }}>2010</div>}
+            </Motion>
+            <Motion defaultStyle={{ x: 0 }} style={{ x: spring(this.state.annualContributionSums[2011]) }}>
+              {value => <div key={2011} style={{ height: value.x / 3000, width: 125, color: 'white', backgroundColor: 'red' }}>2011</div>}
+            </Motion>
+            <Motion defaultStyle={{ x: 0 }} style={{ x: spring(this.state.annualContributionSums[2012]) }}>
+              {value => <div key={2012} style={{ height: value.x / 3000, width: 125, color: 'white', backgroundColor: 'blue' }}>2012</div>}
+            </Motion>
+            <Motion defaultStyle={{ x: 0 }} style={{ x: spring(this.state.annualContributionSums[2013]) }}>
+              {value => <div key={2013} style={{ height: value.x / 3000, width: 125, color: 'white', backgroundColor: 'red' }}>2013</div>}
+            </Motion>
+            <Motion defaultStyle={{ x: 0 }} style={{ x: spring(this.state.annualContributionSums[2014]) }}>
+              {value => <div key={2014} style={{ height: value.x / 3000, width: 125, color: 'white', backgroundColor: 'blue' }}>2014</div>}
+            </Motion>
+            <Motion defaultStyle={{ x: 0 }} style={{ x: spring(this.state.annualContributionSums[2015]) }}>
+              {value => <div key={2015} style={{ height: value.x / 3000, width: 125, color: 'white', backgroundColor: 'red' }}>2015</div>}
+            </Motion>
+            <Motion defaultStyle={{ x: 0 }} style={{ x: spring(this.state.annualContributionSums[2016]) }}>
+              {value => <div key={2016} style={{ height: value.x / 3000, width: 125, color: 'white', backgroundColor: 'blue' }}>2016</div>}
+            </Motion>
+
+          </div>
+      }
       </div>
     );
   }
