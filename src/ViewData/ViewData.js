@@ -69,7 +69,6 @@ export default class ViewData extends Component {
         const dataByYear = makeDataByYear(jsondata);
         this.setState({ data: jsondata, dataByYear });
         console.log(this.state.data, dataByYear);
-        debugger
       });
       // .then(console.log(this.state.data));
   }
@@ -91,7 +90,7 @@ export default class ViewData extends Component {
   render() {
     // const info = this.state.data;
     // console.log(this.state.data, ' this.state.data?');
-    console.log(this.state.data); // eslint-disable-line
+    console.log(this.state.data, ' this.state.data in render function'); // eslint-disable-line
     // debugger
 
     const records = data => data.map((obj, idx) => {

@@ -5,7 +5,7 @@ import styles from './LeafletMap.styles.css';
 import neighborhoodregionsJSON from './Neighborhoods_regions.json';
 
 const cx = classNames.bind(styles);
-const className = cx({ base: true });
+const mapClass = cx({ map: true });
 
 function addGeoData(WrappedComponent, gd, options) {
   // addGeoData takes in a component, augments it with data and other
@@ -50,9 +50,9 @@ function addGeoData(WrappedComponent, gd, options) {
 const BareLeafletMap = (props) => {
   require('../../assets/leaflet.css');
   return (
-    <div className={'map'}>
+    <div>
       <Map
-        className={className}
+        className={mapClass}
         zoom={props.zoom}
         center={props.center}
         zoomControl
