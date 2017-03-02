@@ -39,7 +39,7 @@ export default class ViewData extends Component {
     // some local state to manage passing
     // data
     this.state = {
-      data: null,
+      data: [],
       // Before the component renders, it hasn't reached out to
       // the API yet, so we write a placeholder for the data first,
       // and later update it with a life cycle method.
@@ -51,7 +51,7 @@ export default class ViewData extends Component {
       // State for the object holding the top 5 contributors for a
       // given year.
     };
-    // this.updateInput = this.updateInput.bind(this);
+    this.updateInput = this.updateInput.bind(this);
     // this.filterByYear = this.filterByYear.bind(this);
     // this.makeDataByYear = this.makeDataByYear.bind(this);
     // this.topFiveContrib = this.topFiveContrib.bind(this);
@@ -76,11 +76,14 @@ export default class ViewData extends Component {
   updateInput(event) {
     const year = event.target.value;
     // ^so we can easily reference the input year
-    const matchedYear = console.log(this.state.dataByYear[year]); // eslint-disable-line
-    // ^array of transaction objects of the input year
-    console.log(matchedYear);
+    const matchedYear = this.state.dataByYear[year]; // eslint-disable-line
+    // ^array of transaction objects organized by year
+    console.log(matchedYear, ' this is matchedYear');
 
     if (matchedYear && matchedYear.length > 0) {
+      // Robert: This line ^ might be throwing us an error
+      // because JavaScript can't run this conditional if
+      // there's no input given.
       const topFiveContributors = topFiveContrib(matchedYear);
       this.setState({ topFiveContributors });
     }
