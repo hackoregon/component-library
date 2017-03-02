@@ -1,14 +1,14 @@
 import React from 'react';
 import fetch from 'isomorphic-fetch';
 import classNames from 'classnames/bind';
-import styles from './DataTable.css';
+import styles from './DataBar.css';
 import { Button, Chart, ChartData, Pie } from '../../src';
 import { SimpleSelect } from 'react-selectize';
 import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar,
 } from 'recharts';
 
 export default class DataBar extends React.Component {
-  static displayName = 'DataTable';
+  static displayName = 'DataBar';
 
   constructor(props) {
     super(props);
@@ -202,31 +202,6 @@ export default class DataBar extends React.Component {
                 <Legend />
                 <Bar type="monotone" dataKey="amount" fill="#8884d8" />
               </BarChart>;
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around', margin: '10% auto' }} >
-              <Chart width={chartStyle.width} height={chartStyle.height}>
-              <ChartData data={values}>
-                <Pie
-                  innerRadius={innerRadius} outerRadius={outerRadius}
-                  style={(d, i) => ({ fill: getColors(i)})}
-                  onClick={(e, d, i) => { console.log(labels[i]) }}
-                  onMouseOver={(e, d, i) => { this.onHoverPieChart(labels[i], values[i]) }}
-                >
-                  <text
-                    className="donut-title" textAnchor="middle"
-                    x={0} y={0} fontSize={titleFontSize}
-                  >
-                    {this.state.titleText}
-                  </text>
-                  <text
-                    className="donut-subtitle" textAnchor="middle"
-                    x={0} y={18} fontSize={subtitleFontSize}
-                  >
-                    {this.state.subtitleText}
-                  </text>
-                </Pie>
-              </ChartData>
-              </Chart>
             </div>
 
             <label>Enter Candidate Transactions</label>

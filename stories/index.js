@@ -13,6 +13,7 @@ import dropdownStory from './DropdownMenu.story';
 import headerStory from './Header.story';
 import dataTableStory from './DataTable.story'
 import dataBarStory from './DataBar.story'
+import dataBarMotionStory from './DataBarMotion.story'
 import Welcome from './Welcome';
 
 import '../src/global.styles.css';
@@ -37,3 +38,4 @@ dropdownStory();
 leafletStory();
 dataTableStory();
 dataBarStory();
+dataBarMotionStory();
