@@ -143,7 +143,7 @@ export default class ViewData extends Component {
     return (
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-around', margin: '10% auto' }} >
-              <Chart width={600} height={200}>
+              <Chart width={600} height={250}>
                 <ChartData data={this.state.topFiveContributors}>
                   <Pie
                     innerRadius={75} outerRadius={125}
