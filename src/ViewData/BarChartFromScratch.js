@@ -57,8 +57,7 @@ export default class BarChartFromScratch extends Component {
     this.state = {
       contributionData: '',
       divContent: 'Please wait while loading',
-      contributionYear: '2015',
-      annualContributionSum: '',
+      annualContributionSums: '',
     };
   }
 
@@ -77,35 +76,58 @@ export default class BarChartFromScratch extends Component {
       return response.json();
     })
     .then((contributionData) => {
-      const targetYearData = this.filterByYear(contributionData, this.state.contributionYear);
-      const targetYearAmounts = this.mungeAmounts(targetYearData);
-      const annualContributionSum = this.sumAnnualContributions(targetYearAmounts);
-      console.log(annualContributionSum);
-      this.setState({ contributionData, annualContributionSum });
+      const dataSortedByYear = this.sortByYear(contributionData);
+      // const targetYearData = this.filterByYear(contributionData, this.state.contributionYear);
+      // const targetYearAmounts = this.mungeAmounts(targetYearData);
+      const annualContributionSums = this.sumAnnualContributions(dataSortedByYear);
+      // const barDivs = this.makeBarDivs(annualContributionSums)
+      console.log(annualContributionSums);
+      this.setState({ contributionData, annualContributionSums });
     });
   }
 
-  filterByYear(contributionData, contributionYear) {
-    const contributionsFilteredByYear = contributionData.filter((value) => {
-      return value.tran_date.substring(0, 4) === contributionYear;
-    });
-    return contributionsFilteredByYear;
+  sortByYear(contributionData) {
+    const returnData = {};
+    contributionData.forEach((object) => {
+      const localYear = object.tran_date.substring(0, 4);
+      if (returnData[localYear]) {
+        returnData[localYear].push(object.amount);
+      } else {
+        returnData[localYear] = [object.amount];
+      }
+    })
+    return returnData;
   }
 
-  mungeAmounts(targetYearData) {
-    const targetYearAmounts = targetYearData.map((value) => {
-      return value.amount;
-    });
-    return targetYearAmounts;
+  sumAnnualContributions = (dataSortedByYear) => {
+    const annualContributionSums = dataSortedByYear;
+    for (const year in dataSortedByYear) {
+      annualContributionSums[year] = dataSortedByYear[year].reduce((a, b) => { return a + b; }, 0);
+    }
+    return annualContributionSums;
   }
 
-  sumAnnualContributions = (targetYearData) => {
-    const annualContributionSum = targetYearData.reduce((a, b) => {
-      return a + b;
-    }, 0);
-    return annualContributionSum;
-  }
+  // makeBarDivs = (annualContributionSums) => {
+  //   let barDivs = '';
+  //   for (const year in annualContributionSums) {
+  //     barDivs += `<div key=${year} style={{ height: ${annualContributionSums[year] / 1000}, width: 200, backgroundColor: 'red' }} />`
+  //   }
+  //   return barDivs;
+  // }
 
+  // filterByYear(contributionData, contributionYear) {
+  //   const contributionsFilteredByYear = contributionData.filter((value) => {
+  //     return value.tran_date.substring(0, 4) === contributionYear;
+  //   });
+  //   return contributionsFilteredByYear;
+  // }
+
+  // mungeAmounts(targetYearData) {
+  //   const targetYearAmounts = targetYearData.map((value) => {
+  //     return value.amount;
+  //   });
+  //   return targetYearAmounts;
+  // }
   //
   //   .then(() => {
   //     // Add initial year
@@ -132,7 +154,15 @@ export default class BarChartFromScratch extends Component {
         <h2>
           Total annual contributions
         </h2>
-        <div style={{ height: this.state.annualContributionSum / 1000, width: 200, backgroundColor: 'red' }} />
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end' }}>
+          <div key={2010} style={{ height: this.state.annualContributionSums[2010] / 1900, width: 200, color: 'white', backgroundColor: 'red' }}>2010</div>
+          <div key={2011} style={{ height: this.state.annualContributionSums[2011] / 1900, width: 200, color: 'white', backgroundColor: 'blue' }}>2011</div>
+          <div key={2012} style={{ height: this.state.annualContributionSums[2012] / 1900, width: 200, color: 'white', backgroundColor: 'red' }}>2012</div>
+          <div key={2013} style={{ height: this.state.annualContributionSums[2013] / 1900, width: 200, color: 'white', backgroundColor: 'blue' }}>2013</div>
+          <div key={2014} style={{ height: this.state.annualContributionSums[2014] / 1900, width: 200, color: 'white', backgroundColor: 'red' }}>2014</div>
+          <div key={2015} style={{ height: this.state.annualContributionSums[2015] / 1900, width: 200, color: 'white', backgroundColor: 'blue' }}>2015</div>
+          <div key={2016} style={{ height: this.state.annualContributionSums[2016] / 1900, width: 200, color: 'white', backgroundColor: 'red' }}>2016</div>
+        </div>
       </div>
     );
   }
