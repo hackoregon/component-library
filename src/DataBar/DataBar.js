@@ -7,7 +7,7 @@ import { SimpleSelect } from 'react-selectize';
 import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar,
 } from 'recharts';
 
-export default class DataTable extends React.Component {
+export default class DataBar extends React.Component {
   static displayName = 'DataTable';
 
   constructor(props) {
