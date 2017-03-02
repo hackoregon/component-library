@@ -142,17 +142,11 @@ export default class ViewData extends Component {
 
     return (
       <div>
-        <div>
-          <input type="text" value={this.state.input} onChange={this.updateInput} />
-          <h1>raw data | filtered</h1>
-          {this.state.data && filtered ? records(filtered) : (this.state.data && records(this.state.data))}
-        </div>
-
         <div style={{ display: 'flex', justifyContent: 'space-around', margin: '10% auto' }} >
-              <Chart width={600} height={250}>
+              <Chart width={600} height={200}>
                 <ChartData data={this.state.topFiveContributors}>
                   <Pie
-                    innerRadius={100} outerRadius={125}
+                    innerRadius={75} outerRadius={125}
                     onClick={(e, v, i) => {alert(`${labels[i]}`)}}
                     style={(d, i) => ({ fill: getColors(i) })}
                   >
@@ -160,7 +154,7 @@ export default class ViewData extends Component {
                       className="donut-title" textAnchor="middle"
                       x={0} y={0} fontSize={20}
                     >
-                      {'Top 5 Contributions for the Year'}
+                      {`Top 5 Contributions for ${this.state.input || 'the Year'}`}
                     </text>
                     <text
                       className="donut-subtitle" textAnchor="middle"
@@ -172,7 +166,11 @@ export default class ViewData extends Component {
                 </ChartData>
               </Chart>
         </div>
-
+        <div>
+          <input type="text" value={this.state.input} onChange={this.updateInput} />
+          <h1>raw data | filtered</h1>
+          {this.state.data && filtered ? records(filtered) : (this.state.data && records(this.state.data))}
+        </div>
       </div>
 
     );
