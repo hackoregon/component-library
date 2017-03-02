@@ -10,10 +10,13 @@ function filterByYear(data, input) {
   return filtered;
   // filtered is the jsondata object containing only the transactions of
   // a queried year
+  // Type: ARRAY
 }
 
 function makeDataByYear(data) {
-  // converts jsondata into a hashmap with years as keys
+  // converts jsondata (array of objects) into a hashmap (object
+  // with years as keys with values that are an array of
+  // transaction/record objects)
   const dataByYear = {};
   data.forEach((t) => {
     const year = t.tran_date.substring(0, 4);
@@ -26,18 +29,19 @@ function makeDataByYear(data) {
     }
   });
   return dataByYear;
+  // Type: OBJECT
 }
 
 function topFiveContrib(yearData) {
   return yearData.slice(0, 5).map(item => item.amount);
+  // Type: ARRAY
 }
 
 export default class ViewData extends Component {
   static displayName = 'ViewData';
   constructor(props) {
     super(props);
-    // some local state to manage passing
-    // data
+    // some local state to manage passing data
     this.state = {
       data: [],
       // Before the component renders, it hasn't reached out to
@@ -47,7 +51,7 @@ export default class ViewData extends Component {
       input: '',
       // The ViewData class component has an input property to hold
       // query terms by the user.
-      topFiveContributors: {},
+      topFiveContributors: [],
       // State for the object holding the top 5 contributors for a
       // given year.
     };
@@ -146,7 +150,7 @@ export default class ViewData extends Component {
 
         <div style={{ display: 'flex', justifyContent: 'space-around', margin: '10% auto' }} >
               <Chart width={600} height={250}>
-                <ChartData data={this.state.top5}>
+                <ChartData data={this.state.topFiveContributors}>
                   <Pie
                     innerRadius={100} outerRadius={125}
                     onClick={(e, v, i) => {alert(`${labels[i]}`)}}
