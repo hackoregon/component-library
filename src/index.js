@@ -13,6 +13,7 @@ import NavRouterLink from './Navigation/NavRouterLink';
 import DataTable from './DataTable/DataTable';
 import DataBar from './DataBar/DataBar';
 import DataBarMotion from './DataBarMotion/DataBarMotion';
+import DataPie from './DataPie/DataPie';
 
 export {
   BarChart,
@@ -20,6 +21,7 @@ export {
   Chart,
   ChartData,
   DataBar,
+  DataPie,
   DataBarMotion,
   DataTable,
   DropdownMenu,

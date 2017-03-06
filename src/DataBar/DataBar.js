@@ -20,36 +20,37 @@ export default class DataBar extends React.Component {
       largestContributors: [],
       annualContributions: {},
       searchInput: '',
-      input: '5591',
-      hasData: false,
-      titleText: 'Top 5',
-      subtitleText: 'Contributors',
-      yearOptions: []
+      candidateId: 5591,
+      candidateName: 'Ted Wheeler',
+      candidateOptions: [ {value: 5591, label: 'Ted Wheeler'} , {value: 5580, label: 'Yes For Schools'}],
+      hasData: false
     };
 
-    this.updateInput = this.updateInput.bind(this);
+    this.updateCandidateInput = this.updateCandidateInput.bind(this);
     this.updateSearchInput = this.updateSearchInput.bind(this);
     this.updateDataByYear = this.updateDataByYear.bind(this);
     this.updateYearBasedState = this.updateYearBasedState.bind(this);
+    this.fetchData = this.fetchData.bind(this);
   }
 
   componentDidMount() {
     // get all the data from the api
     this.fetchData();
-  }
+  };
 
-  fetchData = () => {
+  fetchData() {
     // reset the state data to an array w an empty object
     this.setState({ data: [{}] });
 
-    fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/${this.state.input}/`)
+    fetch(`http://54.213.83.132/hackoregon/http/current_candidate_transactions_in/${this.state.candidateId}/`)
       .then(response =>  response.json())
       .then(data => this.updateYearBasedState(this.updateDataByYear(data)))
       .catch(ex => console.log('failed', ex));
   };
 
-  updateInput(option) {
-    this.setState({ input: option });
+  updateCandidateInput(option) {
+    this.setState({ data: [], searchData: [], hasData: false, candidateId: option.value, candidateName: option.label });
+    this.fetchData();
   }
 
   updateSearchInput(option) {
@@ -83,14 +84,7 @@ export default class DataBar extends React.Component {
 
     const firstYear = dataByYear[Object.keys(dataByYear)[0]];
 
-    const yearOptions = Object.keys(dataByYear).map(function(key) {
-      let yearOption = {};
-      yearOption['value'] = key;
-      yearOption['label'] = key;
-      return yearOption
-    });
-
-    this.setState({ data: dataByYear, searchData: firstYear, largestContributors: firstYear.slice(0, 5), searchInput: Object.keys(dataByYear)[0], yearOptions: yearOptions, annualContributions: annualContributions, hasData: true})
+    this.setState({ data: dataByYear, searchData: firstYear, largestContributors: firstYear.slice(0, 5), searchInput: Object.keys(dataByYear)[0], annualContributions: annualContributions, hasData: true})
   }
 
   onHoverPieChart=(label, value)=> {
@@ -98,101 +92,37 @@ export default class DataBar extends React.Component {
   }
 
   render() {
-    // if (this.state.hasData == true ) {
-      // pie chart vars
-      const labels = this.state.largestContributors.map(function(obj) {
-        return obj.contributor_payee;
-      });
-      const numberOfData = 5;
-      const colors = [
-        '#a6cee3',
-        '#1f78b4',
-        '#b2df8a',
-        '#33a02c',
-        '#fb9a99',
-        '#e31a1c',
-        '#fdbf6f',
-        '#ff7f00',
-        '#cab2d6',
-        '#6a3d9a',
-        '#ffff99',
-        '#b15928',
-        '#8dd3c7',
-        '#fb8072',
-        '#80b1d3',
-        '#bebada',
-        '#ffed6f',
-        '#fdb462',
-        '#b3de69',
-        '#fccde5',
-        '#d9d9d9',
-        '#bc80bd',
-        '#ccebc5',
-        '#ffffb3'
-      ];
-      const getRandomValuesArray = (numsOf, func) => [...new Array(numsOf)].map(func);
-      const randomizer = () => Math.random() * 100;
-      const getColors = (datum, idx) => (arguments.length === 2 ? colors[idx] : colors[datum]);
+    //styling for drop down
+    require('react-selectize/dist/index.css');
 
-      const getRandomColors = colors.slice(0, numberOfData);
-      const values = this.state.largestContributors.map(function(obj) {
-        return obj.amount;
-      });
+    const values = this.state.largestContributors.map(function(obj) {
+      return obj.amount;
+    });
 
-      //styling for drop down
-      require('react-selectize/dist/index.css');
-
-      const chartStyle = {
-        width: 600,
-        height: 350,
-      };
-
-      const titleFontSize = 24;
-      const subtitleFontSize = 14;
-      const innerRadius = 65;
-      const outerRadius = 130;
-
-      let barsMap = [];
-      if (Object.keys(this.state.annualContributions).length > 0) {
-        let annualContributions = this.state.annualContributions;
-        // debugger
-        for (let [year, amount] of Object.entries(annualContributions)) {
-          barsMap.push({year, amount});
-        }
-        // this.state.barsMap = barsMap;
+    let barsMap = [];
+    if (Object.keys(this.state.annualContributions).length > 0) {
+      let annualContributions = this.state.annualContributions;
+      for (let [year, amount] of Object.entries(annualContributions)) {
+        barsMap.push({year, amount});
       }
-
-      // debugger
-
-      // data table vars
-      const data = this.state.searchData.length > 0 ? this.state.searchData :  this.state.data;
-      let header = [];
-      let rows = [];
-      //  if not empty, grabs a record to pull header tags
-      if (Object.keys(data).length !== 0 && data.constructor !== Object) {
-        const forHeader = data[0];
-        header = Object.keys(forHeader).map(key =>
-          <th key={key}>{key}</th>,
-        );
-      }
-      // wraps each item in a <td> tag
-      for (let i = 0; i < data.length; i += 1) {
-        const pullInfo = Object.keys(data[i]).map(key =>
-          <td key={key}>{data[i] !== null ? data[i][key] : 'Blank'}</td>,
-        );
-        // builds rows list from each mapped record
-        rows.push(pullInfo);
-      }
-      // wraps each row with a <tr> tag
-      rows = rows.map((row, i) =>
-        <tr key={i}>{row}</tr>,
-      );
-    // }
+    }
 
     return (
       <div>
         { this.state.hasData == true ?
           <div>
+            <label>Select a Campaign</label>
+            <br />
+            <SimpleSelect
+              placeholder = "Select a Campaign"
+              options={this.state.candidateOptions}
+              theme="default"
+              transitionEnter
+              transitionLeave
+              hideResetButton={true}
+              defaultValue={this.state.candidateName}
+              onValueChange={this.updateCandidateInput}
+            />
             <div>
               <BarChart layout="horizontal" width={730} height={500} data={barsMap}>
                 <XAxis dataKey="year" />
@@ -204,40 +134,8 @@ export default class DataBar extends React.Component {
               </BarChart>;
             </div>
 
-            <label>Enter Candidate Transactions</label>
-            <br />
-            <input
-              type="text"
-              value={this.state.input}
-              onChange={this.updateInput}
-            />
-            <br />
-            <Button onClick={this.fetchData} type="submit">Fetch Data</Button>
-            <br />
-            <label>Search by Year</label>
-            <br />
-            <SimpleSelect
-              placeholder = "Select a Year"
-              options={this.state.yearOptions}
-              theme="default"
-              transitionEnter
-              transitionLeave
-              hideResetButton={true}
-              defaultValue={this.state.searchInput}
-              onValueChange={this.updateSearchInput}
-            />
-            <br />
 
-            <table>
-              <thead>
-                <tr>
-                  {header}
-                </tr>
-              </thead>
-              <tbody>
-                {rows}
-              </tbody>
-            </table>
+
           </div>
         : <h2> Data Loading </h2> }
       </div>
