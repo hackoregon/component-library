@@ -4,6 +4,7 @@ import StoryCard from './StoryCard/StoryCard';
 import Chart from './Chart/Chart';
 import ChartData from './ChartData/ChartData';
 import DropdownMenu from './DropdownMenu/DropdownMenu';
+import MyBar from './MyBar/MyBar';
 import Pie from './Pie/Pie';
 import Slider from './Slider/Slider';
 import ViewData from './ViewData/ViewData';
@@ -18,6 +19,7 @@ export {
   ChartData,
   DropdownMenu,
   Header,
+  MyBar,
   Pie,
   Slider,
   StoryCard,
