@@ -32,6 +32,7 @@ export default class DataBarMotion extends React.Component {
     this.updateDataByYear = this.updateDataByYear.bind(this);
     this.updateYearBasedState = this.updateYearBasedState.bind(this);
     this.createDataForBars = this.createDataForBars.bind(this);
+    this.fetchData = this.fetchData.bind(this);
   }
 
   componentDidMount() {
@@ -39,7 +40,7 @@ export default class DataBarMotion extends React.Component {
     this.fetchData();
   }
 
-  fetchData = () => {
+  fetchData() {
     // reset the state data to an array w an empty object
     this.setState({ data: [{}] });
 
@@ -50,7 +51,7 @@ export default class DataBarMotion extends React.Component {
   };
 
   updateInput(option) {
-    this.setState({ input: option });
+    this.setState({ input: option.target.value });
   }
 
   updateDataByYear(records){
@@ -97,7 +98,7 @@ export default class DataBarMotion extends React.Component {
     let bars = [];
     let barsMap = this.state.barsMap
     for (var bar of barsMap) {
-      bars.push(<div willLeave={willLeaveStyle} className='bar' style={{height: bar.amount/1000}} key={bar.amount}>{bar.year}</div>);
+      bars.push(<div className='bar' willLeave={willLeaveStyle} style={{height: bar.amount/1000}} key={bar.amount}>{bar.year}</div>);
     }
 
     return (
