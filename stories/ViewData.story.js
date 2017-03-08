@@ -4,8 +4,7 @@ import { BarChartFromScratch } from '../src';
 
 const displayName = BarChartFromScratch.displayName || 'View Data Default';
 const title = 'Data Visualization Homework';
-const description = `
-Write a class component, utilizing lifecycle methods, that has an input field and a fetch button. When the fetch button is clicked it fetches some data from the given api endpoint and displays that data.`;
+const description = 'React-motion bar chart';
 
 const demoCode = () => (
   <BarChartFromScratch />
