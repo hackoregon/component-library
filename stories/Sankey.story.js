@@ -30,4 +30,3 @@ export default () => storiesOf(displayName, module)
     demoCode,
     propDocs,
   );
-
