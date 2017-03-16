@@ -12,7 +12,6 @@ import sankeyStory from './Sankey.story';
 import dropdownStory from './DropdownMenu.story';
 import headerStory from './Header.story';
 import Welcome from './Welcome';
-// import LeafletMap from './LeafletMap.story';
 
 import '../src/global.styles.css';
 
@@ -34,4 +33,3 @@ barChartStory();
 sankeyStory();
 sliderStory();
 dropdownStory();
-// LeafletMap();
