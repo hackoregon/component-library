@@ -15,7 +15,7 @@ const willEnterStyle = ({ style }) => ({
 
 const Pie = (props, context) => {
   const { width, height, data } = context;
-  const { style, onClick } = props;
+  const { style, onClick, onMouseOver } = props;
 
   const createPie = d3.layout.pie().sort(null);
   const createArc = d3.svg.arc()
@@ -67,6 +67,9 @@ const Pie = (props, context) => {
                     onClick={(e) => {
                       onClick(e, config.data.value, config.data.index);
                     }}
+                    onMouseOver={(e) => {
+                      onMouseOver(e, config.data.value, config.data.index);
+                    }}
                   />
                 }
               </Motion>
@@ -86,6 +89,7 @@ Pie.propTypes = {
   outerRadius: PropTypes.number,
   style: PropTypes.func,
   onClick: PropTypes.func,
+  onMouseOver: PropTypes.func,
   children: PropTypes.node,
 };
 

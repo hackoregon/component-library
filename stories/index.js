@@ -7,9 +7,14 @@ import storyFooterStory from './StoryFooter.story';
 import editableStory from './Editable.story';
 import pieStory from './Pie.story';
 import sliderStory from './Slider.story';
+import leafletStory from './Leaflet.story';
 import barChartStory from './BarChart.story';
 import dropdownStory from './DropdownMenu.story';
 import headerStory from './Header.story';
+import dataBarStory from './DataBar.story'
+import dataPieStory from './DataPie.story'
+import dataBarMotionStory from './DataBarMotion.story'
+import dataTableStory from './DataTable.story'
 import Welcome from './Welcome';
 
 import '../src/global.styles.css';
@@ -31,3 +36,8 @@ pieStory();
 barChartStory();
 sliderStory();
 dropdownStory();
+leafletStory();
+dataBarStory();
+dataPieStory();
+dataBarMotionStory();
+dataTableStory();

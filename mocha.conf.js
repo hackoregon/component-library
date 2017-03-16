@@ -21,14 +21,19 @@ global.navigator = {
 };
 global.window    = document.defaultView;
 
+// windowWidth: (typeof window !== 'undefined')? window.innerWidth:undefined
+
 // we're going to emulate the dom with this part here
 const exposedProperties = ['window', 'navigator', 'document'];
+
 Object.keys(document.defaultView).forEach((property) => {
   if (typeof global[property] === 'undefined') {
     exposedProperties.push(property);
     global[property] = document.defaultView[property];
   }
 });
+
+debugger
 
 // chai setup
 chai.use(sinonChai);
