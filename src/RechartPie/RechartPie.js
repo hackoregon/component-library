@@ -3,42 +3,30 @@ import {
  PieChart, Pie, Cell, Legend,
 } from 'recharts';
 
-const colors = [
-  '#35427f',
-  '#1F99EA',
-  '#1383CD',
-  '#DAEEFC',
-];
+// *
+// Not sure why the IconType property of the Legend component is not rendering as expected
+// Also these Legend properties are not first rendering as expected w/o refresh: verticalAlign="middle" align="right"
+// http://recharts.org/#/en-US/api/Legend
+// *
 
-// ReCharts legends have absolute positioning,
-// so the left offset in this styles object is set to match
-// the cx position in the Pie component within DonutPie
-const syles = {
-  fontFamily: 'filson-soft',
-  fontWeight: 300,
-  color: '#706371',
-  fill: '#706371',
-  textTransform: 'uppercase',
-  left: '65%',
-};
-
-// Not sure why this property of the Legend is unresponsive
-const iconType = 'square';
-
-const RechartPie = ({ data }) =>
-  <PieChart width={730} height={250} data={data}>
-    <Legend layout="vertical" verticalAlign="middle" align="right" iconType={iconType} iconSize="20" wrapperStyle={syles} />
-    <Pie data={data} cx="50%" cy="50%" innerRadius={40} outerRadius={80} fill="#8884d8">
-      {
-      data.map((entry, index) => (
-        <Cell key={`cell-${index}`} fill={colors[index]} />
-      ))
-    }
-    </Pie>
-  </PieChart>;
+const RechartPie = ({ data, colors, styles }) =>
+  <div style={{ display: 'flex', justifyContent: 'space-around', margin: 'auto' }} >
+    <PieChart width={600} height={250} data={data}>
+      <Legend layout="vertical" iconSize="20" wrapperStyle={styles} iconType="square" />
+      <Pie data={data} cx="50%" cy="50%" innerRadius={40} outerRadius={80} fill="#8884d8">
+        {
+          data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[index]} />
+          ))
+        }
+      </Pie>
+    </PieChart>;
+  </div>;
 
 RechartPie.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
+  colors: PropTypes.arrayOf(PropTypes.string),
+  styles: PropTypes.object,
 };
 
 export default RechartPie;
