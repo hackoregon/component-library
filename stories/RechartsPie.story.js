@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { RechartPie } from '../src';
+import { RechartsPie } from '../src';
 import { colors } from './shared';
 
-const propDocs = { inline: true, propTables: [RechartPie] };
+const propDocs = { inline: true, propTables: [RechartsPie] };
 
-const displayName = RechartPie.displayName || 'RechartPie';
+const displayName = RechartsPie.displayName || 'RechartsPie';
 const title = 'Simple usage';
 const description = `
-  This is a Rechart PieChart with a Rechart Legend component`;
+  This is a Recharts PieChart with a Recharts Legend component`;
 
 // Styles here based on src/Pie/Pie.css
 // Absolute positioning top and left offsets based on cx and cy percentage in Pie component
@@ -27,7 +27,7 @@ const data = [
 ];
 
 const demoCode = () => (
-  <RechartPie
+  <RechartsPie
     data={data}
     colors={colors}
     styles={styles}

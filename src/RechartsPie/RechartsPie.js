@@ -9,7 +9,7 @@ import {
 // http://recharts.org/#/en-US/api/Legend
 // *
 
-const RechartPie = ({ data, colors, styles }) =>
+const RechartsPie = ({ data, colors, styles }) =>
   <div style={{ display: 'flex', justifyContent: 'space-around', margin: 'auto' }} >
     <PieChart width={600} height={250} data={data}>
       <Legend layout="vertical" iconSize="20" wrapperStyle={styles} iconType="square" />
@@ -23,10 +23,10 @@ const RechartPie = ({ data, colors, styles }) =>
     </PieChart>;
   </div>;
 
-RechartPie.propTypes = {
+RechartsPie.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   colors: PropTypes.arrayOf(PropTypes.string),
   styles: PropTypes.object,
 };
 
-export default RechartPie;
+export default RechartsPie;
