@@ -27,17 +27,17 @@ function addGeoData(WrappedComponent, gd, options) {
         contData: '',
         reducedDataObject: '',
         center: options.center,
-        zoom: props.zoom || options.zoom,
+        zoom: options.zoom || props.zoom,
         attribute: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-        color: 'red',
+        color: 'blue',
       };
 
       this.fetchData = this.fetchData.bind(this);
     }
 
     componentDidMount = () => {
-      this.fetchData()
+      this.fetchData();
     }
 
     fetchData = () => {
@@ -149,13 +149,13 @@ const BareLeafletMap = (props) => {
         className={className}
         zoom={props.zoom}
         center={props.center}
-        zoomControl
+        zoomControl={false}
         dragging={false}
         scrollWheelZoom={false}
         doubleClickZoom={false}
       >
         <TileLayer url={props.url} attribution={props.attribute} />
-        <GeoJSON data={props.data} onEachFeature={props.handleHover} color={props.color} />
+        <GeoJSON data={props.data} onEachFeature={props.handleClick} color={props.color} />
       </Map>
     </div>
   );
@@ -164,7 +164,7 @@ const BareLeafletMap = (props) => {
 const PDXLeafletMap = addGeoData(
   BareLeafletMap,
   zipCodeGeoJSON,
-  { center: [45.57, -122.67], zoom: 11 },
+  { center: [45.52, -122.63], zoom: 12 },
 );
 
 export default PDXLeafletMap;
