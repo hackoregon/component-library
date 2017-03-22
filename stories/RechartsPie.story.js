@@ -10,16 +10,26 @@ const title = 'Simple usage';
 const description = `
   This is a Recharts PieChart with a Recharts Legend component`;
 
+
+// This base can be adjusted to scale up or down the chart and legend
+const proportionBase = 200;
+
 // Styles here based on src/Pie/Pie.css
-// Absolute positioning top and left offsets based on cx and cy percentage in Pie component
 const styles = {
   fontFamily: 'filson-soft',
-  fontSize: '8px',
+  fontSize: proportionBase * 0.08,
   fontWeight: 300,
   color: '#706371',
   fill: '#706371',
-  // top: '33.5%',
-  // left: '68%',
+};
+
+// These multipliers can be adjusted to modify the individual
+const chartProportions = {
+  chartWidth: proportionBase * 2,
+  chartHeight: proportionBase * 1,
+  iconSize: proportionBase * 0.075,
+  pieInnerRadius: proportionBase * 0.2,
+  pieOuterRadius: proportionBase * 0.4,
 };
 
 const data = [
@@ -32,6 +42,7 @@ const demoCode = () => (
     data={data}
     colors={colors}
     styles={styles}
+    chartProportions={chartProportions}
   />
 );
 
