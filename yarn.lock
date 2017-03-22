@@ -3373,6 +3373,10 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
+leaflet:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.0.3.tgz#1f401b98b45c8192134c6c8d69686253805007c8"
+
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.3.0.tgz#3b09924edf9f083c0490fdd4c0bc4421e04764ee"
@@ -4681,6 +4685,13 @@ react-komposer@^2.0.0:
     lodash.pick "^4.4.0"
     react-stubber "^1.0.0"
     shallowequal "^0.2.2"
+
+react-leaflet:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-1.1.3.tgz#c81316ec2c4b2cedaa2e56dba817001024aac398"
+  dependencies:
+    lodash "^4.0.0"
+    warning "^3.0.0"
 
 react-modal@^1.2.0, react-modal@^1.2.1:
   version "1.6.5"

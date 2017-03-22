@@ -9,9 +9,12 @@ import Slider from './Slider/Slider';
 import Header from './Navigation/Header';
 import Nav from './Navigation/Nav';
 import NavRouterLink from './Navigation/NavRouterLink';
+import BareLeafletMap, { addGeoData } from './Maps/LeafletMap';
 
 export {
   BarChart,
+  BareLeafletMap,
+  addGeoData,
   Button,
   Chart,
   ChartData,
