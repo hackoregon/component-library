@@ -11,9 +11,9 @@ import {
 
 const RechartsPie = ({ data, colors, styles }) =>
   <div style={{ display: 'flex', justifyContent: 'space-around', margin: 'auto' }} >
-    <PieChart width={600} height={250} data={data} >
-      <Legend layout="vertical" iconSize="20" wrapperStyle={styles} iconType="square" />
-      <Pie data={data} cx="50%" cy="50%" innerRadius={40} outerRadius={80} fill="#8884d8">
+    <PieChart width={200} height={200} data={data} >
+      <Legend layout="vertical" iconSize="5" wrapperStyle={styles} iconType="square" verticalAlign="middle" align="right" />
+      <Pie data={data} cx="50%" cy="50%" innerRadius={20} outerRadius={30}>
         {
           data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[index]} />

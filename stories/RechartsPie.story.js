@@ -14,11 +14,12 @@ const description = `
 // Absolute positioning top and left offsets based on cx and cy percentage in Pie component
 const styles = {
   fontFamily: 'filson-soft',
+  fontSize: '8px',
   fontWeight: 300,
   color: '#706371',
   fill: '#706371',
-  top: '33.5%',
-  left: '68%',
+  // top: '33.5%',
+  // left: '68%',
 };
 
 const data = [
