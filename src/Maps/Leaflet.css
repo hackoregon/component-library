@@ -1,6 +1,10 @@
-.mapSize {
-    height: 600px;
-    width: 75%;
+.mainMap {
+    height: 300px;
+    width: 100%;
+}
+
+.mainMap > div {
+  height: 100%
 }
 
 .my-div-icon {

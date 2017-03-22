@@ -30,7 +30,6 @@ export function addGeoData(WrappedComponent, gd, options) {
       if (feature.properties && feature.properties.NAME) {
         layer.bindPopup(feature.properties.NAME);
         layer.on('mouseover', (e) => {
-                    // console.log(e);
           e.target.openPopup();
         });
       }
@@ -53,7 +52,7 @@ export function addGeoData(WrappedComponent, gd, options) {
 const BareLeafletMap = (props) => {
   require('./leaflet.orig.css');
   return (
-    <div className={'mainMap'}>
+    <div className={'mainMap'} style={{ height: '600px' }}>
       <Map
         className={className}
         zoom={props.zoom}
