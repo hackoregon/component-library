@@ -11,7 +11,7 @@ import {
 
 const RechartsPie = ({ data, colors, styles }) =>
   <div style={{ display: 'flex', justifyContent: 'space-around', margin: 'auto' }} >
-    <PieChart width={600} height={250} data={data}>
+    <PieChart width={600} height={250} data={data} >
       <Legend layout="vertical" iconSize="20" wrapperStyle={styles} iconType="square" />
       <Pie data={data} cx="50%" cy="50%" innerRadius={40} outerRadius={80} fill="#8884d8">
         {
@@ -20,7 +20,7 @@ const RechartsPie = ({ data, colors, styles }) =>
           ))
         }
       </Pie>
-    </PieChart>;
+    </PieChart>
   </div>;
 
 RechartsPie.propTypes = {
