@@ -16,8 +16,8 @@ LeafletMap.propTypes = {
   position: PropTypes.arrayOf(PropTypes.number),
   zoom: PropTypes.number,
   children: PropTypes.node.isRequired,
-  width: PropTypes.oneOfType(PropTypes.number, PropTypes.string),
-  height: PropTypes.oneOfType(PropTypes.number, PropTypes.string),
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 LeafletMap.defaultProps = {
