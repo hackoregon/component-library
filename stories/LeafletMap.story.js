@@ -34,7 +34,7 @@ const zoomDemoTitle = 'With Zoom';
 const zoomedMapProps = {
   width: 400,
   height: 300,
-  position: portland,
+  center: portland,
   zoom: 10,
 };
 
