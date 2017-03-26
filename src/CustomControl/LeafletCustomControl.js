@@ -129,10 +129,10 @@ const BareLeafletMap = (props) => {
   );
 };
 
-const PDXLeafletMap = addGeoData(
+const LeafletCustomControl = addGeoData(
   BareLeafletMap,
   zipCodeGeoJSON,
   { center: [45.52, -122.63], zoom: 12 },
 );
 
-export default PDXLeafletMap;
+export default LeafletCustomControl;

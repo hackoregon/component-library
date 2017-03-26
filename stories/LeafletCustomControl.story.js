@@ -1,17 +1,17 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { HOC } from '../src';
+import { LeafletCustomControl } from '../src';
 
-const displayName = 'HOC';
-const title = 'HOC';
-const description = 'HOC goes here!';
+const displayName = 'LeafletCustomControl';
+const title = 'LeafletCustomControl';
+const description = 'LeafletCustomControl goes here!';
 
 const position = [45.57, -122.67];
 const zoom = 9;
 const maxzoom = 10;
 
 const demoCode = () => (
-  <HOC
+  <LeafletCustomControl
     position={position}
     zoom={zoom}
     maxzoom={maxzoom}
@@ -22,7 +22,7 @@ const demoCode = () => (
   />
 );
 
-const propDocs = { inline: true, propTables: [HOC] };
+const propDocs = { inline: true, propTables: [LeafletCustomControl] };
 
 export default () => storiesOf(displayName, module)
   .addWithInfo(
