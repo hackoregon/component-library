@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, GeoJSON } from 'react-leaflet';
+import ReactDOM from 'react-dom';
+import L from 'leaflet';
+import { Map, TileLayer, GeoJSON, LayersControl, Popup, Marker, MapControl } from 'react-leaflet';
 import classNames from 'classnames/bind';
+import CenterControl from './CustomControl';
 import styles from './LeafletMap.style.css';
+
+const { BaseLayer, Overlay } = LayersControl;
+
 // data from http://gis-pdx.opendata.arcgis.com/datasets/neighborhoods-regions/data
 import zipCodeGeoJSON from './zipCodeBoundaries.json';
 
@@ -64,64 +70,12 @@ function addGeoData(WrappedComponent, gd, options) {
       });
     };
 
-  //   byZip = () => {
-  //      console.log(this.state.zipYear);
-  //      const myYear = this.state.dataByYear[this.state.zipYear];
-  //      const dataByZip = {};
-  //      myYear.forEach((t) => {
-  //        const zip = t.zip;
-  //        const zipToUpdate = dataByZip[zip];
-  //        if (zipToUpdate) {
-  //          dataByZip[zip].push(t);
-  //        } else {
-  //          dataByZip[zip] = [t];
-  //        }
-  //      });
-  //      this.setState({ dataByZip });
-  //    };
-  //
-  //   zipCount = () => {
-  //   //  console.log(this.state.zipYear);
-  //    const geoData = this.state.geoJsonData;
-  //    const findZip = this.state.dataByZip;
-  //    geoData.features.forEach((t) => {
-  //      const zip = t.properties.ZIPCODE;
-  //      let count = 0;
-  //      if (findZip[zip] !== undefined) {
-  //        count = findZip[zip].length;
-  //      }
-  //      t.properties.COUNT = count;
-  //    });
-  //    this.setState({ geoJsonData: geoData });
-  //  };
-
-    // ATTEMPT AT ADDING MULTIPLE EVENTS
-    // onEachFeature = (feature, layer) => {
-    //   layer.on({
-    //     mouseover: this.handleHover(feature, layer),
-    //     click: this.handleClick,
-    //   });
-    // }
-    // console.log(e.target);
-
-    handleHover = (feature, layer) => {
-      // let contributedAmount =  this.state.reducedDataObject[feature.properties.ZIPCODE];
-      if (feature.properties && feature.properties.NAME && feature.properties.ZIPCODE) {
-        layer.bindPopup(`${feature.properties.NAME}: ${feature.properties.ZIPCODE} contributed ${this.state.reducedDataObject[feature.properties.ZIPCODE]}`);
-        layer.on('mouseover', (e) => {
-          e.target.openPopup();
-        });
-      }
-    }
-
     handleClick = (feature, layer) => {
       layer.on('click', (e) => {
-        e.target.setStyle({
-          weight: 5,
-          color: '#666',
-          dashArray: '',
-          fillOpacity: 0.7,
-        });
+        if (feature.properties && feature.properties.NAME && feature.properties.ZIPCODE) {
+          layer.bindTooltip(`${feature.properties.NAME}: ${feature.properties.ZIPCODE} contributed ${this.state.reducedDataObject[feature.properties.ZIPCODE]}`);
+          e.target.openTooltip();
+        }
       });
     }
 
@@ -144,7 +98,7 @@ function addGeoData(WrappedComponent, gd, options) {
 const BareLeafletMap = (props) => {
   require('../../assets/leaflet.css');
   return (
-    <div className={'mainMap'}>
+    <div className={'mainMap'} >
       <Map
         className={className}
         zoom={props.zoom}
@@ -154,6 +108,14 @@ const BareLeafletMap = (props) => {
         scrollWheelZoom={false}
         doubleClickZoom={false}
       >
+        <CenterControl
+          style={{
+            width: '100vw',
+            height: '150px',
+            border: '2px solid red',
+            backgroundColor: 'white',
+          }}
+        />
         <TileLayer url={props.url} attribution={props.attribute} />
         <GeoJSON data={props.data} onEachFeature={props.handleClick} color={props.color} />
       </Map>

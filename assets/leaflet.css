@@ -131,6 +131,8 @@
 .leaflet-control {
 	float: left;
 	clear: both;
+	/*width: 100vw;
+	height: 150px;*/
 	}
 .leaflet-right .leaflet-control {
 	float: right;
@@ -139,13 +141,13 @@
 	margin-top: 10px;
 	}
 .leaflet-bottom .leaflet-control {
-	margin-bottom: 10px;
+	/*margin-bottom: 10px;*/
 	}
 .leaflet-left .leaflet-control {
-	margin-left: 10px;
+	/*margin-left: 10px;*/
 	}
 .leaflet-right .leaflet-control {
-	margin-right: 10px;
+	/*margin-right: 10px;*/
 	}
 
 
