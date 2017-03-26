@@ -37,6 +37,7 @@ function addGeoData(WrappedComponent, gd, options) {
         attribute: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         color: 'blue',
+        neighborhoodFocus: '',
       };
 
       this.fetchData = this.fetchData.bind(this);
@@ -75,6 +76,9 @@ function addGeoData(WrappedComponent, gd, options) {
         if (feature.properties && feature.properties.NAME && feature.properties.ZIPCODE) {
           layer.bindTooltip(`${feature.properties.NAME}: ${feature.properties.ZIPCODE} contributed ${this.state.reducedDataObject[feature.properties.ZIPCODE]}`);
           e.target.openTooltip();
+          this.setState({
+            neighborhoodFocus: feature.properties.NAME,
+          });
         }
       });
     }
@@ -90,6 +94,7 @@ function addGeoData(WrappedComponent, gd, options) {
           handleHover={this.handleHover}
           handleClick={this.handleClick}
           color={this.state.color}
+          neighborhood={this.state.neighborhoodFocus}
         />);
     }
     };
@@ -109,9 +114,10 @@ const BareLeafletMap = (props) => {
         doubleClickZoom={false}
       >
         <CenterControl
+          neighborhood={props.neighborhood}
           style={{
             width: '100vw',
-            height: '150px',
+            height: '100px',
             border: '2px solid red',
             backgroundColor: 'white',
           }}

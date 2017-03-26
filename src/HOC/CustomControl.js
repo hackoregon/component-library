@@ -10,7 +10,7 @@ export default class CenterControl extends MapControl {  // note we're extending
     const jsx = (
       // PUT YOUR JSX FOR THE COMPONENT HERE:
       <div {...this.props} >
-        <h1>hi hi hi</h1>
+        <h1>Neighborhood Name: {this.props.neighborhood} </h1>
       </div>
     );
 
