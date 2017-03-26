@@ -12,7 +12,7 @@ import sankeyStory from './Sankey.story';
 import dropdownStory from './DropdownMenu.story';
 import headerStory from './Header.story';
 import Welcome from './Welcome';
-import LeafletCustomControl from './LeafletCustomControl.story';
+import leafletPlusDataStory from './LeafletPlusData.story';
 
 import '../src/global.styles.css';
 
@@ -34,4 +34,4 @@ barChartStory();
 sankeyStory();
 sliderStory();
 dropdownStory();
-LeafletCustomControl();
+leafletPlusDataStory();

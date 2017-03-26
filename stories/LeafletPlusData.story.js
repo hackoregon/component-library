@@ -1,17 +1,17 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { LeafletCustomControl } from '../src';
+import { LeafletPlusData } from '../src';
 
-const displayName = 'LeafletCustomControl';
-const title = 'LeafletCustomControl';
-const description = 'LeafletCustomControl goes here!';
+const displayName = 'LeafletPlusData';
+const title = 'Leaflet with data on and below map';
+const description = 'react-leaflet map of Portland with GeoJSON neighborhood data on map and desrived data beneath map on click';
 
 const position = [45.57, -122.67];
 const zoom = 9;
 const maxzoom = 10;
 
 const demoCode = () => (
-  <LeafletCustomControl
+  <LeafletPlusData
     position={position}
     zoom={zoom}
     maxzoom={maxzoom}
@@ -22,7 +22,7 @@ const demoCode = () => (
   />
 );
 
-const propDocs = { inline: true, propTables: [LeafletCustomControl] };
+const propDocs = { inline: true, propTables: [LeafletPlusData] };
 
 export default () => storiesOf(displayName, module)
   .addWithInfo(

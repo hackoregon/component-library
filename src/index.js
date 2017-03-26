@@ -10,4 +10,4 @@ export Slider from './Slider/Slider';
 export Header from './Navigation/Header';
 export Nav from './Navigation/Nav';
 export NavRouterLink from './Navigation/NavRouterLink';
-export LeafletCustomControl from './CustomControl/LeafletCustomControl';
+export LeafletPlusData from './LeafletPlusData/LeafletPlusData';
