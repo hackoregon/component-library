@@ -11,17 +11,16 @@ const position = [45.52, -122.63];
 const zoom = 12;
 const maxzoom = 10;
 
-
 // This base can be adjusted to scale up or down the chart and legend
 const proportionBase = 200;
 
 // These multipliers can be adjusted to modify the individual
 const chartProportions = {
-  chartWidth: proportionBase * 3,
-  chartHeight: proportionBase * 1,
+  chartWidth: proportionBase * 1.55,
+  chartHeight: proportionBase * 0.6,
   iconSize: proportionBase * 0.075,
-  pieInnerRadius: proportionBase * 0.2,
-  pieOuterRadius: proportionBase * 0.4,
+  pieInnerRadius: proportionBase * 0.1,
+  pieOuterRadius: proportionBase * 0.3,
 };
 
 // Styles here based on src/Pie/Pie.css

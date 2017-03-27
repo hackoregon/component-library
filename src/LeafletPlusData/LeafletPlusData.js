@@ -8,7 +8,8 @@ import RechartsPie from '../RechartsPie/RechartsPie';
 const cx = classNames.bind(styles);
 const className = cx({ mapStyles: true });
 
-// data model
+// *********************
+// Mock data
 const mockDemographicData = [
   { name: 'White', value: 400 }, { name: 'Black', value: 300 },
   { name: 'Asian', value: 300 }, { name: 'Hispanic', value: 200 },
@@ -26,9 +27,9 @@ const mockDemographicData3 = [
   { name: 'Asian', value: 400 }, { name: 'Hispanic', value: 100 },
   { name: 'Native American', value: 100 },
 ];
+// *********************
 
-// const geoJSONDemographics = neighborhoodGeoJSON.features.map(object => object.properties.DEMOGRAPHICDATA = mockDemographicData);
-
+// Add mock data (or API fetched data) to imported GeoJSON with neighborhood data
 const addDemographicData = (neighborhoodGeoJSON, mockDemographicData2, mockDemographicData3) => {
   const geoData = neighborhoodGeoJSON;
   geoData.features.forEach((t) => {
@@ -61,14 +62,13 @@ export default class LeafletPlusData extends Component {
       attribute: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       color: 'blue',
-      neighborhoodFocus: '',
+      neighborhoodFocus: '(click ☝🏽)',
       neighborhoodDemographicData: mockDemographicData,
     };
   }
 
   handleClick = (feature, layer) => {
-    layer.on('click', (e) => {
-      console.log(feature.properties.DEMOGRAPHICDATA);
+    layer.on('click', () => {
       this.setState({
         neighborhoodFocus: `${feature.properties.NAME}`,
         neighborhoodDemographicData: feature.properties.DEMOGRAPHICDATA,
@@ -78,6 +78,7 @@ export default class LeafletPlusData extends Component {
 
   render() {
     require('../../assets/leaflet.css');
+    const dataDivStyle = { width: '32%', display: 'flex', flexDirection: 'column', padding: '0 40px' };
     return (
       <div className={'mainMap'} >
         <Map
@@ -92,13 +93,30 @@ export default class LeafletPlusData extends Component {
           <TileLayer url={this.state.url} attribution={this.state.attribute} />
           <GeoJSON data={this.state.geoData} onEachFeature={this.handleClick} color={this.state.color} />
         </Map>
-        <h1>Neighborhood: {this.state.neighborhoodFocus}</h1>
-        <RechartsPie
-          data={this.state.neighborhoodDemographicData}
-          chartProportions={this.props.chartProportions}
-          colors={this.props.colors}
-          styles={this.props.styles}
-        />
+        <h2 style={{ backgroundColor: 'rgb(245,245,245)', margin: '-10px 0', paddingLeft: '37px' }} >{this.state.neighborhoodFocus} Neighborhood Stats</h2>
+        <div style={{ display: 'flex', flexDirection: 'row', backgroundColor: 'rgb(245,245,245)' }}>
+          <div style={dataDivStyle}>
+            <h3>Race/Ethnicity</h3>
+            <RechartsPie
+              data={this.state.neighborhoodDemographicData}
+              chartProportions={this.props.chartProportions}
+              colors={this.props.colors}
+              styles={this.props.styles}
+            />
+          </div>
+          <div style={dataDivStyle}>
+            <h3>Household totals</h3>
+            <h3>{this.state.neighborhoodDemographicData[0].name}: {this.state.neighborhoodDemographicData[0].value}</h3>
+            <h3>{this.state.neighborhoodDemographicData[1].name}: {this.state.neighborhoodDemographicData[1].value}</h3>
+            <h3>{this.state.neighborhoodDemographicData[2].name}: {this.state.neighborhoodDemographicData[2].value}</h3>
+          </div>
+          <div style={dataDivStyle}>
+            <h3>Vulnerable populations</h3>
+            <h3>{this.state.neighborhoodDemographicData[0].name}: {this.state.neighborhoodDemographicData[0].value}</h3>
+            <h3>{this.state.neighborhoodDemographicData[1].name}: {this.state.neighborhoodDemographicData[1].value}</h3>
+            <h3>{this.state.neighborhoodDemographicData[2].name}: {this.state.neighborhoodDemographicData[2].value}</h3>
+          </div>
+        </div>
       </div>
     );
   }

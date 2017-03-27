@@ -4,10 +4,10 @@ import {
 } from 'recharts';
 
 const RechartsPie = ({ data, chartProportions, colors, styles }) =>
-  <div style={{ display: 'flex', justifyContent: 'space-around', margin: 'auto' }} >
+  <div style={{ display: 'flex' }} >
     <PieChart width={chartProportions.chartWidth} height={chartProportions.chartHeight} data={data} >
       <Legend layout="vertical" iconSize={chartProportions.iconSize} wrapperStyle={styles} iconType="square" verticalAlign="middle" align="right" />
-      <Pie data={data} cx="50%" cy="50%" innerRadius={chartProportions.pieInnerRadius} outerRadius={chartProportions.pieOuterRadius} >
+      <Pie data={data} cx="25%" cy="50%" innerRadius={chartProportions.pieInnerRadius} outerRadius={chartProportions.pieOuterRadius} >
         {
           data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[index]} />
