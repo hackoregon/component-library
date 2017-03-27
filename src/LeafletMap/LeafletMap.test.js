@@ -9,6 +9,7 @@ describe('LeafletMap', () => {
     height: 400,
     zoom: 5,
     center: [20, 10],
+    scrollWheelZoom: true,
   };
 
   const wrapper = mount(
@@ -27,9 +28,9 @@ describe('LeafletMap', () => {
     expect(wrapper.find(Map)).to.have.length(1);
   });
 
-  it('should pass zoom and center props to react-leaflet map', () => {
-    const { zoom, center } = props;
-    expect(getMap()).to.have.props({ zoom, center });
+  it('should pass all "extra" props to react-leaflet map', () => {
+    const { zoom, center, scrollWheelZoom } = props;
+    expect(getMap()).to.have.props({ zoom, center, scrollWheelZoom });
   });
 
   it('should render at least one tile-layer inside react-leaflet map', () => {

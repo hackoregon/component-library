@@ -29,17 +29,19 @@ const basicMapDemo = () => (
   </LeafletMap>
 );
 
-const zoomDemoTitle = 'With Zoom';
+const boundsDemoTitle = 'With Bounds';
 
-const zoomedMapProps = {
+const boundsMapProps = {
   width: 400,
   height: 300,
-  center: portland,
-  zoom: 10,
+  bounds: [
+    [45.654527, -122.464291],
+    [45.431897, -122.836892],
+  ],
 };
 
-const zoomedDemo = () => (
-  <LeafletMap {...zoomedMapProps} >
+const boundsDemo = () => (
+  <LeafletMap {...boundsMapProps} >
     <Marker position={portland}>
       <Popup>
         <span>You should be zoomed to me ;)</span>
@@ -57,4 +59,4 @@ export default () => storiesOf(displayName, module)
     basicMapDemo,
     propDocs,
   )
-  .add(zoomDemoTitle, zoomedDemo);
+  .add(boundsDemoTitle, boundsDemo);
