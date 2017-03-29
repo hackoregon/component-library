@@ -55,8 +55,6 @@ export default class LeafletPlusData extends Component {
     super(props);
     this.state = {
       geoData: geoJSONDemographics,
-      contData: '',
-      reducedDataObject: '',
       center: this.props.position,
       zoom: this.props.zoom,
       attribute: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
