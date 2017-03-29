@@ -4,7 +4,7 @@
   display: flex;
   position: absolute;
   background-color: rgba(85,47,65,1);
-  height: 50vh;
+  height: 65vh;
   min-height: 420px;
   width: 100%;
   margin: 0;
@@ -28,11 +28,12 @@
   position: relative;
   max-width: 800px;
   margin: 0 auto;
+  padding: 120px 0 0 0;
 }
 
 .Hero > .Container > .Content > h1 {
   font-size: 3em;
   line-height: 1.25em;
-  color: #fff;
-  font-weight: 100 !important;
+  color: rgba(255,255,255,1);
+  font-weight: 100;
 }
