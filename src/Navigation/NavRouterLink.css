@@ -6,10 +6,10 @@ li a {
 .NavRouterLink a {
     color: rgba(255,255,255,.65);
     /*flex: 1;*/
-    font-family: 'filson-soft', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 1.25em;
     border: none;
-    font-weight: 900;
+    font-weight: 500;
     text-transform: uppercase;
     text-decoration: none;
     padding: 1rem 0;
