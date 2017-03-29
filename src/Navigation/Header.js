@@ -19,6 +19,7 @@ const styles = {
   },
 
 };
+
 const Header = ({ title = 'Civic', children, menu }) => {
   if (isClient) require('./Header.css');
   return (
