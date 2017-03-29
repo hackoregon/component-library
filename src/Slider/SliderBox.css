@@ -6,6 +6,10 @@
   margin-bottom: 2em;
 }
 
+.rc-slider-tooltip-arrow {
+  border-top-color: rgba(114,99,113,1);
+}
+
 .rc-slider-tooltip-inner {
   width: auto;
   height: auto;
@@ -14,36 +18,43 @@
   border-radius: 2px;
   box-shadow: none;
   vertical-align: middle;
+  background-color: rgba(114,99,113,1);
 }
+
 .rc-slider-tooltip-inner:before {
   content: "$ ";
 }
 
 .rc-slider-track {
-  background-color: #25b29e;
+  background-color: rgba(238,73,92,1);
   height: 4px;
 }
 
 .rc-slider-handle {
-  border-color: #25b29e;
-  background-color: #25b29e;
-  width: 14px;
-  height: 14px;
+  border-color: rgba(238,73,92,1);
+  background-color: rgba(238,73,92,1);
+  width: 18px;
+  height: 18px;
+  margin-top: -7px;
+  margin-left: -9px;
 }
 
 .rc-slider-handle:hover {
-  border-color: #25b29e;
-}
-
-.rc-slider-tooltip-placement-points-bc-tc .rc-slider-tooltip-arrow {
-  border-top-color: #000;
+  border-color: rgba(238,73,92,1);
 }
 
 .panel-body {
-  background-color: #efefef;
+  background-color: rgba(243,242,243,1);
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .hour, .day, .week, .month, .year {
   font-weight: bold;
   font-size: 1.2em;
+}
+
+/* Commented out. Legacy. Safe to remove completely? */
+
+.rc-slider-tooltip-placement-points-bc-tc .rc-slider-tooltip-arrow {
+  border-top-color: #000;
 }

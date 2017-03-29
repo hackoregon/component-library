@@ -29,9 +29,9 @@ const chartProportions = {
 
 // Styles here based on src/Pie/Pie.css
 const styles = {
-  fontFamily: 'filson-soft',
+  fontFamily: 'Roboto Condensed',
   fontSize: proportionBase * 0.08,
-  fontWeight: 300,
+  fontWeight: 400,
   color: '#706371',
   fill: '#706371',
 };
