@@ -13,6 +13,7 @@ import dropdownStory from './DropdownMenu.story';
 import headerStory from './Header.story';
 import Welcome from './Welcome';
 import leafletPlusDataStory from './LeafletPlusData.story';
+import rechartsPie from './RechartsPie.story';
 
 import '../src/global.styles.css';
 
@@ -35,3 +36,4 @@ sankeyStory();
 sliderStory();
 dropdownStory();
 leafletPlusDataStory();
+rechartsPie();
