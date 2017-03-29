@@ -8,9 +8,11 @@ import editableStory from './Editable.story';
 import pieStory from './Pie.story';
 import sliderStory from './Slider.story';
 import barChartStory from './BarChart.story';
+import sankeyStory from './Sankey.story';
 import dropdownStory from './DropdownMenu.story';
 import headerStory from './Header.story';
 import Welcome from './Welcome';
+import rechartsPie from './RechartsPie.story';
 
 import '../src/global.styles.css';
 
@@ -29,5 +31,7 @@ storyFooterStory();
 storycardStory();
 pieStory();
 barChartStory();
+sankeyStory();
 sliderStory();
 dropdownStory();
+rechartsPie();

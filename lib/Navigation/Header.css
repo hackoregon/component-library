@@ -1,0 +1,24 @@
+.Header {
+  background-color: rgba(34,15,37,1);
+  z-index: 1;
+  width: 100%;
+}
+
+.Header nav {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.Header .logo {
+  margin: 1rem 0 0 4rem;
+  font-size: 2rem;
+  flex: 1 1 100%;
+}
+
+.logo img {
+  height: 80px;
+  width: auto;
+}
