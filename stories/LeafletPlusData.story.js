@@ -16,7 +16,7 @@ const proportionBase = 200;
 
 // These multipliers can be adjusted to modify the individual
 const chartProportions = {
-  chartWidth: proportionBase * 1.55,
+  chartWidth: proportionBase * 1.9,
   chartHeight: proportionBase * 0.6,
   iconSize: proportionBase * 0.075,
   pieInnerRadius: proportionBase * 0.1,
@@ -24,12 +24,12 @@ const chartProportions = {
 };
 
 // Styles here based on src/Pie/Pie.css
-const styles = {
+const legendStyles = {
   fontFamily: 'filson-soft',
   fontSize: proportionBase * 0.08,
   fontWeight: 300,
-  color: '#706371',
-  fill: '#706371',
+  left: '50%',
+  top: '0%',
 };
 
 const demoCode = () => (
@@ -43,7 +43,7 @@ const demoCode = () => (
     doubleClickZoom={false}
     chartProportions={chartProportions}
     colors={colors}
-    styles={styles}
+    legendStyles={legendStyles}
   />
 );
 

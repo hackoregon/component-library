@@ -77,6 +77,7 @@ export default class LeafletPlusData extends Component {
   render() {
     require('../../assets/leaflet.css');
     const dataDivStyle = { width: '32%', display: 'flex', flexDirection: 'column', padding: '0 40px' };
+
     return (
       <div className={'mainMap'} >
         <Map
@@ -99,7 +100,7 @@ export default class LeafletPlusData extends Component {
               data={this.state.neighborhoodDemographicData}
               chartProportions={this.props.chartProportions}
               colors={this.props.colors}
-              styles={this.props.styles}
+              legendStyles={this.props.legendStyles}
             />
           </div>
           <div style={dataDivStyle}>
