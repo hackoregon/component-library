@@ -11,3 +11,6 @@ export Header from './Navigation/Header';
 export Nav from './Navigation/Nav';
 export NavRouterLink from './Navigation/NavRouterLink';
 export RechartsPie from './RechartsPie/RechartsPie';
+
+// export utils as well for broader use
+export isClient from './utils/isClient';
