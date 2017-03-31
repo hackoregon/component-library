@@ -18,6 +18,7 @@ global.sinon  = sinon;
 global.document  = jsdom('');
 global.navigator = {
   userAgent: 'node.js',
+  platform: [],
 };
 global.window    = document.defaultView;
 
