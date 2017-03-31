@@ -4,7 +4,6 @@ export Button from './Button/Button';
 export StoryCard from './StoryCard/StoryCard';
 export Chart from './Chart/Chart';
 export ChartData from './ChartData/ChartData';
-export DropdownMenu from './DropdownMenu/DropdownMenu';
 export Pie from './Pie/Pie';
 export Slider from './Slider/Slider';
 export Header from './Navigation/Header';

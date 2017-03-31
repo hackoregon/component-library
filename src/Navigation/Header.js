@@ -36,6 +36,7 @@ const Header = ({ title = 'Civic', children, menu }) => {
 
 Header.displayName = 'Header';
 Header.propTypes = {
+  menu: PropTypes.arrayOf(PropTypes.shape({})),
   title: PropTypes.string,
   children: PropTypes.node,
 };
