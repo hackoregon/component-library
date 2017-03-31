@@ -1,8 +1,19 @@
-/* Import Google Fonts */
+/* --- Import Google Fonts --- */
 
 @import 'https://fonts.googleapis.com/css?family=Lato:300,400|Raleway:300,400|Open+Sans:300,400,600,800';
 
+/* Rubik for Headings */
+
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
+
+/* Merriweather for paragraphs */
+
 @import url('https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i');
+
+/* Roboto Condensed for data and tiny type */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i');
+
 
 /* Base */
 
@@ -57,6 +68,14 @@ html {
 
 .Merriweather {
   font-family: "Merriweather", serif;
+}
+
+.Rubik {
+  font-family: "Rubik", sans-serif;
+}
+
+.Roboto {
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 body {
@@ -149,15 +168,15 @@ h1,
   font-size: 36px;
   font-size: 2.25rem;
   line-height: 2.625rem;
-  font-family: "filson-soft", sans-serif;
-  font-weight: 900;
+  font-family: "Rubik", sans-serif;
+  font-weight: 100;
 }
 h2,
 .h2 {
   font-size: 26px;
   font-size: 1.625rem;
   line-height: 2.125rem;
-  font-family: "filson-soft", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-weight: 900;
 }
 h3,
@@ -165,32 +184,32 @@ h3,
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.625rem;
-  font-family: "filson-soft", sans-serif;
-  font-weight: 900;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
 }
 h4,
 .h4 {
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.375rem;
-  font-family: "filson-soft", sans-serif;
-  font-weight: 900;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
 }
 h5,
 .h5 {
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 1.125rem;
-  font-family: "filson-soft", sans-serif;
-  font-weight: 900;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
 }
 h6,
 .h6 {
   font-size: 12px;
   font-size: 0.75rem;
   line-height: 0.9375rem;
-  font-family: "filson-soft", sans-serif;
-  font-weight: 900;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
 }
 
 p {
@@ -209,4 +228,19 @@ p {
 .SecondaryColor {
   color: rgba(238,73,92,1);
   fill: rgba(238,73,92,1);
+}
+
+.TertiaryColor {
+  color: rgba(114,99,113,1);
+  fill: rgba(114,99,113,1);
+}
+
+.MediumColor {
+  color: rgba(170,164,171,1);
+  fill: rgba(170,164,171,1);
+}
+
+.SubduedColor {
+  color: rgba(243,242,243,1);
+  fill: rgba(243,242,243,1);
 }

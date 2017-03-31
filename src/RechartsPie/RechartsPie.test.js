@@ -5,7 +5,7 @@ import RechartsPie from './RechartsPie';
 describe('Recharts Pie', () => {
   const { data, colors, styles, chartProportions } = {
     data: [{ name: 'Group A', value: 400 }],
-    styles: { fontFamily: 'filson-soft', fontSize: '8', color: '#706371', fill: '#706371' },
+    styles: { fontFamily: 'Roboto Condensed', fontSize: '8', color: '#706371', fill: '#706371' },
     colors: ['#a6cee3', '#1f78b4'],
     chartProportions: {
       chartWidth: 2,
