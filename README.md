@@ -21,7 +21,7 @@ Our issues/requests are tracked on waffle.io **==>** [![Stories in Ready](https:
 
 1. Get Node 6.5 + - I recommend using [Node Version Manager](https://github.com/creationix/nvm).
 2. `git clone https://github.com/hackoregon/component-library.git`
-3. `npm i` or `yarn` - install with either
+3. Install with `yarn` so that your npm packages are in sync.
 4. `npm start` - spin up the storybook dev environment with hot module replacement.
 5. `npm test` - run tests while coding
 6. Code/Add components in the src folder with .test files alongside the source code.
