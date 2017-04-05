@@ -1,9 +1,15 @@
 .Header {
+  background-color: rgba(34,15,37,1);
+  z-index: 1;
+  width: 100%;
+}
+
+.Header nav {
   display: flex;
   align-items: center;
-  background-color: rgba(34,15,37,1);
   padding: 1rem;
-  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .Header .logo {

@@ -12,7 +12,7 @@ const demoCode = () => (
   <Header title="Civic" />
 );
 
-const altTitle = 'with Hero section';
+const altTitle = 'with Platform Hero';
 
 const altDemo = () => (
   <div><Hero /><Header title="Civic" /></div>

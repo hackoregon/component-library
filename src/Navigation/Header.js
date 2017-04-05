@@ -19,6 +19,7 @@ const styles = {
   },
 
 };
+
 const Header = ({ title = 'Civic', children, menu }) => {
   if (isClient) require('./Header.css');
   return (
@@ -35,6 +36,7 @@ const Header = ({ title = 'Civic', children, menu }) => {
 
 Header.displayName = 'Header';
 Header.propTypes = {
+  menu: PropTypes.arrayOf(PropTypes.shape({})),
   title: PropTypes.string,
   children: PropTypes.node,
 };
