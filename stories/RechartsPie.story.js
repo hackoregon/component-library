@@ -28,6 +28,7 @@ const chartProportions = {
 };
 
 // Styles here based on src/Pie/Pie.css
+
 const legendStyles = {
   fontFamily: 'filson-soft',
   fontSize: proportionBase * 0.08,
