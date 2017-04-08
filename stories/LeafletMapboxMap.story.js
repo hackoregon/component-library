@@ -51,15 +51,13 @@ const boundsDemo = () => (
   </LeafletMapboxMap>
 );
 
-const fancyDemoTitle = 'With Bounds and no zoom';
+const fancyDemoTitle = 'Stylized Portland Map with GeoJSON';
 
 const fancyMapProps = {
-  width: 400,
-  height: 300,
-  bounds: [
-    [45.654527, -122.464291],
-    [45.431897, -122.836892],
-  ],
+  width: "60%",
+  height: 500,
+	center: [45.54362, -122.676482],
+	zoom: 11,
 	zoomControl: false,
 	dragging: false,
 	touchZoom: false,
