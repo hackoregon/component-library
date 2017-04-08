@@ -4,11 +4,11 @@ import isClient from '../utils/isClient';
 import media from '../Media/Media';
 import styled from 'styled-components';
 
-const Container = styled.li` 
+const Li = styled.li` 
   display: block;
   ${media.desktop``}
-  ${media.tablet`display: none;`}
-  ${media.phone`display: none;`}
+  ${media.tablet``}
+  ${media.phone``}
   `;
 
 const NavRouterLink = ({ path, customStyles, name }) => {
@@ -17,11 +17,11 @@ const NavRouterLink = ({ path, customStyles, name }) => {
   const linkStyle = customStyles ? customStyles.link : null;
   const pathTo = path || `/${name.toLowerCase()}`;
   return (
-    <li className={'NavRouterLink'} style={{ display: 'block', ...boxStyle }} >
+    <Li className={'NavRouterLink'} style={{ ...boxStyle }} >
       <Link to={pathTo} >
         <span style={{ ...linkStyle }}>{name}</span>
       </Link>
-    </li>
+    </Li>
   );
 };
 

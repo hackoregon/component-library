@@ -1,15 +1,41 @@
-ul {
+Nav ul {
+  display: flex;
+  padding: 1rem;
   list-style: none;
-  padding: 0;
+  align-items: center;
 }
 
-li {
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  transition: all .25s ease-in-out;
-}
-
-ul li {
+Nav ul li {
   flex: 1 1 100%;
+}
+
+
+@media all and (max-width: 380px) {
+  
+  Nav div {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(34,15,37,1);
+  }
+
+  Nav ul { 
+    display: block;
+    position: relative;
+    list-style: none;    
+  }
+  
+  Nav li {
+    color: #ffffff;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    transition: all .25s ease-in-out;
+  }
+  
 }
