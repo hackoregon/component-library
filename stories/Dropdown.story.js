@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf } from '@kadira/storybook';
 import { Dropdown } from '../src';
 
 const displayName = Dropdown.displayName || 'Dropdown';
@@ -38,7 +38,7 @@ const demoCode = () => {
   }
 
   return <DemoDropdown />;
-}
+};
 
 
 const propDocs = { inline: true, propTables: [Dropdown] };
