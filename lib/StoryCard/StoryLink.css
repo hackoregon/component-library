@@ -4,7 +4,7 @@
 
 .StoryLink a {
     display: flex;
-    padding: 6px 8px 6px 6px;
+    padding: 6px 6px 6px 6px;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
