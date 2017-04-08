@@ -2,11 +2,6 @@ import React, { PropTypes } from 'react';
 import { Map, TileLayer, geoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const BlankGeoJSON = {
-  "type": "FeatureCollection",
-  "features": []
-};
-
 const LeafletMapboxMap = ({ width, height, children, ...mapProps }) => (
   <Map {...mapProps} style={{ width, height }}>
     <TileLayer
@@ -24,7 +19,6 @@ LeafletMapboxMap.propTypes = {
   children: PropTypes.node.isRequired,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-	geoJSON: PropTypes.object,
 };
 
 LeafletMapboxMap.defaultProps = {
@@ -33,7 +27,6 @@ LeafletMapboxMap.defaultProps = {
   width: '100%',
   height: 600,
   scrollWheelZoom: false,
-	geoJSON: BlankGeoJSON,
 };
 
 export default LeafletMapboxMap;
