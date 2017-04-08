@@ -12,6 +12,7 @@ import sankeyStory from './Sankey.story';
 import headerStory from './Header.story';
 import leafletMap from './LeafletMap.story';
 import Welcome from './Welcome';
+import dropdownStory from './Dropdown.story';
 import rechartsPie from './RechartsPie.story';
 
 import '../src/global.styles.css';
@@ -30,6 +31,7 @@ storyLinkStory();
 storyFooterStory();
 storycardStory();
 pieStory();
+dropdownStory();
 barChartStory();
 sankeyStory();
 sliderStory();
