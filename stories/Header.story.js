@@ -15,7 +15,13 @@ const demoCode = () => (
 const altTitle = 'with Platform Hero';
 
 const altDemo = () => (
-  <div><Hero /><Header title="Civic" /></div>
+  <div><Hero><h1 className="MediumColor">Some other slogan</h1></Hero> <Header title="Civic" /></div>
+);
+
+const defaultHeroTitle = 'with default hero';
+
+const defaultHero = () => (
+  <div><Hero /> <Header title="Civic" /></div>
 );
 
 const propDocs = { inline: true, propTables: [Header] };
@@ -27,4 +33,5 @@ export default () => storiesOf(displayName, module)
     demoCode,
     propDocs,
   )
+  .add(defaultHeroTitle, defaultHero)
   .add(altTitle, altDemo);
