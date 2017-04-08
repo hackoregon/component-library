@@ -1,7 +1,9 @@
 import React from 'react';
+import Icon from '../Icon/Icon';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
-import './Footer.css';
 import civicLogoStackStandard from '../../assets/civic-logo-stack_standard.svg';
+
+import './Footer.css';
 
 const Footer = props => (
   <div className="Footer">
@@ -12,8 +14,12 @@ const Footer = props => (
         className="footer-logo"
         src={civicLogoStackStandard}
       />
-      <ScrollToTop className="scroll-to-top">
-        Back to Top ^
+      <ScrollToTop>
+        <div className="scroll-to-top">
+          <Icon className="fa fa-angle-up" />
+          <br />
+          Back to Top
+        </div>
       </ScrollToTop>
     </div>
   </div>

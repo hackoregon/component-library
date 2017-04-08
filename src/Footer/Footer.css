@@ -7,7 +7,7 @@
 .Footer > .Container {
   background: #fff;
   display: flex;
-  flex-flow: row wrap-reverse;
+  flex-direction: row;
   align-items: center;
   justify-content: space-around;
   width: 100%;
@@ -29,10 +29,17 @@
   padding: 20px;
 }
 
-.Footer > .Container > .scroll-to-top {
+.Footer > .Container .scroll-to-top {
   flex: 0 0 auto;
   color: #EE495C;
   font-family: 'Rubik';
   font-weight: 500;
   padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .Footer > .Container {
+    flex-direction: column-reverse;
+  }
 }
