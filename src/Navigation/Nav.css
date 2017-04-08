@@ -13,6 +13,19 @@ Nav ul li {
 @media all and (max-width: 380px) {
   
   Nav div {
+    transition: all .2s linear;
+  }
+  
+  Nav.open div {
+    opacity: 1;
+  }
+  
+  Nav.closed div {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  Nav div {
     position: absolute;
     z-index: 1;
     height: 100%;

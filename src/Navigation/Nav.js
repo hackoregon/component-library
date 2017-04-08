@@ -4,7 +4,6 @@ import isClient from '../utils/isClient';
 
 const defaultMenu = [
   { name: 'Collections', path: '/collections' },
-  { name: 'Explore', path: '/explore' },
   { name: 'About', path: '/about' },
 ];
 
