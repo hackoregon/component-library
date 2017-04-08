@@ -11,6 +11,7 @@ export Nav from './Navigation/Nav';
 export NavRouterLink from './Navigation/NavRouterLink';
 export RechartsPie from './RechartsPie/RechartsPie';
 export LeafletMap from './LeafletMap/LeafletMap';
+export LeafletMapboxMap from './LeafletMapboxMap/LeafletMapboxMap';
 
 // export utils as well for broader use
 export isClient from './utils/isClient';
