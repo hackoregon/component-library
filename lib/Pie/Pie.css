@@ -1,16 +1,16 @@
 /* Pie & Donut visualization */
 
 .donut-title {
-  font-family: 'filson-soft', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 500;
   color: #220f25;
   fill: #220f25;
 }
 
 .donut-subtitle {
-  font-family: 'filson-soft', sans-serif;
-  font-weight: 300;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 400;
   color: #706371;
   fill: #706371;
   text-transform: uppercase;
