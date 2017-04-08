@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, geoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const BlankGeoJSON = {
   "type": "FeatureCollection",
   "features": []
-
 };
 
 const LeafletMapboxMap = ({ width, height, children, ...mapProps }) => (

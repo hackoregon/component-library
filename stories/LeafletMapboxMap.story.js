@@ -1,8 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { Marker, Popup } from 'react-leaflet';
+import { Marker, Popup, GeoJSON } from 'react-leaflet';
 import L from 'leaflet';
 import { LeafletMapboxMap } from '../src';
+import Shapes from '../src/LeafletMapboxMap/Shapes.js'
 
 /**
  * pointing to hosted leaflet images for now,
@@ -50,6 +51,28 @@ const boundsDemo = () => (
   </LeafletMapboxMap>
 );
 
+const fancyDemoTitle = 'With Bounds and no zoom';
+
+const fancyMapProps = {
+  width: 400,
+  height: 300,
+  bounds: [
+    [45.654527, -122.464291],
+    [45.431897, -122.836892],
+  ],
+	zoomControl: false,
+	dragging: false,
+	touchZoom: false,
+	doubleClickZoom: false,
+	scrollWheelZoom: false,
+};
+
+const fancyDemo = () => (
+  <LeafletMapboxMap {...fancyMapProps} >
+		<GeoJSON data={Shapes}/>
+  </LeafletMapboxMap>
+);
+
 const propDocs = { inline: true, propTables: [LeafletMapboxMap] };
 
 export default () => storiesOf(displayName, module)
@@ -59,4 +82,5 @@ export default () => storiesOf(displayName, module)
     basicMapDemo,
     propDocs,
   )
-  .add(boundsDemoTitle, boundsDemo);
+  .add(boundsDemoTitle, boundsDemo)
+	.add(fancyDemoTitle, fancyDemo);
