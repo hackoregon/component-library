@@ -18,8 +18,8 @@
 /* Base */
 
 html {
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 16px;
+  line-height: 1.35em;
   background-color: #fffefe;
   font-family: 'Open Sans';
   font-weight: 400;
@@ -143,11 +143,18 @@ body {
   border-radius: 50%;
 }
 
+/* Links and Buttons */
+
+button, a.button {
+  appearance: none;
+  background-color: transparent;
+  color: rgba(238,73,80,1);
+}
+
 a {
   color: rgba(238,73,80,1);
   text-decoration: none;
   cursor: pointer;
-  border-bottom: 2px solid;
   opacity: 0.9;
   transition: all .25s ease-in-out;
 }
@@ -177,7 +184,7 @@ h2,
   font-size: 1.625rem;
   line-height: 2.125rem;
   font-family: "Rubik", sans-serif;
-  font-weight: 900;
+  font-weight: 700;
 }
 h3,
 .h3 {

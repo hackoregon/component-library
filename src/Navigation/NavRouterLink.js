@@ -1,6 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import isClient from '../utils/isClient';
+import media from '../Media/Media';
+import styled from 'styled-components';
+
+const Container = styled.li` 
+  display: block;
+  ${media.desktop``}
+  ${media.tablet`display: none;`}
+  ${media.phone`display: none;`}
+  `;
 
 const NavRouterLink = ({ path, customStyles, name }) => {
   if (isClient) require('./NavRouterLink.css');
