@@ -1,0 +1,45 @@
+/* Footer Styles */
+
+.Footer {
+  width: 100%;
+}
+
+.Footer > .Container {
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding: 40px 0px;
+}
+
+.Footer > .Container > .copyright {
+  flex: 0 0 auto;
+  color: #726371;
+  font-family: 'Rubik';
+  font-weight: 500;
+  padding: 20px;
+}
+
+.Footer > .Container > .footer-logo {
+  flex: 0 0 auto;
+  width: 150px;
+  height: auto;
+  padding: 20px;
+}
+
+.Footer > .Container .scroll-to-top {
+  flex: 0 0 auto;
+  color: #EE495C;
+  font-family: 'Rubik';
+  font-weight: 500;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .Footer > .Container {
+    flex-direction: column-reverse;
+  }
+}
