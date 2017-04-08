@@ -8,7 +8,7 @@ const NavRouterLink = ({ path, customStyles, name }) => {
   const linkStyle = customStyles ? customStyles.link : null;
   const pathTo = path || `/${name.toLowerCase()}`;
   return (
-    <li className={'NavRouterLink'} style={{ display: 'block', ...boxStyle }} >
+    <li className={'NavRouterLink'} style={{ ...boxStyle }} >
       <Link to={pathTo} >
         <span style={{ ...linkStyle }}>{name}</span>
       </Link>
