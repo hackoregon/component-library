@@ -254,3 +254,31 @@ p {
   color: rgba(243,242,243,1);
   fill: rgba(243,242,243,1);
 }
+
+
+/* Phone Breakpoint */
+
+@media screen and (max-width:640px) {
+  
+}
+
+
+/* Tablet Portrait Breakpoint */
+
+@media screen and (min-width: 641px) and (max-width:768px) {
+  
+}
+
+
+/* Tablet Landscape Breakpoint */
+
+@media screen and (min-width:769px) and (max-width: 1024) {
+  
+}
+
+
+/* Desktop Breakpoint */
+
+@media screen and (min-width:1025px) {
+  
+}
