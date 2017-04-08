@@ -10,8 +10,8 @@ const BlankGeoJSON = {
 const LeafletMapboxMap = ({ width, height, children, ...mapProps }) => (
   <Map {...mapProps} style={{ width, height }}>
     <TileLayer
-      url="http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
-      attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+      url="http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png"
+      attribution="Map tiles by <a href='http://stamen.com'>Stamen Design</a>, under <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a>. Data by <a  href='http://openstreetmap.org'>OpenStreetMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/3.0'>CC BY SA</a>."
     />
     {children}
   </Map>
@@ -38,3 +38,4 @@ LeafletMapboxMap.defaultProps = {
 
 export default LeafletMapboxMap;
 
+//attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"

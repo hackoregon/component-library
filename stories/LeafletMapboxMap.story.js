@@ -67,9 +67,15 @@ const fancyMapProps = {
 	scrollWheelZoom: false,
 };
 
+const fancyStyle = {
+    "color": "#ff7800",
+    "weight": 2,
+    "opacity": 0.65
+};
+
 const fancyDemo = () => (
   <LeafletMapboxMap {...fancyMapProps} >
-		<GeoJSON data={Shapes}/>
+		<GeoJSON data={Shapes} style={fancyStyle}/>
   </LeafletMapboxMap>
 );
 
