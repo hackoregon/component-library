@@ -6,11 +6,13 @@ export Chart from './Chart/Chart';
 export ChartData from './ChartData/ChartData';
 export Pie from './Pie/Pie';
 export Slider from './Slider/Slider';
+export ScrollToTop from './ScrollToTop/ScrollToTop';
 export Header from './Navigation/Header';
 export Nav from './Navigation/Nav';
 export NavRouterLink from './Navigation/NavRouterLink';
 export RechartsPie from './RechartsPie/RechartsPie';
 export LeafletMap from './LeafletMap/LeafletMap';
+export Dropdown from './Dropdown/Dropdown';
 
 // export utils as well for broader use
 export isClient from './utils/isClient';
