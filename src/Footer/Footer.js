@@ -1,5 +1,5 @@
 import React from 'react';
-// import ScrollToTop from '../ScrollToTop/ScrollToTop';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import './Footer.css';
 import civicLogoStackStandard from '../../assets/civic-logo-stack_standard.svg';
 
@@ -12,9 +12,9 @@ const Footer = props => (
         className="footer-logo"
         src={civicLogoStackStandard}
       />
-      {/* <ScrollToTop className="scroll-to-top">
+      <ScrollToTop className="scroll-to-top">
         Back to Top ^
-      </ScrollToTop> */}
+      </ScrollToTop>
     </div>
   </div>
 );
