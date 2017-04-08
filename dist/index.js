@@ -49764,7 +49764,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, ".base {\n    border: 1px solid #eee;\n    border-radius: 3px;\n    background-color: #FFFFFF;\n    cursor: pointer;\n    font-size: 15px;\n    padding: 3px 10px;\n    margin: 10px;\n}\n\n.content {\n  background-color: rgba(44, 45, 85, 1);\n}", ""]);
+	exports.push([module.id, "button.base {\n  display: flex;\n  padding: 6px 6px 6px 6px;\n  flex-wrap: nowrap;\n  align-items: center;\n  justify-content: space-between;\n  transition: all .2s ease-in-out;\n  font-size: 1em;\n  font-weight: 500;\n  color: rgba(238, 73, 80, 1);\n  cursor: pointer;\n}\n\n.base {\n    border: 2px solid rgba(238, 73, 80, 1);\n}\n\n.base i {\n    margin-right: 12px;\n}\n\n.base span {\n  flex-wrap: nowrap;\n  transition: all .2s ease-in-out;\n}\n\n.base:hover {\n    background-color: rgba(238, 73, 80, 1);\n    color: #fff;\n}\n\n.base:focus {\n    outline: none;\n}", ""]);
 
 	// exports
 
@@ -55168,7 +55168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, ".StoryLink {\n    border-bottom: 2px solid rgba(238, 73, 80, 1);\n}\n\n.StoryLink a {\n    display: flex;\n    padding: 6px 6px 6px 6px;\n    flex-wrap: nowrap;\n    align-items: center;\n    justify-content: space-between;\n    border-bottom: none;  /* this is only because our global styles assign a border-bottom that we need to override */\n}\n\n.StoryLink a i {\n    margin-right: 12px;\n}\n\n.StoryLink span {\n  flex-wrap: nowrap;\n  transition: all .2s ease-in-out;\n}\n\n.StoryLink a:hover {\n    background-color: rgba(238, 73, 80, 1);\n    color: #fff;\n}\n\n.StoryLink a:focus {\n    outline: none;\n}\n", ""]);
+	exports.push([module.id, ".StoryLink {\n  border-bottom: 2px solid rgba(238, 73, 80, 1);\n  transition: all .2s ease-in-out;\n}\n\n.StoryLink a {\n    display: flex;\n    padding: 6px 6px 6px 6px;\n    flex-wrap: nowrap;\n    align-items: center;\n    justify-content: space-between;\n    border-bottom: none;  /* this is only because our global styles assign a border-bottom that we need to override */\n}\n\n.StoryLink a i {\n  margin-right: 12px;\n}\n\n.StoryLink span {\n  flex-wrap: nowrap;\n  \n}\n\n.StoryLink a:hover {\n    background-color: rgba(238, 73, 80, 1);\n    color: #fff;\n}\n\n.StoryLink a:focus {\n    outline: none;\n}\n", ""]);
 
 	// exports
 
@@ -82433,7 +82433,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var defaultMenu = [{ name: 'Collections', path: '/collections' }, { name: 'Explore', path: '/explore' }, { name: 'About', path: '/about' }];
+	var defaultMenu = [{ name: 'Collections', path: '/collections' }, { name: 'About', path: '/about' }];
 
 	var Nav = function Nav(_ref) {
 	  var _ref$menu = _ref.menu,
@@ -82441,11 +82441,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  if (_isClient2.default) __webpack_require__(1046);
 	  return _react2.default.createElement(
-	    'ul',
-	    { style: { display: 'flex', width: '100%', listStyle: 'none', padding: '1rem', flex: '1 1 100%' } },
-	    menu.map(function (item, idx) {
-	      return _react2.default.createElement(_NavRouterLink2.default, { customStyles: { flex: '1 1 100%' }, key: idx, name: item.name, path: item.path });
-	    })
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'ul',
+	      null,
+	      menu.map(function (item, idx) {
+	        return _react2.default.createElement(_NavRouterLink2.default, { customStyles: { flex: '1 1 100%' }, key: idx, name: item.name, path: item.path });
+	      })
+	    )
 	  );
 	};
 
@@ -82490,7 +82494,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var pathTo = path || '/' + name.toLowerCase();
 	  return _react2.default.createElement(
 	    'li',
-	    { className: 'NavRouterLink', style: _extends({ display: 'block' }, boxStyle) },
+	    { className: 'NavRouterLink', style: _extends({}, boxStyle) },
 	    _react2.default.createElement(
 	      _reactRouter.Link,
 	      { to: pathTo },
@@ -82559,7 +82563,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "li a {\n    display: block;\n    /*padding: 1rem 0;*/\n}\n\n.NavRouterLink a {\n    color: rgba(255,255,255,.65);\n    /*flex: 1;*/\n    font-family: 'Rubik', sans-serif;\n    font-size: 1.25em;\n    border: none;\n    font-weight: 500;\n    text-transform: uppercase;\n    text-decoration: none;\n    padding: 1rem;\n    /*line-height: 2rem;*/\n}\n\n.NavRouterLink a:focus {\n    color: rgba(255,255,255,.85);\n}\n\n.NavRouterLink a:hover {\n    color: rgba(255,255,255,.85);\n    text-decoration: none;\n}\n\n.NavRouterLink a:active {\n    color: rgba(255,255,255,.85);\n}\n", ""]);
+	exports.push([module.id, "li a {\n  display: block;\n  /*padding: 1rem 0;*/\n}\n\n.NavRouterLink a {\n  color: rgba(255,255,255,.65);\n  /*flex: 1;*/\n  font-family: 'Rubik', sans-serif;\n  font-size: 1.25em;\n  border: none;\n  font-weight: 500;\n  text-transform: uppercase;\n  text-decoration: none;\n  padding: 1rem;\n  /*line-height: 2rem;*/\n}\n\n.NavRouterLink a:focus {\n    color: rgba(255,255,255,.85);\n}\n\n.NavRouterLink a:hover {\n    color: rgba(255,255,255,.85);\n    text-decoration: none;\n}\n\n.NavRouterLink a:active {\n    color: rgba(255,255,255,.85);\n}\n", ""]);
 
 	// exports
 
@@ -82599,7 +82603,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "ul {\n  list-style: none;\n  padding: 0;\n}\n\nli {\n  display: block;\n  text-align: center;\n  text-decoration: none;\n  transition: all .25s ease-in-out;\n}\n\nul li {\n  flex: 1 1 100%;\n}", ""]);
+	exports.push([module.id, "Nav ul {\n  display: flex;\n  padding: 1rem;\n  list-style: none;\n  align-items: center;\n}\n\nNav ul li {\n  flex: 1 1 100%;\n}\n\n\n@media all and (max-width: 380px) {\n  \n  Nav div {\n    transition: all .2s linear;\n  }\n  \n  Nav.open div {\n    opacity: 1;\n  }\n  \n  Nav.closed div {\n    opacity: 0;\n    pointer-events: none;\n  }\n  \n  Nav div {\n    position: absolute;\n    z-index: 1;\n    height: 100%;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    top: 0;\n    left: 0;\n    background-color: rgba(34,15,37,1);\n  }\n\n  Nav ul { \n    display: block;\n    position: relative;\n    list-style: none;    \n  }\n  \n  Nav li {\n    color: #ffffff;\n    display: block;\n    text-align: center;\n    text-decoration: none;\n    transition: all .25s ease-in-out;\n  }\n  \n}", ""]);
 
 	// exports
 
