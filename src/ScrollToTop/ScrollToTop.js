@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 const className = cx({ SecondaryColor: true });
 
 const ScrollToTop = ({ children }) => (
-  <a className={className} href="#">
+  <a aria-label="scroll to top" className={className} href="#">
     {children}
   </a>
 );
