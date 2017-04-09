@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 
 const StyledLink = styled(Link)`
-    display: flex;
     padding: 6px 6px 6px 6px;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
+    text-align: center;
     transition: all .2s ease-in-out;
     font-size: 1em;
     font-weight: 500;
