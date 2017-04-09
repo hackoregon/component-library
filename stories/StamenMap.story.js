@@ -75,7 +75,7 @@ export default () => storiesOf(displayName, module)
 	)
 	.addWithInfo(
 		fancyDemoTitle,
-		description, 
+		fancyDescription, 
 		fancyDemo,
 		propDocs
 	);
