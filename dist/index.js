@@ -82111,11 +82111,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ScrollToTop2 = _interopRequireDefault(_ScrollToTop);
 
-	var _civicLogoStack_standard = __webpack_require__(1038);
+	var _isClient = __webpack_require__(724);
 
-	var _civicLogoStack_standard2 = _interopRequireDefault(_civicLogoStack_standard);
+	var _isClient2 = _interopRequireDefault(_isClient);
 
-	__webpack_require__(1039);
+	__webpack_require__(1038);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -82135,7 +82135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      _react2.default.createElement('img', {
 	        alt: 'Hack Oregon footer logo',
 	        className: 'footer-logo',
-	        src: _civicLogoStack_standard2.default
+	        src: _isClient2.default ? __webpack_require__(1040) : ''
 	      }),
 	      _react2.default.createElement(
 	        _ScrollToTop2.default,
@@ -82151,6 +82151,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    )
 	  );
 	};
+	// import civicLogoStackStandard from ;
 
 	Footer.displayName = 'Footer';
 
@@ -82270,16 +82271,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1038 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "d9ee94c8b791c2a93a70c1e26cb7cb3e.svg";
-
-/***/ },
-/* 1039 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(1040);
+	var content = __webpack_require__(1039);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(659)(content, {});
@@ -82299,7 +82294,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 1040 */
+/* 1039 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(658)();
@@ -82311,6 +82306,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// exports
 
+
+/***/ },
+/* 1040 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "d9ee94c8b791c2a93a70c1e26cb7cb3e.svg";
 
 /***/ },
 /* 1041 */
