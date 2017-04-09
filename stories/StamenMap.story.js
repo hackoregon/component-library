@@ -2,8 +2,8 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import { Marker, Popup, GeoJSON } from 'react-leaflet';
 import L from 'leaflet';
-import { LeafletMapboxMap } from '../src';
-import Shapes from '../src/LeafletMapboxMap/Shapes.js'
+import { StamenMap } from '../src';
+import Shapes from '../src/StamenMap/Shapes.js'
 
 /**
  * pointing to hosted leaflet images for now,
@@ -11,9 +11,9 @@ import Shapes from '../src/LeafletMapboxMap/Shapes.js'
  */
 L.Icon.Default.imagePath = '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0/images/';
 
-const displayName = 'LeafletMapboxMap';
-const description = 'Stylized LeafletMapboxMaplet Map. Currently using the toner-lite tiles from Stamen Design, but could be adapted to any tiles'
-const fancyDescription = 'Stylized LeafletMapboxMaplet Map. Currently using the toner-lite tiles from Stamen Design, but could be adapted to any files. To stylize individual regions defined in your GeoJSON file, youll need to reference the properties of the GeoJSON layer. In this example GeoJSON that would be Analysis-A';
+const displayName = 'StamenMap';
+const description = 'Stylized map with GeoJSON capabilities. Currently using the toner-lite tiles from Stamen Design, but could be adapted to any tiles'
+const fancyDescription = 'Stylized map with GeoJSON capabilities. Currently using the toner-lite tiles from Stamen Design, but could be adapted to any files. To stylize individual regions defined in your GeoJSON file, youll need to reference the properties of the GeoJSON layer. In this example GeoJSON that would be Analysis-A';
 
 const portland = [45.54362, -122.676482];
 
@@ -29,13 +29,13 @@ const boundsMapProps = {
 };
 
 const boundsDemo = () => (
-  <LeafletMapboxMap {...boundsMapProps} >
+  <StamenMap {...boundsMapProps} >
     <Marker position={portland}>
       <Popup>
         <span>You should be zoomed to me ;)</span>
       </Popup>
     </Marker>
-  </LeafletMapboxMap>
+  </StamenMap>
 );
 
 const fancyDemoTitle = 'Stylized Portland Map with GeoJSON';
@@ -59,12 +59,12 @@ const fancyStyle = {
 };
 
 const fancyDemo = () => (
-  <LeafletMapboxMap {...fancyMapProps} >
+  <StamenMap {...fancyMapProps} >
 		<GeoJSON style={fancyStyle} data={Shapes}/>
-  </LeafletMapboxMap>
+  </StamenMap>
 );
 
-const propDocs = { inline: true, propTables: [LeafletMapboxMap] };
+const propDocs = { inline: true, propTables: [StamenMap] };
 
 export default () => storiesOf(displayName, module)
   .addWithInfo(

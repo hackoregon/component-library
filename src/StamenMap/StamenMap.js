@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Map, TileLayer, geoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const LeafletMapboxMap = ({ width, height, children, ...mapProps }) => (
+const StamenMap = ({ width, height, children, ...mapProps }) => (
   <Map {...mapProps} style={{ width, height }}>
     <TileLayer
       url="http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png"
@@ -12,7 +12,7 @@ const LeafletMapboxMap = ({ width, height, children, ...mapProps }) => (
   </Map>
 );
 
-LeafletMapboxMap.propTypes = {
+StamenMap.propTypes = {
   center: PropTypes.arrayOf(PropTypes.number),
   zoom: PropTypes.number,
   scrollWheelZoom: PropTypes.bool,
@@ -21,7 +21,7 @@ LeafletMapboxMap.propTypes = {
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-LeafletMapboxMap.defaultProps = {
+StamenMap.defaultProps = {
   center: [0, 0],
   zoom: 0,
   width: '100%',
@@ -29,6 +29,6 @@ LeafletMapboxMap.defaultProps = {
   scrollWheelZoom: false,
 };
 
-export default LeafletMapboxMap;
+export default StamenMap;
 
 //attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"

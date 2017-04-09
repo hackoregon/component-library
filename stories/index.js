@@ -11,7 +11,7 @@ import barChartStory from './BarChart.story';
 import sankeyStory from './Sankey.story';
 import headerStory from './Header.story';
 import leafletMap from './LeafletMap.story';
-import leafletMapboxMap from './LeafletMapboxMap.story';
+import StamenMap from './StamenMap.story';
 import Welcome from './Welcome';
 import rechartsPie from './RechartsPie.story';
 
@@ -36,4 +36,4 @@ sankeyStory();
 sliderStory();
 rechartsPie();
 leafletMap();
-leafletMapboxMap();
+StamenMap();
