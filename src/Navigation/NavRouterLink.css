@@ -3,6 +3,10 @@ li a {
     /*padding: 1rem 0;*/
 }
 
+.NavRouterLink {
+  position: relative;
+}
+
 .NavRouterLink a {
     color: rgba(255,255,255,.65);
     /*flex: 1;*/
@@ -27,4 +31,22 @@ li a {
 
 .NavRouterLink a:active {
     color: rgba(255,255,255,.85);
+}
+
+.NavRouterLink .nested-menu a {
+  padding: 5px 0px;
+  color: #EE495C;
+  text-align: left;
+  font-size: 16px;
+}
+
+.NavRouterLink .nested-menu {
+  border: 1px solid #AAA4AB;
+  position: absolute;
+  margin-top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  background-color: #fff;
+  padding: 20px;
 }
