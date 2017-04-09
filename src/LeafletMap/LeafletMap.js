@@ -3,7 +3,7 @@ import { Map, TileLayer } from 'react-leaflet';
 import isClient from '../utils/isClient';
 
 const LeafletMap = ({ width, height, children, ...mapProps }) => {
-  if (isClient) require('leaflet/dist/leaflet.css');
+  if (isClient) require('../../assets/leaflet.css');
   return (
     <div>
       {isClient &&
