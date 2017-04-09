@@ -14,6 +14,7 @@ export Nav from './Navigation/Nav';
 export NavRouterLink from './Navigation/NavRouterLink';
 export RechartsPie from './RechartsPie/RechartsPie';
 export LeafletMap from './LeafletMap/LeafletMap';
+export StamenMap from './StamenMap/StamenMap';
 export Dropdown from './Dropdown/Dropdown';
 export Icon from './Icon/Icon';
 
