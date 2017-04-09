@@ -28,6 +28,8 @@ class Header extends Component {
     };
   }
 
+  // togglesNestedMenu = () => this.setState({ nestedMenu: !this.state.nestedMenu })
+
   render() {
     const { children, menu, title } = this.props;
 
@@ -38,7 +40,11 @@ class Header extends Component {
 
           <Logo alt={title} />
         </div>
-        <Nav menu={menu} />
+        <Nav
+          menu={menu}
+          showNestedMenu={this.state.nestedMenu}
+          togglesNestedMenu={this.togglesNestedMenu}
+        />
         { children }
       </nav>
     );
