@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import Nav from './Nav';
 import Logo from '../Logo/Logo';
 import isClient from '../utils/isClient';
@@ -20,19 +20,31 @@ const styles = {
 
 };
 
-const Header = ({ title = 'Civic', children, menu }) => {
-  if (isClient) require('./Header.css');
-  return (
-    <nav style={styles.header}>
-      <div style={styles.logo}>
+class Header extends Component {
+  constructor() {
+    super();
+    this.state = {
+      mobileNav: false,
+    };
+  }
 
-        <Logo alt={title} />
-      </div>
-      <Nav menu={menu} />
-      { children }
-    </nav>
-  );
-};
+  render() {
+    const { children, menu, title } = this.props;
+
+    if (isClient) require('./Header.css');
+    return (
+      <nav style={styles.header}>
+        <div style={styles.logo}>
+
+          <Logo alt={title} />
+        </div>
+        <Nav menu={menu} />
+        { children }
+      </nav>
+    );
+  }
+
+}
 
 Header.displayName = 'Header';
 Header.propTypes = {

@@ -3,8 +3,8 @@
 .Hero {
   display: flex;
   position: absolute;
-  background-color: rgba(85,47,65,1);
-  height: 65vh;
+  background-color: rgba(34, 15, 37,1);
+  height: 75vh;
   min-height: 420px;
   width: 100%;
   margin: 0;
@@ -13,22 +13,18 @@
   background-size: cover;
   background-position: center center;
   z-index: -100;
+  align-items: center;
+  justify-content: center;
 }
 
 .Hero > .Container {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  display: flex;
 }
 
 .Hero > .Container > .Content {
   position: relative;
   max-width: 800px;
-  margin: 0 auto;
-  padding: 120px 0 0 0;
+  padding-top: 60px;
 }
 
 .Hero > .Container > .Content > h1 {
