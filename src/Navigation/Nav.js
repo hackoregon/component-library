@@ -15,7 +15,6 @@ const defaultMenu = [
       { name: 'Past Projects', path: '/collections/past-projects' },
     ],
   },
-  { name: 'Explore', path: '/explore' },
   { name: 'About', path: '/about' },
 ];
 

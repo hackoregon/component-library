@@ -10,9 +10,8 @@ const NavRouterLink = ({ path, customStyles, name, nestedMenu, showNestedMenu, t
   const pathTo = path || `/${name.toLowerCase()}`;
 
   return (
-    <li className={'NavRouterLink'} style={{ display: 'block', ...boxStyle }} >
-
-      <Link to={pathTo} onClick={toggleNestedMenu}>
+    <li className={'NavRouterLink'} style={{ ...boxStyle }} >
+      <Link to={pathTo} >
         <span style={{ ...linkStyle }}>{name}</span>
       </Link>
 
