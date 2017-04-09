@@ -12,23 +12,10 @@ import Shapes from '../src/LeafletMapboxMap/Shapes.js'
 L.Icon.Default.imagePath = '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0/images/';
 
 const displayName = 'LeafletMapboxMap';
-const title = 'Basic Mapbox Map';
-const description = `
-  Really basic leaflet map component to get us started, provide boilerplate environment for other
-  storybook leaflet components. Can evolve as we refine our usage, Maybe eventually in to a
-  'portland map' or other preconfigured maps.`;
+const description = 'Stylized LeafletMapboxMaplet Map. Currently using the toner-lite tiles from Stamen Design, but could be adapted to any tiles'
+const fancyDescription = 'Stylized LeafletMapboxMaplet Map. Currently using the toner-lite tiles from Stamen Design, but could be adapted to any files. To stylize individual regions defined in your GeoJSON file, youll need to reference the properties of the GeoJSON layer. In this example GeoJSON that would be Analysis-A';
 
-const portland = [45.52, -122.67];
-
-const basicMapDemo = () => (
-  <LeafletMapboxMap>
-    <Marker position={portland}>
-      <Popup>
-        <span>A pretty CSS3 popup.<br />Easily customizable.</span>
-      </Popup>
-    </Marker>
-  </LeafletMapboxMap>
-);
+const portland = [45.54362, -122.676482];
 
 const boundsDemoTitle = 'With Bounds';
 
@@ -73,7 +60,7 @@ const fancyStyle = {
 
 const fancyDemo = () => (
   <LeafletMapboxMap {...fancyMapProps} >
-		<GeoJSON data={Shapes} style={fancyStyle}/>
+		<GeoJSON style={fancyStyle} data={Shapes}/>
   </LeafletMapboxMap>
 );
 
@@ -81,10 +68,14 @@ const propDocs = { inline: true, propTables: [LeafletMapboxMap] };
 
 export default () => storiesOf(displayName, module)
   .addWithInfo(
-    title,
-    description,
-    basicMapDemo,
-    propDocs,
-  )
-  .add(boundsDemoTitle, boundsDemo)
-	.add(fancyDemoTitle, fancyDemo);
+		boundsDemoTitle,
+		description, 
+		boundsDemo,
+		propDocs,
+	)
+	.addWithInfo(
+		fancyDemoTitle,
+		description, 
+		fancyDemo,
+		propDocs
+	);
