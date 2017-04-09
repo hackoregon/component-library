@@ -6,6 +6,7 @@ export Chart from './Chart/Chart';
 export ChartData from './ChartData/ChartData';
 export Pie from './Pie/Pie';
 export Slider from './Slider/Slider';
+export Footer from './Footer/Footer';
 export ScrollToTop from './ScrollToTop/ScrollToTop';
 export Header from './Navigation/Header';
 export Nav from './Navigation/Nav';
