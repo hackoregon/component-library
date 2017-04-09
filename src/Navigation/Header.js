@@ -25,11 +25,10 @@ class Header extends Component {
     super();
     this.state = {
       mobileNav: false,
-      showNestedMenu: false,
     };
   }
 
-  togglesNestedMenu = () => this.setState({ nestedMenu: !this.state.nestedMenu })
+  // togglesNestedMenu = () => this.setState({ nestedMenu: !this.state.nestedMenu })
 
   render() {
     const { children, menu, title } = this.props;

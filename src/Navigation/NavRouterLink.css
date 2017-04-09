@@ -43,10 +43,29 @@ li a {
 .NavRouterLink .nested-menu {
   border: 1px solid #AAA4AB;
   position: absolute;
-  margin-top: 20px;
+  margin-top: 0px;
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
   background-color: #fff;
   padding: 20px;
+  transition: all .5s cubic-bezier(0.42, 0, 0.14, 1);
 }
+
+.NavRouterLink .nested-menu::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -12px;
+    border-width: 12px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+nav > ul > li:hover:nth-child(1) .nested-menu {
+  visibility: visible!important;
+  opacity: 1!important;
+  margin-top: 10px;
+}
+

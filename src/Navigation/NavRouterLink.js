@@ -17,7 +17,7 @@ const NavRouterLink = ({ path, customStyles, name, nestedMenu, showNestedMenu, t
       </Link>
 
       {showNestedMenu && nestedMenu.length ?
-        <div className="nested-menu">
+        <div className="nested-menu" style={{ visibility: 'hidden', opacity: '0' }}>
           {nestedMenu.map((item, index) => (
             <Link key={index} to={item.path || `/${item.name.toLowerCase()}`} >
               <span className="nested-menu-link">{item.name}</span>
@@ -36,13 +36,11 @@ NavRouterLink.propTypes = {
   path: PropTypes.string,
   customStyles: PropTypes.object,
   nestedMenu: PropTypes.array,
-  showNestedMenu: PropTypes.bool,
-  toggleNestedMenu: PropTypes.func,
+
 };
 
 NavRouterLink.defaultProps = {
   nestedMenu: [],
-  showNestedMenu: false,
 };
 
 export default NavRouterLink;

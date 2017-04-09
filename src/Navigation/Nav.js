@@ -40,12 +40,10 @@ const Nav = ({ menu = defaultMenu, toggleNestedMenu, showNestedMenu }) => {
 
 Nav.propTypes = {
   menu: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string, path: PropTypes.string })),
-  showNestedMenu: PropTypes.bool,
-  toggleNestedMenu: PropTypes.func,
 };
 
 Nav.defaultProps = {
-  showNestedMenu: false,
+  showNestedMenu: true,
 };
 
 export default Nav;
