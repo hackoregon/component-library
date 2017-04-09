@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import { Header } from '../src';
 import Hero from '../src/Hero/Hero';
+import Tag from '../src/Tag/Tag';
 
 const displayName = Header.displayName || 'Header';
 const title = 'Simple usage';
@@ -21,7 +22,17 @@ const altDemo = () => (
 const defaultHeroTitle = 'with default hero';
 
 const defaultHero = () => (
-  <div><Hero /> <Header title="Civic" /></div>
+  <div><Header title="Civic" /><Hero /></div>
+);
+
+const collectionHero = () => (
+  <div>
+  <Header title="Civic" />
+  <Hero>
+  <Tag name="Featured"/>
+  <h1>Title</h1>
+  </Hero>
+  </div>
 );
 
 const propDocs = { inline: true, propTables: [Header] };
@@ -34,4 +45,5 @@ export default () => storiesOf(displayName, module)
     propDocs,
   )
   .add(defaultHeroTitle, defaultHero)
+  .add('collectionHero', collectionHero)
   .add(altTitle, altDemo);
