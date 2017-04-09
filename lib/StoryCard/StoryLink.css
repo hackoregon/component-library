@@ -1,5 +1,6 @@
 .StoryLink {
-    border-bottom: 2px solid rgba(238, 73, 80, 1);
+  border-bottom: 2px solid rgba(238, 73, 80, 1);
+  transition: all .2s ease-in-out;
 }
 
 .StoryLink a {
@@ -12,12 +13,12 @@
 }
 
 .StoryLink a i {
-    margin-right: 12px;
+  margin-right: 12px;
 }
 
 .StoryLink span {
   flex-wrap: nowrap;
-  transition: all .2s ease-in-out;
+  
 }
 
 .StoryLink a:hover {
