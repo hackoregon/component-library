@@ -3,6 +3,7 @@ import { storiesOf, action } from '@kadira/storybook';
 import { Header } from '../src';
 import Hero from '../src/Hero/Hero';
 import Tag from '../src/Tag/Tag';
+import ShareCollection from '../src/Share/ShareCollection';
 
 const displayName = Header.displayName || 'Header';
 const title = 'Simple usage';
@@ -27,11 +28,12 @@ const defaultHero = () => (
 
 const collectionHero = () => (
   <div>
-  <Header title="Civic" />
-  <Hero>
-  <Tag name="Featured"/>
-  <h1>Title</h1>
-  </Hero>
+    <Header title="Civic" />
+    <Hero>
+      <Tag name="Featured" />
+      <h1>Title</h1>
+      <ShareCollection collectionId="housing" />
+    </Hero>
   </div>
 );
 

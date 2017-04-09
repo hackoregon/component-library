@@ -17,6 +17,7 @@ import leafletMap from './LeafletMap.story';
 import Welcome from './Welcome';
 import dropdownStory from './Dropdown.story';
 import rechartsPie from './RechartsPie.story';
+import heroStory from './Hero.story';
 
 import '../src/global.styles.css';
 
@@ -33,6 +34,7 @@ buttonStory();
 storyLinkStory();
 storyFooterStory();
 storycardStory();
+sliderStory();
 pieStory();
 areaChartStory();
 dropdownStory();
@@ -42,3 +44,4 @@ sankeyStory();
 scrollToTopStory();
 rechartsPie();
 leafletMap();
+heroStory();
