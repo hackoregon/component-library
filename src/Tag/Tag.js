@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router';
 
-const Tag = props => (
-  <a href={props.location}>{props.name}</a>
-);
-
-const styledTag = styled(Tag)`
+const StyledLink = styled(Link)`
     display: flex;
     padding: 6px 6px 6px 6px;
     flex-wrap: nowrap;
@@ -19,4 +16,8 @@ const styledTag = styled(Tag)`
     border: 2px solid rgba(255, 255, 255, 1);
 `;
 
-export default styledTag;
+const Tag = props => (
+  <StyledLink to={props.location}>{props.name}</StyledLink>
+);
+
+export default Tag;
