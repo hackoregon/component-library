@@ -16,7 +16,8 @@
 
 
 /* react-select styles */
-@import '~react-select/dist/react-select.css';
+/* should be imported only when react select is */
+/*@import '~react-select/dist/react-select.css';*/
 
 /* Base */
 
@@ -259,26 +260,26 @@ p {
 /* Phone Breakpoint */
 
 @media screen and (max-width:640px) {
-  
+
 }
 
 
 /* Tablet Portrait Breakpoint */
 
 @media screen and (min-width: 641px) and (max-width:768px) {
-  
+
 }
 
 
 /* Tablet Landscape Breakpoint */
 
 @media screen and (min-width:769px) and (max-width: 1024) {
-  
+
 }
 
 
 /* Desktop Breakpoint */
 
 @media screen and (min-width:1025px) {
-  
+
 }

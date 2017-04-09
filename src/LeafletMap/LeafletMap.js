@@ -1,16 +1,23 @@
 import React, { PropTypes } from 'react';
 import { Map, TileLayer } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import isClient from '../utils/isClient';
 
-const LeafletMap = ({ width, height, children, ...mapProps }) => (
-  <Map {...mapProps} style={{ width, height }}>
-    <TileLayer
-      url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-      attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
-    />
-    {children}
-  </Map>
-);
+const LeafletMap = ({ width, height, children, ...mapProps }) => {
+  if (isClient) require('../../assets/leaflet.css');
+  return (
+    <div>
+      {isClient &&
+        <Map {...mapProps} style={{ width, height }}>
+          <TileLayer
+            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+            attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+          />
+          {children}
+        </Map>
+      }
+    </div>
+  );
+};
 
 LeafletMap.propTypes = {
   center: PropTypes.arrayOf(PropTypes.number),

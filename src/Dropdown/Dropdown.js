@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames/bind';
 import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import styles from './Dropdown.styles.css';
 
 const cx = classNames.bind(styles);
