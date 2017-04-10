@@ -1,9 +1,9 @@
-.StoryLink {
+.storylink {
   border-bottom: 2px solid rgba(238, 73, 80, 1);
   transition: all .2s ease-in-out;
 }
 
-.StoryLink a {
+.storylink a {
     display: flex;
     padding: 6px 6px 6px 6px;
     flex-wrap: nowrap;
@@ -12,20 +12,19 @@
     border-bottom: none;  /* this is only because our global styles assign a border-bottom that we need to override */
 }
 
-.StoryLink a i {
+.storylink a i {
   margin-right: 12px;
 }
 
-.StoryLink span {
+.storylink span {
   flex-wrap: nowrap;
-  
 }
 
-.StoryLink a:hover {
+.storylink a:hover {
     background-color: rgba(238, 73, 80, 1);
     color: #fff;
 }
 
-.StoryLink a:focus {
+.storylink a:focus {
     outline: none;
 }
