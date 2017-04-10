@@ -15,7 +15,8 @@ import Welcome from './Welcome';
 import rechartsPie from './RechartsPie.story';
 import scatterplot from './Scatterplot.story';
 
-import '../src/global.styles.css';
+// because we don't want to extract-text for react-story book this is a temporary fix
+import '!style-loader!css-loader!../src/global.styles.css'; // eslint-disable-line
 
 // stories can be added directly here
 storiesOf('Welcome', module)

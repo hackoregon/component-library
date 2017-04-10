@@ -1,15 +1,14 @@
-/* Hero Styles */
+/* hero Styles */
 
-.Hero {
+.hero {
   display: flex;
-  position: absolute;
+  /*position: absolute;*/
   background-color: rgba(34, 15, 37,1);
   height: 75vh;
   min-height: 420px;
   width: 100%;
   margin: 0;
   padding: 0;
-  top: 0px;
   background-size: cover;
   background-position: center center;
   z-index: -100;
@@ -17,17 +16,17 @@
   justify-content: center;
 }
 
-.Hero > .Container {
+.container {
   display: flex;
 }
 
-.Hero > .Container > .Content {
+.content {
   position: relative;
   max-width: 800px;
   padding-top: 60px;
 }
 
-.Hero > .Container > .Content > h1 {
+.content > h1 {
   font-size: 3em;
   line-height: 1.25em;
   color: rgba(255,255,255,1);

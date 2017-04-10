@@ -17,4 +17,10 @@ const Tag = props => (
   <StyledLink to={props.location}>{props.name}</StyledLink>
 );
 
+Tag.displayName = 'Tag';
+Tag.propTypes = {
+  location: React.PropTypes.string,
+  name: React.PropTypes.string,
+};
+
 export default Tag;

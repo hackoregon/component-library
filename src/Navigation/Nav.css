@@ -1,4 +1,8 @@
-Nav div ul {
+.Nav {
+  position: relative;
+}
+
+.Nav ul {
   display: flex;
   padding: 1rem;
   list-style: none;
@@ -6,27 +10,87 @@ Nav div ul {
   justify-content: center;
 }
 
-Nav div ul li {
+.Nav ul li {
   flex: 1 1 100%;
+}
+
+.Nav a {
+  color: rgba(255,255,255,.65);
+  flex: 1;
+  display: block;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.25rem;
+  border: none;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem;
+  text-align: center;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0
+}
+
+.visible {
+  visibility: visible!important;
+  opacity: 1!important;
+  margin-top: 10px;
+}
+
+.nestedMenu a {
+  padding: 5px 0px;
+  color: #EE495C;
+  text-align: left;
+  font-size: 16px;
+}
+
+.nestedMenu {
+  border: 1px solid #AAA4AB;
+  position: absolute;
+  margin-top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  background-color: #fff;
+  padding: 20px;
+  transition: all .5s cubic-bezier(0.42, 0, 0.14, 1);
+}
+
+.nestedMenu::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -24px;
+    border-width: 12px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.Nav > a:nth-child(1):hover > div {
+  /*composes: visible;*/
+
 }
 
 
 @media all and (max-width:640px) {
-  
-  Nav div {
+
+  .Nav {
     transition: all .2s linear;
   }
-  
-  Nav.open div {
+
+  .Nav.open {
     opacity: 1;
   }
-  
-  Nav.closed div {
+
+  .Nav.closed {
     opacity: 0;
     pointer-events: none;
   }
-  
-  Nav div {
+
+  .Nav {
     position: absolute;
     z-index: 1;
     height: 100%;
@@ -38,15 +102,15 @@ Nav div ul li {
     background-color: rgba(34,15,37,1);
   }
 
-  Nav div ul { 
+  .Nav ul {
     display: block;
     position: relative;
-    list-style: none; 
+    list-style: none;
     margin: 0;
     padding-top: 80px;
   }
-  
-  Nav div ul li {
+
+  .Nav ul li {
     color: #ffffff;
     display: block;
     text-align: center;
@@ -56,5 +120,5 @@ Nav div ul li {
     padding: 0;
     flex: none;
   }
-  
+
 }
