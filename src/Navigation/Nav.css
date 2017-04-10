@@ -1,3 +1,6 @@
+@value grid: "../Grid/Grid.css";
+@value small, desktop from grid;
+
 .Nav {
   position: relative;
 }
@@ -29,6 +32,8 @@
   padding: 1rem;
   text-align: center;
 }
+
+@media desktop {
 
 .hidden {
   visibility: hidden;
@@ -75,19 +80,21 @@
   /*composes: visible;*/
 
 }
+  
+}
 
 
-@media all and (max-width:640px) {
+@media small {
 
   .Nav {
     transition: all .2s linear;
   }
 
-  .Nav.open {
+  .Nav.visible {
     opacity: 1;
   }
 
-  .Nav.closed {
+  .Nav.hidden {
     opacity: 0;
     pointer-events: none;
   }

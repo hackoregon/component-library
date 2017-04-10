@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import Nav from './Nav';
 import Logo from '../Logo/LogoAnimated';
 import styles from './Header.css';
+import Grid from '../Grid/Grid.css';
 
 class Header extends Component {
   constructor() {

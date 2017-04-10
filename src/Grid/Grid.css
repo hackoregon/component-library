@@ -1,0 +1,2 @@
+@value small: (max-width: 640px);
+@value desktop: (min-width: 641px);
