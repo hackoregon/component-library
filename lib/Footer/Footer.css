@@ -1,45 +1,53 @@
-/* Footer Styles */
+/* footer Styles */
 
-.Footer {
+.footer {
   width: 100%;
-}
-
-.Footer > .Container {
   background: #fff;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  padding: 40px 0px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: row;
+   align-content: center;
 }
 
-.Footer > .Container > .copyright {
-  flex: 0 0 auto;
+.copyright {
   color: #726371;
   font-family: 'Rubik';
   font-weight: 500;
-  padding: 20px;
+  margin: 12px 8px;
 }
 
-.Footer > .Container > .footer-logo {
-  flex: 0 0 auto;
-  width: 150px;
+.logo {
+  flex: 2 auto;
+  display: flex;
+  align-items: center;
   height: auto;
-  padding: 20px;
 }
 
-.Footer > .Container .scroll-to-top {
-  flex: 0 0 auto;
+.logo > img {
+  flex: 1;
+  padding: 12px;
+}
+
+.scrollToTop {
   color: #EE495C;
   font-family: 'Rubik';
   font-weight: 500;
-  padding: 20px;
-  text-align: center;
+  margin: 12px 8px;
+}
+
+.scrollToTop > div {
+  margin-left: auto;
 }
 
 @media (max-width: 768px) {
-  .Footer > .Container {
+  .footer {
     flex-direction: column-reverse;
+  }
+}
+
+@media (min-width: 768px) {
+  .scrollToTop {
+    margin-left: 0;
   }
 }

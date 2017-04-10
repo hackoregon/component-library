@@ -1,9 +1,3 @@
-/*.Header {
-
-
-  width: 100%;
-}*/
-
 .header {
   background-color: rgba(34,15,37,1);
   display: flex;
@@ -14,13 +8,12 @@
   margin: 0 auto;
 }
 
-.logo {
-  margin: 1rem 0 0 4rem;
-  font-size: 2rem;
-  flex: 1 1 100%;
+.copyright {
+  flex: 1;
 }
 
-.logo img {
-  height: 80px;
-  width: auto;
+.logo {
+  /*margin: 1rem 0 0 4rem;*/
+  /*font-size: 2rem;*/
+  flex: 2;
 }

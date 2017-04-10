@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import Nav from './Nav';
-import Logo from '../Logo/Logo';
-import isClient from '../utils/isClient';
+import Logo from '../Logo/LogoAnimated';
 import styles from './Header.css';
 
 class Header extends Component {
@@ -17,7 +16,6 @@ class Header extends Component {
     return (
       <nav className={styles.header}>
         <div className={styles.logo}>
-
           <Logo alt={title} />
         </div>
         <Nav menu={menu} />

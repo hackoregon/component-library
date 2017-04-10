@@ -1,9 +1,4 @@
 const path = require('path');
-// const genDefaultConfig = require('@kadira/storybook/dist/server/config/defaults/webpack.config.js');
-// Export a function. Accept the base config as the only param.
-
-// custom config
-// const customConfig = Object.assign({}, config, {});
 
 module.exports = {
   module: {
@@ -24,20 +19,3 @@ module.exports = {
     ],
   },
 };
-//
-// module.exports = (config) => {
-//   // const modifiedConfig =  genDefaultConfig(config, env);
-//   console.log(JSON.stringify(config));
-//   const loaders = [{
-//     test: /.css$/,
-//     loaders: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]',
-    // include: path.resolve(__dirname, '../src'),
-//   }, {
-//     test: /\.json$/,
-//     loader: 'json-loader',
-//     include: path.resolve(__dirname, '../src'),
-//   }];
-//   // console.log(modifiedConfig);
-//   config.module.loaders.concat(loaders);
-//   return config;
-// };
