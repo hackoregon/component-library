@@ -3,7 +3,6 @@
   display: flex;
   z-index: 1;
   align-items: center;
-  padding: 1rem;
   width: 100%;
   margin: 0 auto;
 }
@@ -13,7 +12,7 @@
 }
 
 .logo {
-  /*margin: 1rem 0 0 4rem;*/
+  margin: 1rem 0 0 4rem;
   /*font-size: 2rem;*/
   flex: 2;
 }

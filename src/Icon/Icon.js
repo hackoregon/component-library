@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Icon = ({ className, handleClick }) => (
-  <i onClick={handleClick} className={className} />
+  <span><i onClick={handleClick} className={className} /></span>
 );
 
 Icon.propTypes = {
