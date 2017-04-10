@@ -1,4 +1,4 @@
-Nav div ul {
+.Nav ul {
   display: flex;
   padding: 1rem;
   list-style: none;
@@ -6,27 +6,27 @@ Nav div ul {
   justify-content: center;
 }
 
-Nav div ul li {
+.Nav ul li {
   flex: 1 1 100%;
 }
 
 
 @media all and (max-width:640px) {
-  
-  Nav div {
+
+  .Nav {
     transition: all .2s linear;
   }
-  
-  Nav.open div {
+
+  .Nav.open {
     opacity: 1;
   }
-  
-  Nav.closed div {
+
+  .Nav.closed {
     opacity: 0;
     pointer-events: none;
   }
-  
-  Nav div {
+
+  .Nav {
     position: absolute;
     z-index: 1;
     height: 100%;
@@ -38,15 +38,15 @@ Nav div ul li {
     background-color: rgba(34,15,37,1);
   }
 
-  Nav div ul { 
+  .Nav ul {
     display: block;
     position: relative;
-    list-style: none; 
+    list-style: none;
     margin: 0;
     padding-top: 80px;
   }
-  
-  Nav div ul li {
+
+  .Nav ul li {
     color: #ffffff;
     display: block;
     text-align: center;
@@ -56,5 +56,5 @@ Nav div ul li {
     padding: 0;
     flex: none;
   }
-  
+
 }

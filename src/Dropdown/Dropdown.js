@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames/bind';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import isClient from '../utils/isClient';
 import styles from './Dropdown.styles.css';
+
+// NOTE: temporary fix until webpack 2 comes to storybook - otherwise don't use ! syntax for webpack loaders
+if (isClient) require('!style-loader!css-loader!react-select/dist/react-select.css'); // eslint-disable-line
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +21,7 @@ const Dropdown = ({ options, onChange, value, clearable, searchable, disabled })
     searchable={searchable}
     disabled={disabled}
   />
-);
+  );
 
 Dropdown.displayName = 'Dropdown';
 

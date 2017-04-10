@@ -3,17 +3,20 @@ import Icon from '../Icon/Icon';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import isClient from '../utils/isClient';
 // import civicLogoStackStandard from ;
+import styles from './Footer.css';
 
-import './Footer.css';
+console.log(styles.Footer);
 
 const Footer = props => (
-  <div className="Footer">
-    <div className="Container">
-      <div className="copyright">&copy; Copyright {(new Date()).getFullYear()}</div>
+  <div className={styles.Footer}>
+    <div className={styles.Container}>
+      <div className={styles.copyright}>&copy; Copyright {(new Date()).getFullYear()}</div>
+
       <img
         alt="Hack Oregon footer logo"
         className="footer-logo"
         src={isClient ? require('../../assets/civic-logo-stack_standard.svg') : ''}
+
       />
       <ScrollToTop>
         <div className="scroll-to-top">
@@ -29,3 +32,4 @@ const Footer = props => (
 Footer.displayName = 'Footer';
 
 export default Footer;
+// src={isClient ? require('../../assets/civic-logo-stack_standard.svg') : ''}
