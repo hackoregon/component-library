@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import isClient from '../utils/isClient';
 
 const NavRouterLink = ({ path, customStyles, name, nestedMenu, showNestedMenu, toggleNestedMenu }) => {
