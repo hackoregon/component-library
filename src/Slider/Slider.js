@@ -1,16 +1,20 @@
 import React from 'react';
-import 'rc-slider/assets/index.css';
 import SliderTooltip from './SliderTooltip';
 import RcSlider from './RcSlider';
-import './SliderBox.css';
+import isClient from '../utils/isClient';
 
-const Slider = ({ value, onChange, min, max }) => (
-  <div>
-    <RcSlider tipformatter={null} min={min} max={max} value={value} onChange={onChange} />
-    <SliderTooltip value={value} />
-  </div>
-);
-
+const Slider = ({ value, onChange, min, max }) => {
+  if (isClient) {
+    require('!style-loader!css-loader!rc-slider/assets/index.css'); // eslint-disable-line
+    require('!style-loader!css-loader!./SliderBox.css'); // eslint-disable-line
+  }
+  return (
+    <div>
+      <RcSlider tipformatter={null} min={min} max={max} value={value} onChange={onChange} />
+      <SliderTooltip value={value} />
+    </div>
+  );
+};
 Slider.propTypes = {
   value: React.PropTypes.number,
   onChange: React.PropTypes.func,
