@@ -1,7 +1,8 @@
 import React from 'react';
 import Icon from '../Icon/Icon';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
-import civicLogoStackStandard from '../../assets/civic-logo-stack_standard.svg';
+import isClient from '../utils/isClient';
+// import civicLogoStackStandard from ;
 
 import './Footer.css';
 
@@ -12,7 +13,7 @@ const Footer = props => (
       <img
         alt="Hack Oregon footer logo"
         className="footer-logo"
-        src={civicLogoStackStandard}
+        src={isClient ? require('../../assets/civic-logo-stack_standard.svg') : ''}
       />
       <ScrollToTop>
         <div className="scroll-to-top">
