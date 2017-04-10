@@ -1,17 +1,18 @@
 import React, { PropTypes } from 'react';
-import { Map, TileLayer, geoJSON } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import { Map, TileLayer } from 'react-leaflet';
+import isClient from '../utils/isClient';
 
 const StamenMap = ({ width, height, children, ...mapProps }) => (
-  <Map {...mapProps} style={{ width, height }}>
-    <TileLayer
-      url="http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png"
-      attribution="Map tiles by <a href='http://stamen.com'>Stamen Design</a>, under <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a>. Data by <a  href='http://openstreetmap.org'>OpenStreetMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/3.0'>CC BY SA</a>."
-    />
-    {children}
-  </Map>
-);
-
+  <div>
+    {isClient && <Map {...mapProps} style={{ width, height }}>
+      <TileLayer
+        url="http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png"
+        attribution="Map tiles by <a href='http://stamen.com'>Stamen Design</a>, under <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a>. Data by <a  href='http://openstreetmap.org'>OpenStreetMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/3.0'>CC BY SA</a>."
+      />
+      {children}
+    </Map>}
+  </div>
+  );
 StamenMap.propTypes = {
   center: PropTypes.arrayOf(PropTypes.number),
   zoom: PropTypes.number,
@@ -31,4 +32,4 @@ StamenMap.defaultProps = {
 
 export default StamenMap;
 
-//attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+// attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"

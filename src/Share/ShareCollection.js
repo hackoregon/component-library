@@ -27,9 +27,8 @@ export default class ShareCollection extends Component {
   switchState = ms => setTimeout(this.setToFalse, ms);
 
   handleCopy = () => {
-    const { collectionId } = this.props;
     // NOTE: we need to make sure this will work on all browsers
-    copy(`${window.location.origin}/${collectionId}`);
+    copy(`${window.location.href}`);
     this.switchState(MS_TO_SWITCH_TEXT);
     this.setState({ copied: true });
   }
