@@ -1,17 +1,25 @@
 import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './ScrollToTop.css';
+import Icon from '../Icon/Icon';
 
-const cx = classNames.bind(styles);
+const hashToGoToTop = '#';
+const styles = { display: 'flex', flexDirection: 'column', textAlign: 'center' };
 
-const className = cx({ SecondaryColor: true, RemoveUnderline: true });
-
-const ScrollToTop = ({ children }) => (
-  <a aria-label="scroll to top" className={className} href="#">
-    {children}
-  </a>
+const ScrollToTop = ({ iconStyle = null }) => (
+  <div>
+    <a
+      style={styles}
+      aria-label="scroll to top"
+      href={hashToGoToTop}
+    >
+      { iconStyle && <Icon className={iconStyle} />}
+      <span>Back to Top</span>
+    </a>
+  </div>
 );
 
 ScrollToTop.displayName = 'ScrollToTop';
+ScrollToTop.propTypes = {
+  iconStyle: React.PropTypes.string,
+};
 
 export default ScrollToTop;

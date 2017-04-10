@@ -1,14 +1,14 @@
 import React from 'react';
-import './Hero.css';
+import styles from './Hero.css';
 
 const DefaultChildren = () => (
   <h1>Data for the people,<br />by the people.</h1>
 );
 
 const Hero = ({ children }) => (
-  <div className="Hero">
-    <div className="Container">
-      <div className="Content">
+  <div className={styles.hero}>
+    <div className={styles.container}>
+      <div className={styles.content}>
         {children || <DefaultChildren />}
       </div>
     </div>

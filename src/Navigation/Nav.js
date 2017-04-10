@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
+import NavSubMenu from './NavSubMenu';
 import NavLink from './NavRouterLink';
-import isClient from '../utils/isClient';
+import styles from './Nav.css';
 
 const defaultMenu = [
   {
@@ -18,31 +19,45 @@ const defaultMenu = [
   { name: 'About', path: '/about' },
 ];
 
-const Nav = ({ menu = defaultMenu, toggleNestedMenu, showNestedMenu }) => {
-  if (isClient) require('./Nav.css');
-  return (
-    <ul style={{ display: 'flex', width: '100%', listStyle: 'none', padding: '1rem', flex: '1 1 100%' }}>
-      {menu.map((item, idx) => (
-        <NavLink
-          nestedMenu={item.nestedMenu || []}
-          showNestedMenu={showNestedMenu}
-          toggleNestedMenu={toggleNestedMenu}
-          customStyles={{ flex: '1 1 100%' }}
-          key={idx}
-          name={item.name}
-          path={item.path}
-        />
-      ))}
-    </ul>
-  );
-};
+class Nav extends Component {
+  constructor() {
+    super();
+    this.state = {
+      menuActive: false,
+      items: [],
+    };
+  }
+
+  handleClick = (name, menu, e) => {
+    e.preventDefault();
+    this.setState({ menuActive: !this.state.menuActive, items: menu });
+  }
+
+  render() {
+    const { menu = defaultMenu, toggleNestedMenu = this.handleClick  } = this.props;
+    return (
+      <div className={styles.Nav}>
+        <ul>
+          {menu.map((item, idx) =>
+            (item.nestedMenu
+              ? <li key={idx} onClick={e => toggleNestedMenu(item.name, item.nestedMenu, e)}><a>{item.name}</a></li> // eslint-disable-line
+              : <NavLink
+                key={idx}
+                name={item.name}
+                path={item.path}
+              />
+            ))
+          }
+        </ul>
+        <NavSubMenu isVisible={this.state.menuActive} items={this.state.items} />
+      </div>
+    );
+  }
+    }
 
 Nav.propTypes = {
   menu: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string, path: PropTypes.string })),
-};
-
-Nav.defaultProps = {
-  showNestedMenu: true,
+  toggleNestedMenu: PropTypes.func,
 };
 
 export default Nav;
