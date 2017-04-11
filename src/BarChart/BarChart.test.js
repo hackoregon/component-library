@@ -25,6 +25,6 @@ describe('BarChart', () => {
   });
 
   it('should render a div with one child element that itself has seven children elements', () => {
-    expect(wrapper.find('div').children().props().children).to.have.length(7);
+    expect(wrapper.find('div').children().props().children).to.have.length(6);
   });
 });
