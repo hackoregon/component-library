@@ -7,15 +7,23 @@ import storyFooterStory from './StoryFooter.story';
 import editableStory from './Editable.story';
 import pieStory from './Pie.story';
 import sliderStory from './Slider.story';
+import areaChartStory from './AreaChart.story';
+import scrollToTopStory from './ScrollToTop.story';
 import barChartStory from './BarChart.story';
+import footerStory from './Footer.story';
 import sankeyStory from './Sankey.story';
 import headerStory from './Header.story';
 import leafletMap from './LeafletMap.story';
+import StamenMap from './StamenMap.story';
 import Welcome from './Welcome';
 import leafletPlusDataStory from './LeafletPlusData.story';
+import dropdownStory from './Dropdown.story';
 import rechartsPie from './RechartsPie.story';
+import heroStory from './Hero.story';
+import scatterplotStory from './Scatterplot.story';
 
-import '../src/global.styles.css';
+// because we don't want to extract-text for react-story book this is a temporary fix
+import '!style-loader!css-loader!../src/global.styles.css'; // eslint-disable-line
 
 // stories can be added directly here
 storiesOf('Welcome', module)
@@ -30,10 +38,18 @@ buttonStory();
 storyLinkStory();
 storyFooterStory();
 storycardStory();
+sliderStory();
 pieStory();
+areaChartStory();
+dropdownStory();
 barChartStory();
+footerStory();
 sankeyStory();
 sliderStory();
 leafletPlusDataStory();
+scrollToTopStory();
 rechartsPie();
 leafletMap();
+heroStory();
+StamenMap();
+scatterplotStory();

@@ -1,38 +1,36 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import Nav from './Nav';
-import Logo from '../Logo/Logo';
-import isClient from '../utils/isClient';
+import Logo from '../Logo/LogoAnimated';
+import styles from './Header.css';
 
-const styles = {
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: 'rgba(34,15,37,1)',
-    padding: '1rem',
-    zIndex: '1',
-  },
+class Header extends Component {
+  constructor() {
+    super();
+    this.state = {
+      mobileNav: false,
+    };
+  }
 
-  logo: {
-    margin: '1rem 0 0 4rem',
-    fontSize: '2rem',
-    flex: '1 1 100%',
-  },
+  // togglesNestedMenu = () => this.setState({ nestedMenu: !this.state.nestedMenu })
 
-};
+  render() {
+    const { children, menu, title } = this.props;
+    return (
+      <nav className={styles.header}>
+        <div className={styles.logo}>
+          <Logo alt={title} />
+        </div>
+        <Nav
+          menu={menu}
+          showNestedMenu={this.state.nestedMenu}
+          togglesNestedMenu={this.togglesNestedMenu}
+        />
+        { children }
+      </nav>
+    );
+  }
 
-const Header = ({ title = 'Civic', children, menu }) => {
-  if (isClient) require('./Header.css');
-  return (
-    <nav style={styles.header}>
-      <div style={styles.logo}>
-
-        <Logo alt={title} />
-      </div>
-      <Nav menu={menu} />
-      { children }
-    </nav>
-  );
-};
+}
 
 Header.displayName = 'Header';
 Header.propTypes = {
