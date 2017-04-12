@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@kadira/storybook';
 import { withKnobs, text } from '@kadira/storybook-addon-knobs';
-
 import { Dropdown } from '../src';
 
 const displayName = Dropdown.displayName || 'Dropdown';
@@ -16,51 +15,40 @@ const demoOptions = [
   { value: 'giraffe', label: 'Giraffe' },
 ];
 
-const demoCode = (label) => {
-  class DemoDropdown extends Component {
-    constructor() {
-      super();
-      this.state = { value: demoOptions[0].value };
-      this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(value) {
-      this.setState({ value });
-    }
-
-    render() {
-      return (
-        <Dropdown
-          label={label}
-          onChange={this.handleChange}
-          options={demoOptions}
-          value={this.state.value}
-        />
-      );
-    }
+class DemoDropdown extends Component {
+  constructor() {
+    super();
+    this.state = { value: demoOptions[0].value };
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  return <DemoDropdown />;
-};
+  handleChange(value) {
+    this.setState({ value });
+  }
 
+  render() {
+    return (
+      <Dropdown
+        label={this.props.label}
+        onChange={this.handleChange}
+        options={demoOptions}
+        value={this.state.value}
+      />
+    );
+  }
+}
 
 const propDocs = { inline: true, propTables: [Dropdown] };
 
-const stories = () => storiesOf(displayName, module)
+export default () => storiesOf(displayName, module)
   .addDecorator(withKnobs)
-  .add('as dynamic variables', () => {
-    const label = text('Label', 'label');
-
-    const content = `${label}`;
-    return (
-      demoCode(content)
-    );
-  })
   .addWithInfo(
     title,
     description,
-    demoCode,
+    () => <DemoDropdown />,
     propDocs,
-  );
-
-export default stories
+  )
+  .add('Add optional label', () => {
+    const label = text('Label', 'label');
+    return <DemoDropdown label={label} />;
+  });
