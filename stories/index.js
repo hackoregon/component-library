@@ -21,8 +21,8 @@ import rechartsPie from './RechartsPie.story';
 import heroStory from './Hero.story';
 import scatterplotStory from './Scatterplot.story';
 
-// because we don't want to extract-text for react-story book this is a temporary fix
-import '!style-loader!css-loader!../src/global.styles.css'; // eslint-disable-line
+import '../src/global.styles.css';
+import '../assets/leaflet.css';
 
 // stories can be added directly here
 storiesOf('Welcome', module)
