@@ -1,27 +1,24 @@
-import BarChart from './BarChart/BarChart';
-import Button from './Button/Button';
-import StoryCard from './StoryCard/StoryCard';
-import Chart from './Chart/Chart';
-import ChartData from './ChartData/ChartData';
-import DropdownMenu from './DropdownMenu/DropdownMenu';
-import Pie from './Pie/Pie';
-import Slider from './Slider/Slider';
-import Header from './Navigation/Header';
-import Nav from './Navigation/Nav';
-import NavRouterLink from './Navigation/NavRouterLink';
-import Radio from './Radio/Radio';
+export AreaChart from './AreaChart/AreaChart';
+export BarChart from './BarChart/BarChart';
+export Sankey from './Sankey/Sankey';
+export Button from './Button/Button';
+export StoryCard from './StoryCard/StoryCard';
+export Chart from './Chart/Chart';
+export ChartData from './ChartData/ChartData';
+export Pie from './Pie/Pie';
+export Slider from './Slider/Slider';
+export Footer from './Footer/Footer';
+export ScrollToTop from './ScrollToTop/ScrollToTop';
+export Header from './Navigation/Header';
+export Nav from './Navigation/Nav';
+export NavRouterLink from './Navigation/NavRouterLink';
+export RechartsPie from './RechartsPie/RechartsPie';
+export LeafletMap from './LeafletMap/LeafletMap';
+export StamenMap from './StamenMap/StamenMap';
+export Dropdown from './Dropdown/Dropdown';
+export Icon from './Icon/Icon';
+export Scatterplot from './Scatterplot/Scatterplot';
+export Radio from './Radio/Radio';
 
-export {
-  BarChart,
-  Button,
-  Chart,
-  ChartData,
-  DropdownMenu,
-  Header,
-  Pie,
-  Slider,
-  StoryCard,
-  Nav,
-  NavRouterLink,
-  Radio
-};
+// export utils as well for broader use
+export isClient from './utils/isClient';

@@ -1,23 +1,27 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import styles from './NavRouterLink.css';
 
-import './NavRouterLink.css';
+const pathOrName = (p, n) => p || `/${n.toLowerCase()}`;
 
-const NavRouterLink = ({ routeTo, customStyles, name }) => {
+const NavRouterLink = ({ path, customStyles, name }) => {
   const boxStyle = customStyles ? customStyles.box : null;
   const linkStyle = customStyles ? customStyles.link : null;
-  const route = routeTo || `/${name.toLowerCase()}`;
-  return (<li className={'NavRouterLink'} style={{ ...boxStyle }} >
-    <Link to={route} >
-      <span style={{ ...linkStyle }}>{name}</span>
-    </Link>
-  </li>
+  const pathTo = pathOrName(path, name);
+
+  return (
+    <li className={styles.NavRouterLink} style={{ ...boxStyle }} >
+      <Link to={pathTo} >
+        <span style={{ ...linkStyle }}>{name}</span>
+      </Link>
+
+    </li>
   );
 };
 
 NavRouterLink.propTypes = {
   name: PropTypes.string,
-  routeTo: PropTypes.string,
+  path: PropTypes.string,
   customStyles: PropTypes.object,
 };
 

@@ -1,21 +1,40 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import Nav from './Nav';
-import Logo from '../Logo/Logo';
-import './Header.css';
+import Logo from '../Logo/LogoAnimated';
+import styles from './Header.css';
 
-const Header = ({ title = 'Civic', children }) => (
-  <nav className={'Header'}>
-    <div className="logo">
+class Header extends Component {
+  constructor() {
+    super();
+    this.state = {
+      mobileNav: false,
+    };
+  }
 
-      <Logo alt={title} />
-    </div>
-    <Nav />
-    { children }
-  </nav>
-);
+  // togglesNestedMenu = () => this.setState({ nestedMenu: !this.state.nestedMenu })
+
+  render() {
+    const { children, menu, title } = this.props;
+    return (
+      <nav className={styles.header}>
+        <div className={styles.logo}>
+          <Logo alt={title} />
+        </div>
+        <Nav
+          menu={menu}
+          showNestedMenu={this.state.nestedMenu}
+          togglesNestedMenu={this.togglesNestedMenu}
+        />
+        { children }
+      </nav>
+    );
+  }
+
+}
 
 Header.displayName = 'Header';
 Header.propTypes = {
+  menu: PropTypes.arrayOf(PropTypes.shape({})),
   title: PropTypes.string,
   children: PropTypes.node,
 };

@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import StoryFooter from './StoryFooter';
-import './StoryCard.css';
+import styles from './StoryCard.css';
 
 const StoryCard = ({ cardId, collectionId, title, children }) => (
-  <div className={'Card'}>
-    <h2 className={'Title FilsonSoft'}>{title}</h2>
-    <div style={{ width: '100%' }}>
+  <div className={styles.card}>
+    <h2 className={'Title Rubik'}>{title}</h2>
+    <div className={styles.description}>
       {children}
     </div>
     <StoryFooter cardId={cardId} collectionId={collectionId} />

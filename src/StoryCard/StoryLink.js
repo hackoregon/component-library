@@ -1,16 +1,16 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import './StoryLink.css';
+import isClient from '../utils/isClient';
+import styles from './StoryLink.css';
 
 const StoryLink = ({ children, icon, route, action }) => (
-  <div className="StoryLink">
+  <div className={styles.storylink}>
     {route
-      ? <Link to={route}><i className={icon} /><span>{children}</span></Link>
-      : <a tabIndex="0" onClick={action}><i className={icon} /><span>{children}</span></a>
-    }
+        ? <Link to={route}><i className={icon} /><span>{children}</span></Link>
+        : <a tabIndex="0" onClick={action}><i className={icon} /><span>{children}</span></a>
+      }
   </div>
-);
-
+  );
 
 StoryLink.displayName = 'StoryLink';
 StoryLink.propTypes = {
