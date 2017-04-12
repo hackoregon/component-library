@@ -1,5 +1,4 @@
-@value grid: "../Grid/Grid.css";
-@value small, desktop from grid;
+@value small, desktop from  "../constants.css";
 
 .Nav {
   position: relative;
@@ -55,6 +54,7 @@
 
 .nestedMenu {
   position: absolute;
+  z-index: 999;
   margin-top: 0px;
   width: 200px;
   background-color: #fff;
@@ -77,7 +77,7 @@
   /*composes: visible;*/
 
 }
-  
+
 }
 
 
