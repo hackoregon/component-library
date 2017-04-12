@@ -37,28 +37,25 @@
 
 .hidden {
   visibility: hidden;
-  opacity: 0
+  opacity: 0;
 }
 
 .visible {
-  visibility: visible!important;
-  opacity: 1!important;
+  visibility: visible;
+  opacity: 1;
   margin-top: 10px;
 }
 
 .nestedMenu a {
+  color: rgba(238,73,92,1);
   padding: 5px 0px;
-  color: #EE495C;
   text-align: left;
   font-size: 16px;
 }
 
 .nestedMenu {
-  border: 1px solid #AAA4AB;
   position: absolute;
   margin-top: 0px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 200px;
   background-color: #fff;
   padding: 20px;
@@ -82,6 +79,8 @@
 }
   
 }
+
+
 
 
 @media small {
