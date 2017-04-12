@@ -11,21 +11,24 @@ const cx = classNames.bind(styles);
 
 const className = cx({ base: true });
 
-const Dropdown = ({ options, onChange, value, clearable, searchable, disabled }) => (
-  <Select
-    className={className}
-    options={options}
-    onChange={onChange}
-    value={value}
-    clearable={clearable}
-    searchable={searchable}
-    disabled={disabled}
-  />
+const Dropdown = ({ label, options, onChange, value, clearable, searchable, disabled }) => (
+  <div className={className}>
+    { label && <h3>{label}</h3> }
+    <Select
+      options={options}
+      onChange={onChange}
+      value={value}
+      clearable={clearable}
+      searchable={searchable}
+      disabled={disabled}
+    />
+  </div>
   );
 
 Dropdown.displayName = 'Dropdown';
 
 Dropdown.propTypes = {
+  label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,
   value: PropTypes.any.isRequired,  // eslint-disable-line react/forbid-prop-types

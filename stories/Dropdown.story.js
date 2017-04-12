@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@kadira/storybook';
+import { withKnobs, text } from '@kadira/storybook-addon-knobs';
+
 import { Dropdown } from '../src';
 
 const displayName = Dropdown.displayName || 'Dropdown';
@@ -14,7 +16,7 @@ const demoOptions = [
   { value: 'giraffe', label: 'Giraffe' },
 ];
 
-const demoCode = () => {
+const demoCode = (label) => {
   class DemoDropdown extends Component {
     constructor() {
       super();
@@ -29,6 +31,7 @@ const demoCode = () => {
     render() {
       return (
         <Dropdown
+          label={label}
           onChange={this.handleChange}
           options={demoOptions}
           value={this.state.value}
@@ -43,10 +46,21 @@ const demoCode = () => {
 
 const propDocs = { inline: true, propTables: [Dropdown] };
 
-export default () => storiesOf(displayName, module)
+const stories = () => storiesOf(displayName, module)
+  .addDecorator(withKnobs)
+  .add('as dynamic variables', () => {
+    const label = text('Label', 'label');
+
+    const content = `${label}`;
+    return (
+      demoCode(content)
+    );
+  })
   .addWithInfo(
     title,
     description,
     demoCode,
     propDocs,
   );
+
+export default stories
