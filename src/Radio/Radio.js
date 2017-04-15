@@ -1,63 +1,47 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import styles from './Radio.styles.css';
+import Select from 'react-select';
 
-class Radio extends React.Component {
+const cx = classNames.bind(styles);
 
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.state = {
-      checked: false
-    };
-  }
+const className = cx({ base: true });
 
-  handleChange(evt) {
-    this.setState({
-      checked: evt.target.value
-    });
-  }
-
-  handleFormSubmit(evt) {
-    console.log('You have selected:', this.state.checked);
-    evt.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleFormSubmit}>
-        <div class="radio">
-          <label>
-            <input type="radio" value="option1" checked={this.state.checked==="option1"} onChange={this.handleChange}/>Option 1
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" value="option2" checked={this.state.checked==="option2"} onChange={this.handleChange}/>Option 2
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" value="option3" checked={this.state.checked==="option3"} onChange={this.handleChange}/>Option 3
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" value="option4" checked={this.state.checked==="option4"} onChange={this.handleChange}/>Option 4
-          </label>
-        </div>
-        <button class="btn btn-default" type="submit">Submit</button>
-      </form>
-    )
-  }
-}
+const Radio = ({ options, onChange, value, clearable, searchable, disabled, isOptionUnique, isValidNewOption, onNewOptionCreator, onNewOptionClick,shouldKeyDownEventCreateNewOptions }) => (
+  <Select.Creatable
+      isOptionUnique={isOptionUnique}
+      isValidNewOption={isValidNewOption}
+      onNewOptionCreator={onNewOptionCreator}
+      onNewOptionClick={onNewOptionClick}
+      shouldKeyDownEventCreateNewOptions={shouldKeyDownEventCreateNewOptions}
+      className={className}
+      options={options}
+      onChange={onChange}
+      value={value}
+      clearable={clearable}
+      searchable={searchable}
+      disabled={disabled}
+  />
+);
 
 Radio.propTypes = {
-
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
+  value: PropTypes.string.isRequired, 
+  clearable: PropTypes.bool,
+  searchable: PropTypes.bool,
+  disabled: PropTypes.bool,
+  isOptionUnique: PropTypes.func.isRequired,
+  isValidNewOption: PropTypes.func.isRequired,
+  onNewOptionCreator: PropTypes.func.isRequired,
+  onNewOptionClick: PropTypes.func.isRequired,
+  shouldKeyDownEventCreateNewOptions: PropTypes.func.isRequired,
 }
 
 Radio.defaultProps = {
-
+  clearable: false,
+  searchable: true,
+  disabled: false,
 }
 export default Radio;
