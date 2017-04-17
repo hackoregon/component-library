@@ -1,5 +1,6 @@
 export AreaChart from './AreaChart/AreaChart';
 export BarChart from './BarChart/BarChart';
+export BubbleChart from './BubbleChart/BubbleChart';
 export Sankey from './Sankey/Sankey';
 export Button from './Button/Button';
 export StoryCard from './StoryCard/StoryCard';
