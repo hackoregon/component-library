@@ -5,7 +5,8 @@ import isClient from '../utils/isClient';
 import styles from './Dropdown.styles.css';
 
 // NOTE: temporary fix until webpack 2 comes to storybook - otherwise don't use ! syntax for webpack loaders
-if (isClient) require('!style-loader!css-loader!react-select/dist/react-select.css'); // eslint-disable-line
+// if (isClient) require('!style-loader!css-loader!react-select/dist/react-select.css'); // eslint-disable-line
+if (isClient) require('../../assets/react-select.min.css'); // eslint-disable-line
 
 const cx = classNames.bind(styles);
 

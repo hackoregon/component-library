@@ -5,13 +5,13 @@ import isClient from '../utils/isClient';
 const LeafletMap = ({ width, height, children, ...mapProps }) => (
   <div>
     {isClient &&
-    <Map {...mapProps} style={{ width, height }}>
-      <TileLayer
-        url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-        attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
-      />
-      {children}
-    </Map>
+      <Map {...mapProps} style={{ width, height }}>
+        <TileLayer
+          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+        />
+        {children}
+      </Map>
       }
   </div>
   );

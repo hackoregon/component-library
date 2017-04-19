@@ -1,5 +1,5 @@
 .header {
-  background-color: rgba(34,15,37,1);
+  composes: primary-background-color from "../constants.css";
   display: flex;
   z-index: 1;
   align-items: center;
@@ -13,7 +13,6 @@
 }
 
 .logo {
-  /*margin: 1rem 0 0 4rem;*/
-  /*font-size: 2rem;*/
+  margin: 1rem 0 0 4rem;
   flex: 2;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { RadioGroup, RadioButton } from 'react-radio-buttons';
+import RadioButtonGroup from 'react-radio-button';
 import styles from './Radio.styles.css';
 import Select from 'react-select';
 
@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 const className = cx({ base: true });
 
-const Radio = ({ options, onChange, value, clearable, searchable, disabled, isOptionUnique, isValidNewOption, onNewOptionCreator, onNewOptionClick,shouldKeyDownEventCreateNewOptions }) => (
+const Radio = ({ options, onChange, value, clearable, searchable, disabled, isOptionUnique, isValidNewOption, onNewOptionCreator, onNewOptionClick, shouldKeyDownEventCreateNewOptions }) => (
   <Select.Creatable
       isOptionUnique={isOptionUnique}
       isValidNewOption={isValidNewOption}
@@ -28,7 +28,7 @@ const Radio = ({ options, onChange, value, clearable, searchable, disabled, isOp
 Radio.propTypes = {
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,
-  value: PropTypes.string.isRequired, 
+  value: PropTypes.string.isRequired,
   clearable: PropTypes.bool,
   searchable: PropTypes.bool,
   disabled: PropTypes.bool,
