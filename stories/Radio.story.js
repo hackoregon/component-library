@@ -9,8 +9,14 @@ const description = `
   Clicking should trigger an action.`;
 
 const demoOptions = [
+  { value: 'Snoopy', name: 'Snoopy' },
+  { value: 'Charlie Brown', name: 'Charlie Brown'},
+  { value: 'Sally', name: 'Sally'},
+  { value: 'Shroeder', name: 'Shroeder'},
+  { value: 'Lucy', name: 'Lucy'},
+  { value: 'Linus', name: 'Linus'}
+]
 
-];
 const demoCode = () => {
   class DemoRadio extends React.Component {
     constructor() {
@@ -19,14 +25,7 @@ const demoCode = () => {
       this.handleSubmit = this.handleSubmit.bind(this);
       this.state = {
         checked: false,
-        radioOptions: [
-          { value: 'Snoopy', name: 'Snoopy' },
-          { value: 'Charlie Brown', name: 'Charlie Brown'},
-          { value: 'Sally', name: 'Sally'},
-          { value: 'Shroeder', name: 'Shroeder'},
-          { value: 'Lucy', name: 'Lucy'},
-          { value: 'Linus', name: 'Linus'}
-        ]
+        value: demoOptions[0].value
       };
     }
 
@@ -43,16 +42,17 @@ const demoCode = () => {
 
     render() {
       return (
-        <div classNames="container">
-          <div>
-            <RadioButtonGroup listOfItems={this.state.radioOptions} selectedItemCallback= { (value) => this.handleChange(value)}/>
-          </div>
-        </div>
+        <Radio
+          onChange={this.handleChange}
+          options={demoOptions}
+          value={this.state.value}
+        />
       );
     }
   }
 
-}
+  return <RadioButtonGroup listOfItems={this.state.radioOptions} selectedItemCallback= { (value) => this.handleChange(value)}/>
+};
 
 const propDocs = { inline: true, propTables: [Radio] };
 
