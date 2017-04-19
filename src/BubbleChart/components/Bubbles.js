@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import * as d3 from 'd3';
-import { fillColor } from '../utils';
 import tooltip from './Tooltip';
 
 export default class Bubbles extends React.Component {
@@ -73,8 +72,8 @@ export default class Bubbles extends React.Component {
       .attr('r', 0)
       .attr('cx', d => d.x)
       .attr('cy', d => d.y)
-      .attr('fill', d => fillColor(d.group))
-      .attr('stroke', d => d3.rgb(fillColor(d.group)).darker())
+      .attr('fill', d => d.color)
+      .attr('stroke', d => d3.rgb(d.color).darker())
       .attr('stroke-width', 2)
       .on('mouseover', showDetail)  // eslint-disable-line
       .on('mouseout', hideDetail) // eslint-disable-line
@@ -88,7 +87,7 @@ export default class Bubbles extends React.Component {
 
   render() {
     return (
-      <g ref={this.onRef} className="bubbles" />
+      <g ref={this.onRef} className="bubbles, tooltip" />
     );
   }
 }
@@ -137,10 +136,10 @@ export function showDetail(d) {
 /*
 * Hides tooltip
 */
-export function hideDetail(d) {
+export function hideDetail() {
     // reset outline
   d3.select(this)
-      .attr('stroke', d3.rgb(fillColor(d.group)).darker());
+      .attr('stroke', d => d3.rgb(d.color).darker());
 
   tooltip.hideTooltip();
 }

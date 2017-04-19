@@ -1,5 +1,9 @@
 import React, { PropTypes } from 'react';
-import './GroupingPicker.css';
+import classNames from 'classnames/bind';
+import styles from './GroupingPicker.css';
+
+const cx = classNames.bind(styles);
+const className = cx({ GroupingPicker: true });
 
 export default class GroupingPicker extends React.Component {
   onBtnClick = (event) => {
@@ -8,7 +12,7 @@ export default class GroupingPicker extends React.Component {
   render() {
     const { active } = this.props;
     return (
-      <div className="GroupingPicker">
+      <div className={className}>
         <button className={`button ${active === 'all' && 'active'}`} name="all" onClick={this.onBtnClick}>All Grants</button>
         <button className={`button ${active === 'year' && 'active'}`} name="year" onClick={this.onBtnClick}>Grants By Year</button>
       </div>
