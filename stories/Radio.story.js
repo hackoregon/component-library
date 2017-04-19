@@ -9,15 +9,6 @@ const description = `
   This is some basic usage with the button with providing a label to show the text.
   Clicking should trigger an action.`;
 
-const demoOptions = [
-  { value: 'Snoopy', name: 'Snoopy' },
-  { value: 'Charlie Brown', name: 'Charlie Brown'},
-  { value: 'Sally', name: 'Sally'},
-  { value: 'Shroeder', name: 'Shroeder'},
-  { value: 'Lucy', name: 'Lucy'},
-  { value: 'Linus', name: 'Linus'}
-]
-
 const demoCode = () => {
   class DemoRadio extends React.Component {
     constructor() {
@@ -25,21 +16,26 @@ const demoCode = () => {
       this.handleChange = this.handleChange.bind(this);
       this.state = {
         selectedValue: undefined,
-        radioOptions: demoOptions
+        radioOptions: [
+          { value: 'Snoopy', text: 'Snoopy' },
+          { value: 'Charlie Brown', text: 'Charlie Brown'},
+          { value: 'Sally', text: 'Sally'},
+          { value: 'Shroeder', text: 'Shroeder'},
+          { value: 'Lucy', text: 'Lucy'},
+          { value: 'Linus', text: 'Linus'}
+        ]
       };
     }
 
     handleChange(value) {
-      this.setState({
-        selectedValue: value,
-      });
+      this.setState({selectedValue: value,});
     }
 
     render() {
       return (
         <RadioButtonGroup
-          selectedItemCallback={this.state.handleChange}
-          listOfItems={demoOptions}
+          selectedItemCallback={ (value) => this.state.handleChange(value)}
+          listOfItems={this.state.radioOptions}
         />
       );
     }

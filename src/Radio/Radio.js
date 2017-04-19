@@ -21,7 +21,6 @@ Radio.displayName = 'Radio';
 Radio.propTypes = {
   listOfItems: PropTypes.array.isRequired,
   selectedItemCallback: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
 }
 
 export default Radio;
