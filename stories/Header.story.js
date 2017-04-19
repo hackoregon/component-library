@@ -17,7 +17,7 @@ const demoCode = () => (
 const altTitle = 'with Platform Hero';
 
 const altDemo = () => (
-  <div><Hero><h1 className="MediumColor">Some other slogan</h1></Hero> <Header title="Civic" /></div>
+  <div><Header title="Civic" /><Hero><h1 className="MediumColor">Some other slogan</h1></Hero></div>
 );
 
 const defaultHeroTitle = 'with default hero';

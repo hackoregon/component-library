@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import NavSubMenu from './NavSubMenu';
 import NavLink from './NavRouterLink';
 import styles from './Nav.css';
+import Icon from '../Icon/Icon.js'
 
 const defaultMenu = [
   {
@@ -11,7 +12,7 @@ const defaultMenu = [
       { name: 'Budget', path: '/collections/budget' },
       { name: 'Emergency Response', path: '/collections/emergency' },
       { name: 'Housing', path: '/collections/housing' },
-      { name: 'Homlessness', path: '/collections/homlessness' },
+      { name: 'Homelessness', path: '/collections/homlessness' },
       { name: 'Transportation', path: '/collections/transportation' },
       { name: 'Past Projects', path: '/collections/past-projects' },
     ],
@@ -40,12 +41,12 @@ class Nav extends Component {
         <ul>
           {menu.map((item, idx) =>
             (item.nestedMenu
-              ? <li key={idx} onClick={e => toggleNestedMenu(item.name, item.nestedMenu, e)}><a>{item.name}</a></li> // eslint-disable-line
+              ? <li key={idx} onClick={e => toggleNestedMenu(item.name, item.nestedMenu, e)}><a>{item.name}<Icon className={'fa fa-angle-down'}></Icon></a></li> // eslint-disable-line
               : <NavLink
                 key={idx}
                 name={item.name}
                 path={item.path}
-              />
+              ></NavLink>
             ))
           }
         </ul>
