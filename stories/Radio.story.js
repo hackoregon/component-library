@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import { Radio } from '../src';
+import RadioButtonGroup from 'react-radio-button';
 
 const displayName = Radio.displayName || 'Radio';
 const title = 'Simple usage';
@@ -22,36 +23,29 @@ const demoCode = () => {
     constructor() {
       super();
       this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
       this.state = {
-        checked: false,
-        value: demoOptions[0].value
+        selectedValue: undefined,
+        radioOptions: demoOptions
       };
     }
 
-    handleChange(evt) {
+    handleChange(value) {
       this.setState({
-        checked: value,
+        selectedValue: value,
       });
-    }
-
-    handleSubmit(evt) {
-      console.log('You have selected:', this.state.checked);
-      evt.preventDefault();
     }
 
     render() {
       return (
-        <Radio
-          onChange={this.handleChange}
-          options={demoOptions}
-          value={this.state.value}
+        <RadioButtonGroup
+          selectedItemCallback={this.state.handleChange}
+          listOfItems={demoOptions}
         />
       );
     }
   }
 
-  return <RadioButtonGroup listOfItems={this.state.radioOptions} selectedItemCallback= { (value) => this.handleChange(value)}/>
+  return <DemoRadio/>
 };
 
 const propDocs = { inline: true, propTables: [Radio] };
