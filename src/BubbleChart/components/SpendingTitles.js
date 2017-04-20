@@ -1,30 +1,30 @@
 import React, { PropTypes } from 'react';
 
-const YearsTitles = ({ yearCenters }) =>
-  <g className="yearsTitles">
+const SpendingTitles = ({ spendingCenters }) =>
+  <g className="spendingTitles">
     {
-      Object.keys(yearCenters).map(year =>
+      Object.keys(spendingCenters).map(spending =>
         <text
-          key={year}
-          x={yearCenters[year].x}
+          key={spending}
+          x={spendingCenters[spending].x}
           y={50}
           fontSize="35"
           textAnchor="middle"
           alignmentBaseline="middle"
         >
           {
-            year
+            spending
           }
         </text>)
     }
   </g>;
 
 
-YearsTitles.propTypes = {
-  yearCenters: PropTypes.objectOf(PropTypes.shape({
+SpendingTitles.propTypes = {
+  spendingCenters: PropTypes.objectOf(PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
   }).isRequired).isRequired,
 };
 
-export default YearsTitles;
+export default SpendingTitles;

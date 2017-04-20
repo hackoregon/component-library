@@ -14,15 +14,18 @@ import * as d3 from 'd3';
    */
 
 const createNodes = (rawData) => {
+
     // Use the max total_amount in the data as the max in the scale's domain
     // note we have to ensure the total_amount is a number.
   const maxAmount = d3.max(rawData, d => +d.total_amount);
+
     // Sizes bubbles based on area.
     // @v4: new flattened scale names.
   const radiusScale = d3.scalePow()
       .exponent(0.5)
       .range([2, 85])
       .domain([0, maxAmount]);
+
     // Use map() to convert raw data into node data.
     // Checkout http://learnjsdata.com/ for more on
     // working with data.
@@ -33,10 +36,12 @@ const createNodes = (rawData) => {
     name: d.bureau_title,
     group: d.group,
     color: d.color,
-    year: d.year,
+    spending: d.spending,
+    category: d.category,
     x: Math.random() * 900,
     y: Math.random() * 800,
   }));
+
     // sort them descending to prevent occlusion of smaller nodes.
   myNodes.sort((a, b) => b.value - a.value);
 

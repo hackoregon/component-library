@@ -3,8 +3,10 @@ import BubbleContainer from './components/BubbleContainer';
 import Bubbles from './components/Bubbles';
 import createNodes from './createNodes';
 import GroupingPicker from './components/GroupingPicker';
-import YearsTitles from './components/YearsTitles';
-import { width, height, center, yearCenters } from './constants';
+import CategoryTitles from './components/CategoryTitles';
+import SpendingTitles from './components/SpendingTitles';
+
+import { width, height, center, categoryCenters, spendingCenters } from './constants';
 
 export default class BubleAreaChart extends Component {
 
@@ -36,13 +38,19 @@ export default class BubleAreaChart extends Component {
               data={data}
               forceStrength={0.03}
               center={center}
-              yearCenters={yearCenters}
-              groupByYear={grouping === 'year'}
+              categoryCenters={categoryCenters}
+              groupByCategory={grouping === 'category'}
+              spendingCenters={spendingCenters}
+              groupBySpending={grouping === 'spending'}
               color={this.props.colors}
             />
             {
-              grouping === 'year' &&
-              <YearsTitles width={width} yearCenters={yearCenters} />
+              grouping === 'category' &&
+              <CategoryTitles width={width} categoryCenters={categoryCenters} />
+            }
+            {
+              grouping === 'spending' &&
+              <SpendingTitles width={width} spendingCenters={spendingCenters} />
             }
           </BubbleContainer>
         </div>
@@ -52,6 +60,6 @@ export default class BubleAreaChart extends Component {
 }
 
 BubleAreaChart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.number.isRequired),
+  data: PropTypes.arrayOf(PropTypes.object.isRequired),
   colors: PropTypes.arrayOf(PropTypes.string.isRequired),
 };

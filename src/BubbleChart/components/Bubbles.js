@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import * as d3 from 'd3';
 import tooltip from './Tooltip';
+import styles from './Tooltip.css';
 
 export default class Bubbles extends React.Component {
   constructor(props) {
@@ -20,11 +21,18 @@ export default class Bubbles extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('data', this.props.data);
     if (nextProps.data !== this.props.data) {
       this.renderBubbles(nextProps.data);
     }
-    if (nextProps.groupByYear !== this.props.groupByYear) {
-      this.regroupBubbles(nextProps.groupByYear);
+    if (nextProps.groupByCategory === true) {
+      console.log('category true', nextProps.groupByCategory);
+      this.regroupBubblesByCategory();
+    } else if (nextProps.groupBySpending === true) {
+      console.log('spending true', nextProps.groupBySpending);
+      this.regroupBubblesBySpending();
+    } else {
+      this.resetBubbles();
     }
   }
 
@@ -48,15 +56,27 @@ export default class Bubbles extends React.Component {
     return -this.props.forceStrength * (d.radius ** 2.0);
   }
 
-  regroupBubbles = (groupByYear) => {
-    const { forceStrength, yearCenters, center } = this.props;
-    if (groupByYear) {
-      this.simulation.force('x', d3.forceX().strength(forceStrength).x(d => yearCenters[d.year].x))
-                      .force('y', d3.forceY().strength(forceStrength).y(d => yearCenters[d.year].y));
-    } else {
-      this.simulation.force('x', d3.forceX().strength(forceStrength).x(center.x))
-                      .force('y', d3.forceY().strength(forceStrength).y(center.y));
-    }
+  regroupBubblesByCategory = () => {
+    const { forceStrength, categoryCenters } = this.props;
+    console.log('groupByCategory fired!')
+    this.simulation.force('x', d3.forceX().strength(forceStrength).x(d => categoryCenters[d.category].x))
+                    .force('y', d3.forceY().strength(forceStrength).y(d => categoryCenters[d.category].y));
+    this.simulation.alpha(1).restart();
+  }
+
+  regroupBubblesBySpending = () => {
+    const { forceStrength, spendingCenters } = this.props;
+    console.log('groupBySpending fired!')
+    this.simulation.force('x', d3.forceX().strength(forceStrength).x(d => spendingCenters[d.spending].x))
+                    .force('y', d3.forceY().strength(forceStrength).y(d => spendingCenters[d.spending].y));
+    this.simulation.alpha(1).restart();
+  }
+
+  resetBubbles = () => {
+    const { forceStrength, center } = this.props;
+    console.log('neither fired!')
+    this.simulation.force('x', d3.forceX().strength(forceStrength).x(center.x))
+                    .force('y', d3.forceY().strength(forceStrength).y(center.y));
     this.simulation.alpha(1).restart();
   }
 
@@ -67,7 +87,8 @@ export default class Bubbles extends React.Component {
     bubbles.exit().remove();
 
     // Enter
-    const bubblesE = bubbles.enter().append('circle')
+    const bubblesE = bubbles.enter()
+      .append('circle')
       .classed('bubble', true)
       .attr('r', 0)
       .attr('cx', d => d.x)
@@ -78,6 +99,13 @@ export default class Bubbles extends React.Component {
       .on('mouseover', showDetail)  // eslint-disable-line
       .on('mouseout', hideDetail) // eslint-disable-line
 
+    bubblesE
+      .append('text')
+      .attr('text-anchor', 'middle')
+      .text(d => d.name);
+
+      console.log('bubbles', bubblesE);
+
     bubblesE.transition().duration(2000).attr('r', d => d.radius).on('end', () => {
       this.simulation.nodes(data)
       .alpha(1)
@@ -87,7 +115,7 @@ export default class Bubbles extends React.Component {
 
   render() {
     return (
-      <g ref={this.onRef} className="bubbles, tooltip" />
+      <g ref={this.onRef} className={styles.tooltip} />
     );
   }
 }
@@ -98,14 +126,19 @@ Bubbles.propTypes = {
     y: PropTypes.number.isRequired,
   }),
   forceStrength: PropTypes.number.isRequired,
-  groupByYear: PropTypes.bool.isRequired,
-  yearCenters: PropTypes.objectOf(PropTypes.shape({
+  groupByCategory: PropTypes.bool.isRequired,
+  categoryCenters: PropTypes.objectOf(PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+  }).isRequired).isRequired,
+  groupBySpending: PropTypes.bool.isRequired,
+  spendingCenters: PropTypes.objectOf(PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
   }).isRequired).isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({
     x: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     radius: PropTypes.number.isRequired,
     value: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -120,16 +153,25 @@ export function showDetail(d) {
     // change outline to indicate hover state.
   d3.select(this).attr('stroke', 'black');
 
-  const content = `<span class="name">Title: </span><span class="value">${
-                  d.name
-                  }</span><br/>` +
-                  `<span class="name">Amount: </span><span class="value">$${
-                  d.value
-                  }</span><br/>` +
-                  `<span class="name">Year: </span><span class="value">${
-                  d.year
-                }</span>`;
-
+  const content = `<span class=${styles.name}>Title: </span>
+                   <span class="value">
+                    ${d.name}
+                   </span><br/>`
+                    +
+                  `<span class=${styles.name}>Amount: </span>
+                   <span class="value">
+                    ${d.value}
+                   </span><br/>`
+                    +
+                  `<span class=${styles.name}>Category: </span>
+                   <span class="value">
+                    ${d.category}
+                   </span><br/>`
+                   +
+                 `<span class=${styles.name}>Spending: </span>
+                  <span class="value">
+                   ${d.spending}
+                  </span><br/>`;
   tooltip.showTooltip(content, d3.event);
 }
 

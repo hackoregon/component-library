@@ -8,7 +8,7 @@ import styles from './Tooltip.css';
  * Most styling is expected to come from CSS
  * so check out bubble_chart.css for more details.
  */
-const floatingTooltip = (tooltipId, width, height) => {
+const floatingTooltip = (tooltipId, width) => {
 
   // Local variable to hold tooltip div for
   // manipulation in other functions.
@@ -83,5 +83,5 @@ const floatingTooltip = (tooltipId, width, height) => {
   };
 };
 
-const tooltip = floatingTooltip('myTooltip', 240, 160);
+const tooltip = floatingTooltip('myTooltip', 240);
 export default tooltip;

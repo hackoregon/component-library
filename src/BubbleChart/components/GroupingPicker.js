@@ -1,9 +1,5 @@
 import React, { PropTypes } from 'react';
-import classNames from 'classnames/bind';
 import styles from './GroupingPicker.css';
-
-const cx = classNames.bind(styles);
-const className = cx({ GroupingPicker: true });
 
 export default class GroupingPicker extends React.Component {
   onBtnClick = (event) => {
@@ -11,10 +7,12 @@ export default class GroupingPicker extends React.Component {
   }
   render() {
     const { active } = this.props;
+
     return (
-      <div className={className}>
-        <button className={`button ${active === 'all' && 'active'}`} name="all" onClick={this.onBtnClick}>All Grants</button>
-        <button className={`button ${active === 'year' && 'active'}`} name="year" onClick={this.onBtnClick}>Grants By Year</button>
+      <div className={styles.GroupingPicker}>
+        <button className={`${active === 'all' && styles.active} ${styles.button}`} name="all" onClick={this.onBtnClick}>Group All</button>
+        <button className={`${active === 'category' && styles.active} ${styles.button}`} name="category" onClick={this.onBtnClick}>Group by Category</button>
+        <button className={`${active === 'spending' && styles.active} ${styles.button}`} name="spending" onClick={this.onBtnClick}>Group by Spending</button>
       </div>
     );
   }
@@ -22,5 +20,5 @@ export default class GroupingPicker extends React.Component {
 
 GroupingPicker.propTypes = {
   onChanged: PropTypes.func.isRequired,
-  active: PropTypes.oneOf(['all', 'year']).isRequired,
+  active: PropTypes.oneOf(['all', 'category', 'spending']).isRequired,
 };
