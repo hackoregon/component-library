@@ -11,8 +11,8 @@ export default class GroupingPicker extends React.Component {
     return (
       <div className={styles.GroupingPicker}>
         <button className={`${active === 'all' && styles.active} ${styles.button}`} name="all" onClick={this.onBtnClick}>Group All</button>
-        <button className={`${active === 'category' && styles.active} ${styles.button}`} name="category" onClick={this.onBtnClick}>Group by Category</button>
-        <button className={`${active === 'spending' && styles.active} ${styles.button}`} name="spending" onClick={this.onBtnClick}>Group by Spending</button>
+        <button className={`${active === 'category1' && styles.active} ${styles.button}`} name="category1" onClick={this.onBtnClick}>Group by Category</button>
+        <button className={`${active === 'category2' && styles.active} ${styles.button}`} name="category2" onClick={this.onBtnClick}>Group by Spending</button>
       </div>
     );
   }
@@ -20,5 +20,5 @@ export default class GroupingPicker extends React.Component {
 
 GroupingPicker.propTypes = {
   onChanged: PropTypes.func.isRequired,
-  active: PropTypes.oneOf(['all', 'category', 'spending']).isRequired,
+  active: PropTypes.oneOf(['all', 'category1', 'category2']).isRequired,
 };

@@ -1,12 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import BubbleContainer from './components/BubbleContainer';
 import Bubbles from './components/Bubbles';
-import createNodes from './createNodes';
 import GroupingPicker from './components/GroupingPicker';
 import CategoryTitles from './components/CategoryTitles';
-import SpendingTitles from './components/SpendingTitles';
 
-import { width, height, center, categoryCenters, spendingCenters } from './constants';
+import { createNodes, width, height, center, category } from './utils';
 
 export default class BubleAreaChart extends Component {
 
@@ -38,19 +36,19 @@ export default class BubleAreaChart extends Component {
               data={data}
               forceStrength={0.03}
               center={center}
-              categoryCenters={categoryCenters}
-              groupByCategory={grouping === 'category'}
-              spendingCenters={spendingCenters}
-              groupBySpending={grouping === 'spending'}
+              categoryCenters1={category[1]}
+              groupByCategory1={grouping === 'category1'}
+              categoryCenters2={category[2]}
+              groupByCategory2={grouping === 'category2'}
               color={this.props.colors}
             />
             {
-              grouping === 'category' &&
-              <CategoryTitles width={width} categoryCenters={categoryCenters} />
+              grouping === 'category1' &&
+              <CategoryTitles width={width} categoryCenters={category[1]} />
             }
             {
-              grouping === 'spending' &&
-              <SpendingTitles width={width} spendingCenters={spendingCenters} />
+              grouping === 'category2' &&
+              <CategoryTitles width={width} categoryCenters={category[2]} />
             }
           </BubbleContainer>
         </div>

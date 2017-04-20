@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import * as d3 from 'd3';
 import tooltip from './Tooltip';
 import styles from './Tooltip.css';
+import { checkProps } from '../utils';
 
 export default class Bubbles extends React.Component {
   constructor(props) {
@@ -21,18 +22,10 @@ export default class Bubbles extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('data', this.props.data);
     if (nextProps.data !== this.props.data) {
       this.renderBubbles(nextProps.data);
-    }
-    if (nextProps.groupByCategory === true) {
-      console.log('category true', nextProps.groupByCategory);
-      this.regroupBubblesByCategory();
-    } else if (nextProps.groupBySpending === true) {
-      console.log('spending true', nextProps.groupBySpending);
-      this.regroupBubblesBySpending();
     } else {
-      this.resetBubbles();
+      checkProps(nextProps, this.props, this.simulation, this.resetBubbles);
     }
   }
 
@@ -56,25 +49,8 @@ export default class Bubbles extends React.Component {
     return -this.props.forceStrength * (d.radius ** 2.0);
   }
 
-  regroupBubblesByCategory = () => {
-    const { forceStrength, categoryCenters } = this.props;
-    console.log('groupByCategory fired!')
-    this.simulation.force('x', d3.forceX().strength(forceStrength).x(d => categoryCenters[d.category].x))
-                    .force('y', d3.forceY().strength(forceStrength).y(d => categoryCenters[d.category].y));
-    this.simulation.alpha(1).restart();
-  }
-
-  regroupBubblesBySpending = () => {
-    const { forceStrength, spendingCenters } = this.props;
-    console.log('groupBySpending fired!')
-    this.simulation.force('x', d3.forceX().strength(forceStrength).x(d => spendingCenters[d.spending].x))
-                    .force('y', d3.forceY().strength(forceStrength).y(d => spendingCenters[d.spending].y));
-    this.simulation.alpha(1).restart();
-  }
-
   resetBubbles = () => {
     const { forceStrength, center } = this.props;
-    console.log('neither fired!')
     this.simulation.force('x', d3.forceX().strength(forceStrength).x(center.x))
                     .force('y', d3.forceY().strength(forceStrength).y(center.y));
     this.simulation.alpha(1).restart();
@@ -99,13 +75,6 @@ export default class Bubbles extends React.Component {
       .on('mouseover', showDetail)  // eslint-disable-line
       .on('mouseout', hideDetail) // eslint-disable-line
 
-    bubblesE
-      .append('text')
-      .attr('text-anchor', 'middle')
-      .text(d => d.name);
-
-      console.log('bubbles', bubblesE);
-
     bubblesE.transition().duration(2000).attr('r', d => d.radius).on('end', () => {
       this.simulation.nodes(data)
       .alpha(1)
@@ -126,16 +95,6 @@ Bubbles.propTypes = {
     y: PropTypes.number.isRequired,
   }),
   forceStrength: PropTypes.number.isRequired,
-  groupByCategory: PropTypes.bool.isRequired,
-  categoryCenters: PropTypes.objectOf(PropTypes.shape({
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-  }).isRequired).isRequired,
-  groupBySpending: PropTypes.bool.isRequired,
-  spendingCenters: PropTypes.objectOf(PropTypes.shape({
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-  }).isRequired).isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({
     x: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
