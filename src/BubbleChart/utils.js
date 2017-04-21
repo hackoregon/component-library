@@ -67,21 +67,25 @@ export const createNodes = (rawData) => {
 
 // regroup bubbles to active category
 export const checkProps = (nextProps, props, simulation, resetBubbles) => {
+  let regroupBubbles = '';
   if (nextProps.groupByCategory1 === true) {
-    return (function () {
+    regroupBubbles =  (function Cat1() {
       const { forceStrength, categoryCenters1 } = props;
       simulation.force('x', d3.forceX().strength(forceStrength).x(d => categoryCenters1[d.category1].x))
                       .force('y', d3.forceY().strength(forceStrength).y(d => categoryCenters1[d.category1].y));
       simulation.alpha(1).restart();
     }());
   } else if (nextProps.groupByCategory2 === true) {
-    return (function () {
+    regroupBubbles = (function Cat2() {
       const { forceStrength, categoryCenters2 } = props;
       simulation.force('x', d3.forceX().strength(forceStrength).x(d => categoryCenters2[d.category2].x))
                       .force('y', d3.forceY().strength(forceStrength).y(d => categoryCenters2[d.category2].y));
       simulation.alpha(1).restart();
     }());
   }
+  if (regroupBubbles === '') {
+    return resetBubbles();
+  }
 
-  resetBubbles();
+  return regroupBubbles;
 };
