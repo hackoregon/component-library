@@ -1,8 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { Marker, Popup } from 'react-leaflet';
+import { Marker, Popup, GeoJSON } from 'react-leaflet';
 import L from 'leaflet';
 import { LeafletMap } from '../src';
+import Shapes from '../assets/Shapes.js'
 
 /**
  * pointing to hosted leaflet images for now,
@@ -50,6 +51,35 @@ const boundsDemo = () => (
   </LeafletMap>
 );
 
+const fancyDemoTitle = 'Stylized Portland Map with GeoJSON';
+const fancyDescription = 'Stylized map with GeoJSON capabilities. Currently using the toner-lite tiles from Stamen Design, but could be adapted to any files. To stylize individual regions defined in your GeoJSON file, youll need to reference the properties of the GeoJSON layer. In this example GeoJSON that would be Analysis-A';
+
+const fancyMapProps = {
+  width: "60%",
+  height: 500,
+	center: [45.54362, -122.676482],
+	zoom: 11,
+	zoomControl: false,
+	dragging: false,
+	touchZoom: false,
+	doubleClickZoom: false,
+	scrollWheelZoom: false,
+  url: "http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png",
+  attribution: "Map tiles by <a href='http://stamen.com'>Stamen Design</a>, under <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a>. Data by <a  href='http://openstreetmap.org'>OpenStreetMap</a>, under <a href='http://creativecommons.org/licenses/by-sa/3.0'>CC BY SA</a>.",
+};
+
+const fancyStyle = {
+    "color": "#ff7800",
+    "weight": 2,
+    "opacity": 0.65
+};
+
+const fancyDemo = () => (
+  <LeafletMap {...fancyMapProps} >
+		<GeoJSON style={fancyStyle} data={Shapes}/>
+  </LeafletMap>
+);
+
 const propDocs = { inline: true, propTables: [LeafletMap] };
 
 export default () => storiesOf(displayName, module)
@@ -59,4 +89,14 @@ export default () => storiesOf(displayName, module)
     basicMapDemo,
     propDocs,
   )
-  .add(boundsDemoTitle, boundsDemo);
+  .addWithInfo(
+		boundsDemoTitle, 
+		boundsDemo,
+		propDocs,
+	)
+	.addWithInfo(
+		fancyDemoTitle,
+		fancyDescription, 
+		fancyDemo,
+		propDocs
+	);
