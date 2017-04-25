@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import * as d3 from 'd3';
 import tooltip from './Tooltip';
 import styles from './Tooltip.css';
-import { checkProps } from '../utils';
 
 export default class Bubbles extends React.Component {
   constructor(props) {
@@ -19,14 +18,6 @@ export default class Bubbles extends React.Component {
 
   state = {
     g: null,
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.data !== this.props.data) {
-      this.renderBubbles(nextProps.data);
-    } else {
-      checkProps(nextProps, this.props, this.simulation, this.resetBubbles);
-    }
   }
 
   shouldComponentUpdate() {
@@ -47,13 +38,6 @@ export default class Bubbles extends React.Component {
 
   charge(d) {
     return -this.props.forceStrength * (d.radius ** 2.0);
-  }
-
-  resetBubbles = () => {
-    const { forceStrength, center } = this.props;
-    this.simulation.force('x', d3.forceX().strength(forceStrength).x(center.x))
-                    .force('y', d3.forceY().strength(forceStrength).y(center.y));
-    this.simulation.alpha(1).restart();
   }
 
   renderBubbles(data) {
@@ -122,15 +106,10 @@ export function showDetail(d) {
                     ${d.value}
                    </span><br/>`
                     +
-                  `<span class=${styles.name}>Category: </span>
+                  `<span class=${styles.name}>Percentage: </span>
                    <span class="value">
-                    ${d.category}
-                   </span><br/>`
-                   +
-                 `<span class=${styles.name}>Spending: </span>
-                  <span class="value">
-                   ${d.spending}
-                  </span><br/>`;
+                    ${d.percentage}
+                   </span><br/>`;
   tooltip.showTooltip(content, d3.event);
 }
 
