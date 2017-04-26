@@ -12,6 +12,7 @@ export ScrollToTop from './ScrollToTop/ScrollToTop';
 export Header from './Navigation/Header';
 export Nav from './Navigation/Nav';
 export NavRouterLink from './Navigation/NavRouterLink';
+export LeafletPlusData from './LeafletPlusData/LeafletPlusData';
 export RechartsPie from './RechartsPie/RechartsPie';
 export LeafletMap from './LeafletMap/LeafletMap';
 export Dropdown from './Dropdown/Dropdown';

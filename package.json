@@ -70,6 +70,7 @@
     "d3-format": "^1.1.1",
     "d3-sankey": "^0.4.2",
     "d3-shape": "^1.0.6",
+    "es6-promise": "^4.1.0",
     "leaflet": "^1.0.3",
     "ramda": "^0.23.0",
     "rc-slider": "^5.4.0",
