@@ -1,11 +1,16 @@
 /* StoryCard Styles */
 
 .card {
-    text-align: center;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+.card h2 {
+  text-align: center;
+}
+
 .description {
+  margin: 0 auto;
+  max-width: 800px;
   width: 100%;
 }

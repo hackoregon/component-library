@@ -32,6 +32,11 @@
   text-align: center;
 }
 
+.Nav a:hover {
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+}
+
 @media desktop {
 
 .hidden {
