@@ -22,6 +22,7 @@
     "url": "https://github.com/hackoregon/component-library"
   },
   "devDependencies": {
+    "@hackoregon/jinn": "^0.2.3",
     "@kadira/react-storybook-addon-info": "^3.3.0",
     "@kadira/storybook": "^2.21.0",
     "@kadira/storybook-addon-knobs": "^1.7.0",
@@ -36,6 +37,7 @@
     "chai-enzyme": "^0.6.1",
     "cheerio": "^0.22.0",
     "css-loader": "^0.28.0",
+    "editme": "^1.1.0",
     "enzyme": "^2.7.0",
     "eslint": "^3.12.1",
     "eslint-config-airbnb": "^13.0.0",
