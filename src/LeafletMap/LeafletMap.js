@@ -7,8 +7,8 @@ const LeafletMap = ({ width, height, children, ...mapProps }) => (
     {isClient &&
       <Map {...mapProps} style={{ width, height }}>
         <TileLayer
-          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+					url={mapProps.url}
+          attribution={mapProps.attribution}
         />
         {children}
       </Map>
@@ -23,6 +23,8 @@ LeafletMap.propTypes = {
   children: PropTypes.node.isRequired,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	url: PropTypes.string,
+	attribution: PropTypes.string,
 };
 
 LeafletMap.defaultProps = {
@@ -31,6 +33,8 @@ LeafletMap.defaultProps = {
   width: '100%',
   height: 600,
   scrollWheelZoom: false,
+	url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+	attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
 };
 
 export default LeafletMap;
