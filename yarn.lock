@@ -1828,6 +1828,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.2:
     create-hash "^1.1.0"
     inherits "^2.0.1"
 
+cross-spawn@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
+  dependencies:
+    lru-cache "^4.0.1"
+    shebang-command "^1.2.0"
+    which "^1.2.9"
+
 cryptiles@2.x.x:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/cryptiles/-/cryptiles-2.0.5.tgz#3bdfecdc608147c1c67202fa291e7dca59eaa3b8"
@@ -2354,6 +2362,10 @@ detect-indent@^4.0.0:
   dependencies:
     repeating "^2.0.0"
 
+detect-indent@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-5.0.0.tgz#3871cc0a6a002e8c3e5b3cf7f336264675f06b9d"
+
 diff@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-1.4.0.tgz#7f28d2eb9ee7b15a97efd89ce63dcfdaa3ccbabf"
@@ -2442,7 +2454,7 @@ editions@^1.1.1:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/editions/-/editions-1.3.3.tgz#0907101bdda20fac3cbe334c27cbd0688dc99a5b"
 
-editme@^1.1.0:
+editme:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/editme/-/editme-1.1.0.tgz#945a3385b083816ae8365bcf4ff83f8a56f4e2fc"
   dependencies:
@@ -3202,7 +3214,7 @@ glob-parent@^2.0.0:
   dependencies:
     is-glob "^2.0.0"
 
-glob@^7.0.0, glob@^7.0.3, glob@^7.0.5:
+glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
   dependencies:
@@ -4148,6 +4160,12 @@ lodash@^4.0.0, lodash@^4.0.1, lodash@^4.16.4, lodash@^4.17.2, lodash@^4.17.4, lo
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
+log-symbols@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
+  dependencies:
+    chalk "^1.0.0"
+
 lolex@1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/lolex/-/lolex-1.3.2.tgz#7c3da62ffcb30f0f5a80a2566ca24e45d8a01f31"
@@ -4171,6 +4189,13 @@ lower-case-first@^1.0.0:
 lower-case@^1.1.0, lower-case@^1.1.1, lower-case@^1.1.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
+
+lru-cache@^4.0.1:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.0.2.tgz#1d17679c069cda5d040991a09dbc2c0db377e55e"
+  dependencies:
+    pseudomap "^1.0.1"
+    yallist "^2.0.0"
 
 macaddress@^0.2.8:
   version "0.2.8"
@@ -5182,6 +5207,10 @@ prr@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/prr/-/prr-0.0.0.tgz#1a84b85908325501411853d0081ee3fa86e2926a"
 
+pseudomap@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
+
 public-encrypt@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/public-encrypt/-/public-encrypt-4.0.0.tgz#39f699f3a46560dd5ebacbca693caf7c65c18cc6"
@@ -5846,7 +5875,7 @@ sax@^1.2.1, sax@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
 
-semver@^5.3.0, semver@~5.3.0:
+semver@^5.0.3, semver@^5.3.0, semver@~5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
@@ -5923,6 +5952,16 @@ shallowequal@^0.2.2, shallowequal@0.2.x:
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-0.2.2.tgz#1e32fd5bcab6ad688a4812cb0cc04efc75c7014e"
   dependencies:
     lodash.keys "^3.1.2"
+
+shebang-command@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
+  dependencies:
+    shebang-regex "^1.0.0"
+
+shebang-regex@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
 
 shelljs@^0.7.0, shelljs@^0.7.4, shelljs@^0.7.5:
   version "0.7.6"
@@ -6492,6 +6531,19 @@ verror@1.3.6:
   dependencies:
     extsprintf "1.0.2"
 
+version-bump-prompt:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/version-bump-prompt/-/version-bump-prompt-3.1.0.tgz#10270b4f0df8cca858e9b041a7a56954776a9804"
+  dependencies:
+    chalk "^1.1.1"
+    commander "^2.8.1"
+    cross-spawn "^5.1.0"
+    detect-indent "^5.0.0"
+    glob "^7.1.1"
+    inquirer "^3.0.6"
+    log-symbols "^1.0.2"
+    semver "^5.0.3"
+
 vm-browserify@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
@@ -6593,7 +6645,7 @@ whet.extend@~0.9.9:
   version "0.9.9"
   resolved "https://registry.yarnpkg.com/whet.extend/-/whet.extend-0.9.9.tgz#f877d5bf648c97e5aa542fadc16d6a259b9c11a1"
 
-which@^1.2.12:
+which@^1.2.12, which@^1.2.9:
   version "1.2.14"
   resolved "https://registry.yarnpkg.com/which/-/which-1.2.14.tgz#9a87c4378f03e827cecaf1acdf56c736c01c14e5"
   dependencies:
@@ -6656,6 +6708,10 @@ xmlhttprequest@1:
 xtend@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
+
+yallist@^2.0.0:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
 
 yargs@~3.10.0:
   version "3.10.0"
