@@ -6,7 +6,6 @@
 
 .Nav ul {
   display: flex;
-  padding: 1rem;
   list-style: none;
   align-items: center;
   justify-content: center;

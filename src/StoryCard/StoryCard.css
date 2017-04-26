@@ -1,8 +1,9 @@
 /* StoryCard Styles */
 
 .card {
-    max-width: 1200px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .card h2 {
@@ -10,7 +11,8 @@
 }
 
 .description {
-  margin: 0 auto;
-  max-width: 800px;
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
 }
