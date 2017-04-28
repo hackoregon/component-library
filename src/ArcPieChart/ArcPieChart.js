@@ -2,17 +2,6 @@ import React from 'react';
 import { PieChart, Pie, ResponsiveContainer, Text, Cell, Legend } from 'recharts';
 import styles from './ArcPieChart.styles.css';
 
-
-const propsData = [
-  { name: 'Homeless on arrival', value: 31.7 },
-];
-
-const propsYears = [2011, 2013, 2015];
-const propsActive = 2011;
-
-const COLORS = ['#75568D', '#AAA4AB'];
-
-
 const pieLabel = (options) => {
   if (options.payload.name === 'DontLabelMe') {
     return null;
@@ -33,16 +22,16 @@ const pieLabel = (options) => {
   );
 };
 
-const ArcPieChart = props => (
+const ArcPieChart = ({ dataSet, setName, labels, colors }) => (
   <div className={styles.container} >
     <div className={styles.yearsContainer}>
       <ul className={styles.years}>
         {
-          propsYears.map((item) => {
-            const active = item === propsActive ? styles.linkActive : '';
+          labels.map((label) => {
+            const active = label === setName ? styles.linkActive : '';
             return (
-              <li className={styles.listItem} key={item}>
-                <a className={`${styles.link} ${active}`}>{item}</a>
+              <li className={styles.listItem} key={label}>
+                <a className={`${styles.link} ${active}`}>{label}</a>
               </li>
             );
           })
@@ -56,7 +45,7 @@ const ArcPieChart = props => (
         <Pie
           startAngle={180}
           endAngle={0}
-          data={[...propsData, { name: 'DontLabelMe', value: 100 - propsData[0].value }]}
+          data={[...dataSet, { name: 'DontLabelMe', value: 100 - dataSet[0].value }]}
           cy={'100%'}
           labelLine={false}
           innerRadius={'105%'}
@@ -65,17 +54,17 @@ const ArcPieChart = props => (
           label={pieLabel}
         >
           {
-            propsData.map((entry, idx) =>
-              <Cell key={entry.name} fill={COLORS[idx % COLORS.length]} />)
+            dataSet.map((entry, idx) =>
+              <Cell key={entry.name} fill={colors[idx % colors.length]} />)
           }
         </Pie>
         <Legend
           iconType={'circle'}
 
           payload={[{
-            color: COLORS[0],
+            color: colors[0],
             type: 'circle',
-            value: propsData[0].name,
+            value: dataSet[0].name,
           }]}
           wrapperStyle={{ bottom: '-35px' }}
         />
