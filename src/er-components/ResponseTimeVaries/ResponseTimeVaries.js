@@ -1,19 +1,85 @@
 import React from 'react';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
-
-const data = [{ x: 100, y: 200, z: 200 }, { x: 120, y: 100, z: 260 },
-                { x: 170, y: 300, z: 400 }, { x: 140, y: 250, z: 280 },
-                { x: 150, y: 400, z: 500 }, { x: 110, y: 280, z: 200 }];
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  ZAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
+import data from './data';
 
 const Scatterplot = () => (
-  <div>
-    <ScatterChart width={400} height={400} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-      <XAxis dataKey={'x'} name='stature' unit='cm' />
-      <YAxis dataKey={'y'} name='weight' unit='kg' />
-      <Scatter name='A school' data={data} fill='#8884d8' />
-      <CartesianGrid />
-      <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-    </ScatterChart>
+  <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
+    <ResponsiveContainer width="33.333%" aspect="1">
+      <ScatterChart>
+        <XAxis dataKey={'fma_population_total'} name="Population" />
+        <YAxis dataKey={'median_response_time'} name="Response Time" unit="min" />
+        <ZAxis dataKey={'fma'} name="Fire Management Area" />
+        <Scatter name="Response Time vs. FMA Population" data={data} fill="#D7075F" />
+        <CartesianGrid />
+        <Legend />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+      </ScatterChart>
+    </ResponsiveContainer>
+    <ResponsiveContainer width="33.333%" aspect="1">
+      <ScatterChart>
+        <XAxis dataKey={'median_hh_income'} name="Median Household Income" unit="$" />
+        <YAxis dataKey={'median_response_time'} name="Response Time" unit="min" />
+        <ZAxis dataKey={'fma'} name="Fire Management Area" />
+        <Scatter name="Response Time vs FMA Median Income" data={data} fill="#D7075F" />
+        <CartesianGrid />
+        <Legend />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+      </ScatterChart>
+    </ResponsiveContainer>
+    <ResponsiveContainer width="33.333%" aspect="1">
+      <ScatterChart>
+        <XAxis dataKey={'percent_non_white'} name="Non-White" unit="%" />
+        <YAxis dataKey={'median_response_time'} name="Response Time" unit="min" />
+        <ZAxis dataKey={'fma'} name="Fire Management Area" />
+        <Scatter name="Response Time vs FMA % Non-White" data={data} fill="#D7075F" />
+        <CartesianGrid />
+        <Legend />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+      </ScatterChart>
+    </ResponsiveContainer>
+    <ResponsiveContainer width="33.333%" aspect="1">
+      <ScatterChart>
+        <XAxis dataKey={'fma_population_total'} name="Population" />
+        <YAxis dataKey={'total_incidents_per_1000'} name="Incidents Per Thousand" />
+        <ZAxis dataKey={'fma'} name="Fire Management Area" />
+        <Scatter name="Incidents Per Thousand vs FMA Population" data={data} fill="#D7075F" />
+        <CartesianGrid />
+        <Legend />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+      </ScatterChart>
+    </ResponsiveContainer>
+    <ResponsiveContainer width="33.333%" aspect="1">
+      <ScatterChart>
+        <XAxis dataKey={'median_hh_income'} name="Median Household Income" unit="$" />
+        <YAxis dataKey={'total_incidents_per_1000'} name="Incidents Per Thousand" />
+        <ZAxis dataKey={'fma'} name="Fire Management Area" />
+        <Scatter name="Incidents Per Thousand vs FMA Median Income" data={data} fill="#D7075F" />
+        <CartesianGrid />
+        <Legend />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+      </ScatterChart>
+    </ResponsiveContainer>
+    <ResponsiveContainer width="33.333%" aspect="1">
+      <ScatterChart>
+        <XAxis dataKey={'percent_non_white'} name="Non-White" unit="%" />
+        <YAxis dataKey={'total_incidents_per_1000'} name="Incidents Per Thousand" />
+        <ZAxis dataKey={'fma'} name="Fire Management Area" />
+        <Scatter name="Incidents Per Thousand vs FMA % Non-White" data={data} fill="#D7075F" />
+        <CartesianGrid />
+        <Legend />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+      </ScatterChart>
+    </ResponsiveContainer>
   </div>
 );
 
