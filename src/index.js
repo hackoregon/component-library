@@ -18,7 +18,7 @@ export Dropdown from './Dropdown/Dropdown';
 export Icon from './Icon/Icon';
 export Scatterplot from './Scatterplot/Scatterplot';
 export HowWhenBusy from './er-components/HowWhenBusy/HowWhenBusy';
-export ResponseTimeVaries from './er-components/ResponseTimeVaries/ResponseTimeVaries'
+export ResponseTimeVaries from './er-components/ResponseTimeVaries/ResponseTimeVaries';
 
 // export utils as well for broader use
 export isClient from './utils/isClient';
