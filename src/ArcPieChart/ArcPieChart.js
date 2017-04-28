@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChart, Pie, ResponsiveContainer, Text, Cell, Curve, Legend } from 'recharts';
+import { PieChart, Pie, ResponsiveContainer, Text, Cell, Legend } from 'recharts';
 import styles from './ArcPieChart.styles.css';
 
 
@@ -20,9 +20,8 @@ const pieLabel = (options) => {
 
   return (
     <Text
-      {...options}
       x={options.cx}
-      y={options.cy}
+      y={options.cy - 20}
       fontSize={28}
       fill={'black'}
       style={{ fontWeight: 'bold' }}
@@ -34,13 +33,9 @@ const pieLabel = (options) => {
   );
 };
 
-const labelLine = options => (
-  <Curve {...options} stroke={'black'} type="linear" />
-);
-
 const ArcPieChart = props => (
   <div className={styles.container} >
-    <div className={styles.arcPieChart}>
+    <div className={styles.yearsContainer}>
       <ul className={styles.years}>
         {
           propsYears.map((item) => {
@@ -58,7 +53,6 @@ const ArcPieChart = props => (
       <PieChart
         margin={{ top: 0, right: 5, bottom: 100, left: 5 }}
       >
-
         <Pie
           startAngle={180}
           endAngle={0}
