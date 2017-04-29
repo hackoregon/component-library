@@ -13,6 +13,7 @@ class ArcPieChart extends React.Component {
     this.getColor = this.getColor.bind(this);
     this.pieLabel = this.pieLabel.bind(this);
     this.selectData = this.selectData.bind(this);
+    this.selectSet = this.selectSet.bind(this);
   }
   pieLabel(options) {
     const { cx, cy, payload } = options;
@@ -41,6 +42,14 @@ class ArcPieChart extends React.Component {
       selectedData: this.state.selectedSet.data.find(data => data.name === payload.name),
     }));
   }
+  selectSet(name) {
+    const newSet = this.props.dataSets.find(set => set.name === name);
+    this.setState(prevState => ({
+      ...prevState,
+      selectedSet: newSet,
+      selectedData: newSet.data[0],
+    }));
+  }
   render() {
     return (
       <div className={styles.container} >
@@ -48,10 +57,16 @@ class ArcPieChart extends React.Component {
           <ul className={styles.years}>
             {
           this.props.dataSets.map((data) => {
-            const active = data.name === this.state.selectedSet.name ? styles.linkActive : '';
+            const name = data.name;
+            const active = name === this.state.selectedSet.name ? styles.linkActive : '';
             return (
-              <li className={styles.listItem} key={data.name}>
-                <a className={`${styles.link} ${active}`}>{data.name}</a>
+              <li className={styles.listItem} key={name}>
+                <a
+                  className={`${styles.link} ${active}`}
+                  onClick={() => this.selectSet(name)}
+                >
+                  {name}
+                </a>
               </li>
             );
           })
