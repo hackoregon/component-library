@@ -3,7 +3,9 @@
 .card {
   width: 100%;
   max-width: 1200px;
+  padding: 60px 0px 30px 0px;
   margin: 0 auto;
+  border-bottom: 1px solid rgba(243,242,243,1);
 }
 
 .card h2 {
