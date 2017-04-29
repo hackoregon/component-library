@@ -22,6 +22,8 @@ const ArcPieChart = ({ dataSet, setNames, selectedSet, selectedData, colors }) =
     );
   };
 
+  const selectColor = name => name === selectedData ? colors[0] : colors[1];
+
   return (
     <div className={styles.container} >
       <div className={styles.yearsContainer}>
@@ -45,7 +47,7 @@ const ArcPieChart = ({ dataSet, setNames, selectedSet, selectedData, colors }) =
           <Pie
             startAngle={180}
             endAngle={0}
-            data={[...dataSet, { name: 'DontLabelMe', value: 100 - dataSet[0].value }]}
+            data={[...dataSet]}
             cy={'100%'}
             labelLine={false}
             innerRadius={'105%'}
@@ -54,18 +56,17 @@ const ArcPieChart = ({ dataSet, setNames, selectedSet, selectedData, colors }) =
             label={pieLabel}
           >
             {
-            dataSet.map((entry, idx) =>
-              <Cell key={entry.name} fill={colors[idx % colors.length]} />)
+            dataSet.map(data =>
+              <Cell key={data.name} fill={selectColor(data.name)} />)
           }
           </Pie>
           <Legend
             iconType={'circle'}
-
-            payload={[{
-              color: colors[0],
+            payload={dataSet.map(data => ({
+              color: selectColor(data.name),
               type: 'circle',
-              value: dataSet[0].name,
-            }]}
+              value: data.name,
+            }))}
             wrapperStyle={{ bottom: '-35px' }}
           />
         </PieChart>
