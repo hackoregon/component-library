@@ -11,13 +11,14 @@ const dataSet = [
   { name: 'Smorg', value: 27 },
 ];
 
-const labels = ['2011', '2013', '2015'];
-const setName = '2011';
+const setNames = ['2011', '2013', '2015'];
+const selectedSet = '2011';
+const selectedData = 'Smorg';
 
 const colors = ['#75568D', '#AAA4AB'];
 
 const demoCode = () => (
-  <ArcPieChart dataSet={dataSet} labels={labels} setName={setName} colors={colors} />
+  <ArcPieChart dataSet={dataSet} setNames={setNames} selectedSet={selectedSet} selectedData={selectedData} colors={colors} />
 );
 
 export default () => storiesOf(displayName, module)
