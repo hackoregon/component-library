@@ -2,10 +2,20 @@ import React from 'react';
 import { PieChart, Pie, ResponsiveContainer, Text, Cell, Legend } from 'recharts';
 import styles from './ArcPieChart.styles.css';
 
-const ArcPieChart = ({ dataSet, setNames, selectedSet, selectedData, colors }) => {
-  const pieLabel = (options) => {
+class ArcPieChart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedSet: props.dataSets[0],
+      selectedData: props.dataSets[0].data[0],
+      colors: ['#75568D', '#AAA4AB'],
+    };
+    this.getColor = this.getColor.bind(this);
+    this.pieLabel = this.pieLabel.bind(this);
+  }
+  pieLabel(options) {
     const { cx, cy, payload } = options;
-    if (payload.name !== selectedData) {
+    if (payload.name !== this.state.selectedData.name) {
       return null;
     }
     return (
@@ -20,59 +30,61 @@ const ArcPieChart = ({ dataSet, setNames, selectedSet, selectedData, colors }) =
         {`${payload.value}%`}
       </Text>
     );
-  };
-
-  const selectColor = name => name === selectedData ? colors[0] : colors[1];
-
-  return (
-    <div className={styles.container} >
-      <div className={styles.yearsContainer}>
-        <ul className={styles.years}>
-          {
-          setNames.map((name) => {
-            const active = name === selectedSet ? styles.linkActive : '';
+  }
+  getColor(name) {
+    return name === this.state.selectedData.name ? this.state.colors[0] : this.state.colors[1];
+  }
+  render() {
+    return (
+      <div className={styles.container} >
+        <div className={styles.yearsContainer}>
+          <ul className={styles.years}>
+            {
+          this.props.dataSets.map((data) => {
+            const active = data.name === this.state.selectedSet.name ? styles.linkActive : '';
             return (
-              <li className={styles.listItem} key={name}>
-                <a className={`${styles.link} ${active}`}>{name}</a>
+              <li className={styles.listItem} key={data.name}>
+                <a className={`${styles.link} ${active}`}>{data.name}</a>
               </li>
             );
           })
         }
-        </ul>
-      </div>
-      <ResponsiveContainer width={'100%'} height={175}>
-        <PieChart
-          margin={{ top: 0, right: 5, bottom: 100, left: 5 }}
-        >
-          <Pie
-            startAngle={180}
-            endAngle={0}
-            data={[...dataSet]}
-            cy={'100%'}
-            labelLine={false}
-            innerRadius={'105%'}
-            outerRadius={'185%'}
-            fill="#e3dde8"
-            label={pieLabel}
+          </ul>
+        </div>
+        <ResponsiveContainer width={'100%'} height={175}>
+          <PieChart
+            margin={{ top: 0, right: 5, bottom: 100, left: 5 }}
           >
-            {
-            dataSet.map(data =>
-              <Cell key={data.name} fill={selectColor(data.name)} />)
+            <Pie
+              startAngle={180}
+              endAngle={0}
+              data={[...this.state.selectedSet.data]}
+              cy={'100%'}
+              labelLine={false}
+              innerRadius={'105%'}
+              outerRadius={'185%'}
+              fill="#e3dde8"
+              label={this.pieLabel}
+            >
+              {
+            this.state.selectedSet.data.map(data =>
+              <Cell key={data.name} fill={this.getColor(data.name)} />)
           }
-          </Pie>
-          <Legend
-            iconType={'circle'}
-            payload={dataSet.map(data => ({
-              color: selectColor(data.name),
-              type: 'circle',
-              value: data.name,
-            }))}
-            wrapperStyle={{ bottom: '-35px' }}
-          />
-        </PieChart>
-      </ResponsiveContainer>
-    </div>
-  );
-};
+            </Pie>
+            <Legend
+              iconType={'circle'}
+              payload={this.state.selectedSet.data.map(data => ({
+                color: this.getColor(data.name),
+                type: 'circle',
+                value: data.name,
+              }))}
+              wrapperStyle={{ bottom: '-35px' }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  }
+}
 
 export default ArcPieChart;

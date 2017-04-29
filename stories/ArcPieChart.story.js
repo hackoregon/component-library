@@ -6,19 +6,34 @@ const displayName = ArcPieChart.displayName || 'ArcPieChart';
 const title = 'Simple usage';
 const description = 'Arc pie chart';
 
-const dataSet = [
-  { name: 'Homeless on arrival', value: 31.7 },
-  { name: 'Smorg', value: 27 },
+const dataSets = [
+  {
+    name: 'Monsters',
+    data: [
+      { name: 'Boggarts', value: 86 },
+      { name: 'Acromantula', value: 14 },
+    ],
+  },
+  {
+    name: 'People',
+    data: [
+      { name: 'Muggles', value: 50 },
+      { name: 'Witches', value: 25 },
+      { name: 'Wizards', value: 25 },
+    ],
+  },
+  {
+    name: 'Other',
+    data: [
+      { name: 'Giants', value: 20 },
+      { name: 'House Elves', value: 15 },
+      { name: 'Goblins', value: 65 },
+    ],
+  },
 ];
 
-const setNames = ['2011', '2013', '2015'];
-const selectedSet = '2011';
-const selectedData = 'Smorg';
-
-const colors = ['#75568D', '#AAA4AB'];
-
 const demoCode = () => (
-  <ArcPieChart dataSet={dataSet} setNames={setNames} selectedSet={selectedSet} selectedData={selectedData} colors={colors} />
+  <ArcPieChart dataSets={dataSets} />
 );
 
 export default () => storiesOf(displayName, module)
