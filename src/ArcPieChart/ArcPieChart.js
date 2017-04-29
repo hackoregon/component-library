@@ -12,6 +12,7 @@ class ArcPieChart extends React.Component {
     };
     this.getColor = this.getColor.bind(this);
     this.pieLabel = this.pieLabel.bind(this);
+    this.selectData = this.selectData.bind(this);
   }
   pieLabel(options) {
     const { cx, cy, payload } = options;
@@ -33,6 +34,12 @@ class ArcPieChart extends React.Component {
   }
   getColor(name) {
     return name === this.state.selectedData.name ? this.state.colors[0] : this.state.colors[1];
+  }
+  selectData(payload) {
+    this.setState(prevState => ({
+      ...prevState,
+      selectedData: this.state.selectedSet.data.find(data => data.name === payload.name),
+    }));
   }
   render() {
     return (
@@ -65,6 +72,7 @@ class ArcPieChart extends React.Component {
               outerRadius={'185%'}
               fill="#e3dde8"
               label={this.pieLabel}
+              onClick={this.selectData}
             >
               {
             this.state.selectedSet.data.map(data =>
@@ -77,8 +85,10 @@ class ArcPieChart extends React.Component {
                 color: this.getColor(data.name),
                 type: 'circle',
                 value: data.name,
+                name: data.name,
               }))}
               wrapperStyle={{ bottom: '-35px' }}
+              onClick={this.selectData}
             />
           </PieChart>
         </ResponsiveContainer>
