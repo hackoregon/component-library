@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { PieChart, Pie, ResponsiveContainer, Text, Cell, Legend } from 'recharts';
 import styles from './ArcPieChart.styles.css';
 
@@ -14,6 +14,9 @@ class ArcPieChart extends React.Component {
     this.pieLabel = this.pieLabel.bind(this);
     this.selectData = this.selectData.bind(this);
     this.selectSet = this.selectSet.bind(this);
+  }
+  getColor(name) {
+    return name === this.state.selectedData.name ? this.state.colors[0] : this.state.colors[1];
   }
   pieLabel(options) {
     const { cx, cy, payload } = options;
@@ -32,9 +35,6 @@ class ArcPieChart extends React.Component {
         {`${payload.value}%`}
       </Text>
     );
-  }
-  getColor(name) {
-    return name === this.state.selectedData.name ? this.state.colors[0] : this.state.colors[1];
   }
   selectData(payload) {
     this.setState(prevState => ({
@@ -56,21 +56,21 @@ class ArcPieChart extends React.Component {
         <div className={styles.yearsContainer}>
           <ul className={styles.years}>
             {
-          this.props.dataSets.map((data) => {
-            const name = data.name;
-            const active = name === this.state.selectedSet.name ? styles.linkActive : '';
-            return (
-              <li className={styles.listItem} key={name}>
-                <a
-                  className={`${styles.link} ${active}`}
-                  onClick={() => this.selectSet(name)}
-                >
-                  {name}
-                </a>
-              </li>
-            );
-          })
-        }
+              this.props.dataSets.map((data) => {
+                const name = data.name;
+                const active = name === this.state.selectedSet.name ? styles.linkActive : '';
+                return (
+                  <li className={styles.listItem} key={name}>
+                    <a
+                      className={`${styles.link} ${active}`}
+                      onClick={() => this.selectSet(name)}
+                    >
+                      {name}
+                    </a>
+                  </li>
+                );
+              })
+            }
           </ul>
         </div>
         <ResponsiveContainer width={'100%'} height={175}>
@@ -111,5 +111,9 @@ class ArcPieChart extends React.Component {
     );
   }
 }
+
+ArcPieChart.propTypes = {
+  dataSets: PropTypes.array,
+};
 
 export default ArcPieChart;
