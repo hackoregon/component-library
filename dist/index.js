@@ -84737,7 +84737,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1045 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -84753,9 +84753,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var className = _ref.className,
 	      handleClick = _ref.handleClick;
 	  return _react2.default.createElement(
-	    'span',
+	    "span",
 	    null,
-	    _react2.default.createElement('i', { onClick: handleClick, className: className })
+	    _react2.default.createElement("i", { onClick: handleClick, className: className, "aria-hidden": "true" })
 	  );
 	};
 
@@ -85137,7 +85137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.i(__webpack_require__(1053), undefined);
 
 	// module
-	exports.push([module.id, ".Nav {\n  position: relative;\n  min-width: 320px;\n}\n\n.Nav ul {\n  display: flex;\n  list-style: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.Nav ul li {\n  flex: 1 1 100%;\n}\n\n.Nav ul li span i { margin-left: 10px; }\n\n.Nav a {\n  color: rgba(255,255,255,.65);\n  flex: 1;\n  display: block;\n  font-family: 'Rubik', sans-serif;\n  font-size: 1.25rem;\n  border: none;\n  font-weight: 500;\n  text-transform: uppercase;\n  text-decoration: none;\n  padding: 1rem;\n  text-align: center;\n}\n\n.Nav a:hover {\n  color: rgba(255,255,255,.85);\n  text-decoration: none;\n}\n\n\n.hidden {\n  visibility: hidden;\n  opacity: 0;\n}\n\n.visible {\n  visibility: visible;\n  opacity: 1;\n  margin-top: 10px;\n}\n\n.ex {\n  display: none;\n  position: absolute;\n  right: 1rem;\n  width: auto;\n  z-index: 999;\n}\n\n\n@media " + __webpack_require__(1053).locals["desktop"] + " {\n\n  .nestedMenu a {\n    color: rgba(238,73,92,1);\n    padding: 5px 0px;\n    text-align: left;\n    font-size: 16px;\n  }\n\n  .nestedMenu {\n    position: absolute;\n    z-index: 999;\n    margin-top: 0px;\n    width: 200px;\n    background-color: #fff;\n    padding: 20px;\n    transition: all .5s cubic-bezier(0.42, 0, 0.14, 1);\n  }\n\n  .nestedMenu::after {\n      content: \"\";\n      position: absolute;\n      bottom: 100%;\n      left: 50%;\n      margin-left: -24px;\n      border-width: 12px;\n      border-style: solid;\n      border-color: transparent transparent #fff transparent;\n  }\n}\n\n@media " + __webpack_require__(1053).locals["small"] + " {\n    .ex {\n      display: block;\n    }\n\n  .Nav {\n    transition: all .2s linear;\n  }\n\n  .Nav.visible {\n    opacity: 1;\n  }\n\n  .Nav.hidden {\n    opacity: 0;\n    pointer-events: none;\n  }\n\n  .Nav {\n    position: absolute;\n    z-index: 1;\n    height: 100%;\n    width: 100%;\n    margin: 0 !important;\n    padding: 0 !important;\n    top: 0;\n    left: 0;\n    background-color: rgba(34,15,37,1);\n  }\n\n  .Nav ul {\n    display: block;\n    position: relative;\n    list-style: none;\n    margin: 0;\n    padding-top: 80px;\n  }\n\n  .Nav ul li {\n    color: #ffffff;\n    display: block;\n    text-align: center;\n    text-decoration: none;\n    transition: all .25s ease-in-out;\n    margin: 0;\n    padding: 0;\n    flex: none;\n  }\n\n}\n", ""]);
+	exports.push([module.id, ".Nav {\n  position: relative;\n  min-width: 320px;\n}\n\n.Nav ul {\n  display: flex;\n  list-style: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.Nav ul li {\n  flex: 1 1 100%;\n}\n\n.Nav ul li span i { margin-left: 10px; }\n\n.Nav a {\n  color: rgba(255,255,255,.65);\n  flex: 1;\n  display: block;\n  font-family: 'Rubik', sans-serif;\n  font-size: 1.25rem;\n  border: none;\n  font-weight: 500;\n  text-transform: uppercase;\n  text-decoration: none;\n  padding: 1rem;\n  text-align: center;\n}\n\n.Nav a:hover {\n  color: rgba(255,255,255,.85);\n  text-decoration: none;\n}\n\n\n.hidden {\n  visibility: hidden;\n  opacity: 0;\n}\n\n.visible {\n  visibility: visible;\n  opacity: 1;\n  margin-top: 10px;\n}\n\na.ex {\n  display: none;\n  position: absolute;\n  right: 1rem;\n  width: auto;\n  z-index: 999;\n}\n\n@media " + __webpack_require__(1053).locals["desktop"] + " {\n\n  .nestedMenu a {\n    color: rgba(238,73,92,1);\n    padding: 5px 0px;\n    text-align: left;\n    font-size: 16px;\n  }\n\n  .nestedMenu {\n    position: absolute;\n    z-index: 999;\n    margin-top: 0px;\n    width: 200px;\n    background-color: #fff;\n    padding: 20px;\n    transition: all .5s cubic-bezier(0.42, 0, 0.14, 1);\n  }\n\n  .nestedMenu::after {\n      content: \"\";\n      position: absolute;\n      bottom: 100%;\n      left: 50%;\n      margin-left: -24px;\n      border-width: 12px;\n      border-style: solid;\n      border-color: transparent transparent #fff transparent;\n  }\n}\n\n@media " + __webpack_require__(1053).locals["small"] + " {\n    a.ex {\n      display: block;\n    }\n\n  .Nav {\n    transition: all .2s linear;\n  }\n\n  .Nav.visible {\n    opacity: 1;\n  }\n\n  .Nav.hidden {\n    opacity: 0;\n    pointer-events: none;\n  }\n\n  .Nav {\n    position: absolute;\n    z-index: 1;\n    height: 100%;\n    width: 100%;\n    margin: 0 !important;\n    padding: 0 !important;\n    top: 0;\n    left: 0;\n    background-color: rgba(34,15,37,1);\n  }\n\n  .Nav ul {\n    display: block;\n    position: relative;\n    list-style: none;\n    margin: 0;\n    padding-top: 80px;\n  }\n\n  .Nav ul li {\n    color: #ffffff;\n    display: block;\n    text-align: center;\n    text-decoration: none;\n    transition: all .25s ease-in-out;\n    margin: 0;\n    padding: 0;\n    flex: none;\n  }\n\n}\n", ""]);
 
 	// exports
 	exports.locals = {

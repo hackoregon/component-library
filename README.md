@@ -1,6 +1,6 @@
 ## Hack Oregon's React Component Library
 ---
-###### v 0.2.3
+###### v 0.2.4
 ### Install
 ```bash
   $ npm i @hackoregon/component-library --save

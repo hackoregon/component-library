@@ -49,14 +49,13 @@
   margin-top: 10px;
 }
 
-.ex {
+a.ex {
   display: none;
   position: absolute;
   right: 1rem;
   width: auto;
   z-index: 999;
 }
-
 
 @media desktop {
 
@@ -90,7 +89,7 @@
 }
 
 @media small {
-    .ex {
+    a.ex {
       display: block;
     }
 
