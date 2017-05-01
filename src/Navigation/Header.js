@@ -33,10 +33,10 @@ class Header extends Component {
 
             { children }
           </div>
-          <a>
+          <a className={styles.burger}>
             <Icon
               key="nav-burger"
-              className={`${ICONS.hamburger} ${styles.burger}`}
+              className={`${ICONS.hamburger}`}
               handleClick={this.togglesNestedMenu}
             />
           </a>

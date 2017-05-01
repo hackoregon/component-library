@@ -1,3 +1,5 @@
+@value small, desktop from  "../constants.css";
+
 .container {
   composes: primary-background-color from "../constants.css";
   width: 100%;
@@ -29,13 +31,13 @@
   flex: 2;
 }
 
-.burger {
+a.burger {
   display: none;
   padding: 2rem;
 }
 
-@media (max-width: 768px) {
-  .burger {
+@media small {
+  a.burger {
     display: block;
   }
 
