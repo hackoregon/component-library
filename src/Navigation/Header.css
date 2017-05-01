@@ -1,12 +1,23 @@
+.container {
+  composes: primary-background-color from "../constants.css";
+  width: 100%;
+  min-width: 320px;
+}
+
 .header {
   composes: primary-background-color from "../constants.css";
   display: flex;
   z-index: 1;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  width: calc(100%-4rem);
+  width: 100%;
+  min-width: 320px;
   margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.nav {
+  margin: 0 30px 0 0;
 }
 
 .copyright {
@@ -14,6 +25,24 @@
 }
 
 .logo {
-  margin: 15px 0 0 0;
+  margin: 1rem 0 0 2rem;
   flex: 2;
+}
+
+.burger {
+  display: none;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+
+  .nav.inactive {
+    display: none;
+  }
+  .nav.active {
+    display: block;
+  }
 }

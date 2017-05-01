@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import NavSubMenu from './NavSubMenu';
 import NavLink from './NavRouterLink';
 import styles from './Nav.css';
-import Icon from '../Icon/Icon.js'
+import Icon from '../Icon/Icon';
 
 const defaultMenu = [
   {
@@ -31,13 +31,16 @@ class Nav extends Component {
 
   handleClick = (name, menu, e) => {
     e.preventDefault();
-    this.setState({ menuActive: !this.state.menuActive, items: menu });
+    const items = !this.state.menuActive ? menu : [];
+
+    this.setState(() => ({ menuActive: !this.state.menuActive, items }));
   }
 
   render() {
     const { menu = defaultMenu, toggleNestedMenu = this.handleClick  } = this.props;
     return (
       <div className={styles.Nav}>
+        <a className={styles.ex}><Icon key="nav-ex" className={'fa fa-times'}  handleClick={this.props.toggleSubNav} /></a>
         <ul>
           {menu.map((item, idx) =>
             (item.nestedMenu
@@ -46,7 +49,7 @@ class Nav extends Component {
                 key={idx}
                 name={item.name}
                 path={item.path}
-              ></NavLink>
+              />
             ))
           }
         </ul>
@@ -59,6 +62,7 @@ class Nav extends Component {
 Nav.propTypes = {
   menu: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string, path: PropTypes.string })),
   toggleNestedMenu: PropTypes.func,
+  toggleSubNav: PropTypes.func,
 };
 
 export default Nav;

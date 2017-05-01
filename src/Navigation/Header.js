@@ -2,31 +2,46 @@ import React, { PropTypes, Component } from 'react';
 import Nav from './Nav';
 import Logo from '../Logo/LogoAnimated';
 import styles from './Header.css';
+import Icon from '../Icon/Icon';
+import { ICONS } from '../styleConstants';
 
 class Header extends Component {
   constructor() {
     super();
     this.state = {
-      mobileNav: false,
+      menuActive: false,
     };
   }
 
-  // togglesNestedMenu = () => this.setState({ nestedMenu: !this.state.nestedMenu })
+  togglesNestedMenu = () => this.setState({ menuActive: !this.state.menuActive })
 
   render() {
     const { children, menu, title } = this.props;
     return (
-      <nav className={styles.header}>
-        <div className={styles.logo}>
-          <Logo alt={title} />
-        </div>
-        <Nav
-          menu={menu}
-          showNestedMenu={this.state.nestedMenu}
-          togglesNestedMenu={this.togglesNestedMenu}
-        />
-        { children }
-      </nav>
+      <div className={styles.container}>
+        <nav className={styles.header}>
+          <div className={styles.logo}>
+            <Logo alt={title} />
+          </div>
+          <div className={`${styles.nav} ${this.state.menuActive ? styles.active : styles.inactive}`}>
+            <Nav
+              menu={menu}
+              toggleSubNav={this.togglesNestedMenu}
+              showNestedMenu={this.state.nestedMenu}
+              togglesNestedMenu={this.togglesNestedMenu}
+            />
+
+            { children }
+          </div>
+          <a>
+            <Icon
+              key="nav-burger"
+              className={`${ICONS.hamburger} ${styles.burger}`}
+              handleClick={this.togglesNestedMenu}
+            />
+          </a>
+        </nav>
+      </div>
     );
   }
 
