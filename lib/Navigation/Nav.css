@@ -2,6 +2,7 @@
 
 .Nav {
   position: relative;
+  min-width: 320px;
 }
 
 .Nav ul {
@@ -36,7 +37,6 @@
   text-decoration: none;
 }
 
-@media desktop {
 
 .hidden {
   visibility: hidden;
@@ -49,45 +49,50 @@
   margin-top: 10px;
 }
 
-.nestedMenu a {
-  color: rgba(238,73,92,1);
-  padding: 5px 0px;
-  text-align: left;
-  font-size: 16px;
-}
-
-.nestedMenu {
+.ex {
+  display: none;
   position: absolute;
+  right: 1rem;
+  width: auto;
   z-index: 999;
-  margin-top: 0px;
-  width: 200px;
-  background-color: #fff;
-  padding: 20px;
-  transition: all .5s cubic-bezier(0.42, 0, 0.14, 1);
 }
 
-.nestedMenu::after {
-    content: "";
+
+@media desktop {
+
+  .nestedMenu a {
+    color: rgba(238,73,92,1);
+    padding: 5px 0px;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  .nestedMenu {
     position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -24px;
-    border-width: 12px;
-    border-style: solid;
-    border-color: transparent transparent #fff transparent;
+    z-index: 999;
+    margin-top: 0px;
+    width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    transition: all .5s cubic-bezier(0.42, 0, 0.14, 1);
+  }
+
+  .nestedMenu::after {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -24px;
+      border-width: 12px;
+      border-style: solid;
+      border-color: transparent transparent #fff transparent;
+  }
 }
-
-.Nav > a:nth-child(1):hover > div {
-  /*composes: visible;*/
-
-}
-
-}
-
-
-
 
 @media small {
+    .ex {
+      display: block;
+    }
 
   .Nav {
     transition: all .2s linear;

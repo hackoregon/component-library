@@ -84834,6 +84834,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Header2 = _interopRequireDefault(_Header);
 
+	var _Icon = __webpack_require__(1045);
+
+	var _Icon2 = _interopRequireDefault(_Icon);
+
+	var _styleConstants = __webpack_require__(734);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84850,13 +84856,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
 
+	    _this.togglesNestedMenu = function () {
+	      return _this.setState({ menuActive: !_this.state.menuActive });
+	    };
+
 	    _this.state = {
-	      mobileNav: false
+	      menuActive: false
 	    };
 	    return _this;
 	  }
-
-	  // togglesNestedMenu = () => this.setState({ nestedMenu: !this.state.nestedMenu })
 
 	  _createClass(Header, [{
 	    key: 'render',
@@ -84867,19 +84875,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	          title = _props.title;
 
 	      return _react2.default.createElement(
-	        'nav',
-	        { className: _Header2.default.header },
+	        'div',
+	        { className: _Header2.default.container },
 	        _react2.default.createElement(
-	          'div',
-	          { className: _Header2.default.logo },
-	          _react2.default.createElement(_LogoAnimated2.default, { alt: title })
-	        ),
-	        _react2.default.createElement(_Nav2.default, {
-	          menu: menu,
-	          showNestedMenu: this.state.nestedMenu,
-	          togglesNestedMenu: this.togglesNestedMenu
-	        }),
-	        children
+	          'nav',
+	          { className: _Header2.default.header },
+	          _react2.default.createElement(
+	            'div',
+	            { className: _Header2.default.logo },
+	            _react2.default.createElement(_LogoAnimated2.default, { alt: title })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: _Header2.default.nav + ' ' + (this.state.menuActive ? _Header2.default.active : _Header2.default.inactive) },
+	            _react2.default.createElement(_Nav2.default, {
+	              menu: menu,
+	              toggleSubNav: this.togglesNestedMenu,
+	              showNestedMenu: this.state.nestedMenu,
+	              togglesNestedMenu: this.togglesNestedMenu
+	            }),
+	            children
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            null,
+	            _react2.default.createElement(_Icon2.default, {
+	              key: 'nav-burger',
+	              className: _styleConstants.ICONS.hamburger + ' ' + _Header2.default.burger,
+	              handleClick: this.togglesNestedMenu
+	            })
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -84952,7 +84978,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _this.handleClick = function (name, menu, e) {
 	      e.preventDefault();
-	      _this.setState({ menuActive: !_this.state.menuActive, items: menu });
+	      var items = !_this.state.menuActive ? menu : [];
+
+	      _this.setState(function () {
+	        return { menuActive: !_this.state.menuActive, items: items };
+	      });
 	    };
 
 	    _this.state = {
@@ -84974,6 +85004,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return _react2.default.createElement(
 	        'div',
 	        { className: _Nav2.default.Nav },
+	        _react2.default.createElement(
+	          'a',
+	          { className: _Nav2.default.ex },
+	          _react2.default.createElement(_Icon2.default, { key: 'nav-ex', className: 'fa fa-times', handleClick: this.props.toggleSubNav })
+	        ),
 	        _react2.default.createElement(
 	          'ul',
 	          null,
@@ -85007,7 +85042,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	Nav.propTypes = {
 	  menu: _react.PropTypes.arrayOf(_react.PropTypes.shape({ name: _react.PropTypes.string, path: _react.PropTypes.string })),
-	  toggleNestedMenu: _react.PropTypes.func
+	  toggleNestedMenu: _react.PropTypes.func,
+	  toggleSubNav: _react.PropTypes.func
 	};
 
 	exports.default = Nav;
@@ -85101,7 +85137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.i(__webpack_require__(1053), undefined);
 
 	// module
-	exports.push([module.id, ".Nav {\n  position: relative;\n}\n\n.Nav ul {\n  display: flex;\n  list-style: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.Nav ul li {\n  flex: 1 1 100%;\n}\n\n.Nav ul li span i { margin-left: 10px; }\n\n.Nav a {\n  color: rgba(255,255,255,.65);\n  flex: 1;\n  display: block;\n  font-family: 'Rubik', sans-serif;\n  font-size: 1.25rem;\n  border: none;\n  font-weight: 500;\n  text-transform: uppercase;\n  text-decoration: none;\n  padding: 1rem;\n  text-align: center;\n}\n\n.Nav a:hover {\n  color: rgba(255,255,255,.85);\n  text-decoration: none;\n}\n\n@media " + __webpack_require__(1053).locals["desktop"] + " {\n\n.hidden {\n  visibility: hidden;\n  opacity: 0;\n}\n\n.visible {\n  visibility: visible;\n  opacity: 1;\n  margin-top: 10px;\n}\n\n.nestedMenu a {\n  color: rgba(238,73,92,1);\n  padding: 5px 0px;\n  text-align: left;\n  font-size: 16px;\n}\n\n.nestedMenu {\n  position: absolute;\n  z-index: 999;\n  margin-top: 0px;\n  width: 200px;\n  background-color: #fff;\n  padding: 20px;\n  transition: all .5s cubic-bezier(0.42, 0, 0.14, 1);\n}\n\n.nestedMenu::after {\n    content: \"\";\n    position: absolute;\n    bottom: 100%;\n    left: 50%;\n    margin-left: -24px;\n    border-width: 12px;\n    border-style: solid;\n    border-color: transparent transparent #fff transparent;\n}\n\n.Nav > a:nth-child(1):hover > div {\n  /*composes: visible;*/\n\n}\n\n}\n\n\n\n\n@media " + __webpack_require__(1053).locals["small"] + " {\n\n  .Nav {\n    transition: all .2s linear;\n  }\n\n  .Nav.visible {\n    opacity: 1;\n  }\n\n  .Nav.hidden {\n    opacity: 0;\n    pointer-events: none;\n  }\n\n  .Nav {\n    position: absolute;\n    z-index: 1;\n    height: 100%;\n    width: 100%;\n    margin: 0 !important;\n    padding: 0 !important;\n    top: 0;\n    left: 0;\n    background-color: rgba(34,15,37,1);\n  }\n\n  .Nav ul {\n    display: block;\n    position: relative;\n    list-style: none;\n    margin: 0;\n    padding-top: 80px;\n  }\n\n  .Nav ul li {\n    color: #ffffff;\n    display: block;\n    text-align: center;\n    text-decoration: none;\n    transition: all .25s ease-in-out;\n    margin: 0;\n    padding: 0;\n    flex: none;\n  }\n\n}\n", ""]);
+	exports.push([module.id, ".Nav {\n  position: relative;\n  min-width: 320px;\n}\n\n.Nav ul {\n  display: flex;\n  list-style: none;\n  align-items: center;\n  justify-content: center;\n}\n\n.Nav ul li {\n  flex: 1 1 100%;\n}\n\n.Nav ul li span i { margin-left: 10px; }\n\n.Nav a {\n  color: rgba(255,255,255,.65);\n  flex: 1;\n  display: block;\n  font-family: 'Rubik', sans-serif;\n  font-size: 1.25rem;\n  border: none;\n  font-weight: 500;\n  text-transform: uppercase;\n  text-decoration: none;\n  padding: 1rem;\n  text-align: center;\n}\n\n.Nav a:hover {\n  color: rgba(255,255,255,.85);\n  text-decoration: none;\n}\n\n\n.hidden {\n  visibility: hidden;\n  opacity: 0;\n}\n\n.visible {\n  visibility: visible;\n  opacity: 1;\n  margin-top: 10px;\n}\n\n.ex {\n  display: none;\n  position: absolute;\n  right: 1rem;\n  width: auto;\n  z-index: 999;\n}\n\n\n@media " + __webpack_require__(1053).locals["desktop"] + " {\n\n  .nestedMenu a {\n    color: rgba(238,73,92,1);\n    padding: 5px 0px;\n    text-align: left;\n    font-size: 16px;\n  }\n\n  .nestedMenu {\n    position: absolute;\n    z-index: 999;\n    margin-top: 0px;\n    width: 200px;\n    background-color: #fff;\n    padding: 20px;\n    transition: all .5s cubic-bezier(0.42, 0, 0.14, 1);\n  }\n\n  .nestedMenu::after {\n      content: \"\";\n      position: absolute;\n      bottom: 100%;\n      left: 50%;\n      margin-left: -24px;\n      border-width: 12px;\n      border-style: solid;\n      border-color: transparent transparent #fff transparent;\n  }\n}\n\n@media " + __webpack_require__(1053).locals["small"] + " {\n    .ex {\n      display: block;\n    }\n\n  .Nav {\n    transition: all .2s linear;\n  }\n\n  .Nav.visible {\n    opacity: 1;\n  }\n\n  .Nav.hidden {\n    opacity: 0;\n    pointer-events: none;\n  }\n\n  .Nav {\n    position: absolute;\n    z-index: 1;\n    height: 100%;\n    width: 100%;\n    margin: 0 !important;\n    padding: 0 !important;\n    top: 0;\n    left: 0;\n    background-color: rgba(34,15,37,1);\n  }\n\n  .Nav ul {\n    display: block;\n    position: relative;\n    list-style: none;\n    margin: 0;\n    padding-top: 80px;\n  }\n\n  .Nav ul li {\n    color: #ffffff;\n    display: block;\n    text-align: center;\n    text-decoration: none;\n    transition: all .25s ease-in-out;\n    margin: 0;\n    padding: 0;\n    flex: none;\n  }\n\n}\n", ""]);
 
 	// exports
 	exports.locals = {
