@@ -9,6 +9,7 @@ button.base {
   font-weight: 500;
   color: rgba(238, 73, 80, 1);
   cursor: pointer;
+  font-weight: 600;
 }
 
 .base {

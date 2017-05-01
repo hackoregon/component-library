@@ -9,6 +9,8 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
     border-bottom: none;  /* this is only because our global styles assign a border-bottom that we need to override */
 }
 
