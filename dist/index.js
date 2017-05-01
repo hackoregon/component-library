@@ -84898,10 +84898,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	          ),
 	          _react2.default.createElement(
 	            'a',
-	            null,
+	            { className: _Header2.default.burger },
 	            _react2.default.createElement(_Icon2.default, {
 	              key: 'nav-burger',
-	              className: _styleConstants.ICONS.hamburger + ' ' + _Header2.default.burger,
+	              className: '' + _styleConstants.ICONS.hamburger,
 	              handleClick: this.togglesNestedMenu
 	            })
 	          )
