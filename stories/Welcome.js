@@ -49,6 +49,7 @@ export default class Welcome extends React.Component {
   render() {
     return (
       <div style={styles.main}>
+        <h1><strong>Outdated - visit our <a style={styles.link} href="https://hackoregon.github.io/civic/">latest iteration</a></strong></h1>
         <h1>Welcome to Hack Oregon&apos;s Storybook</h1>
         <p>
           This is a UI component dev environment for the component library.
