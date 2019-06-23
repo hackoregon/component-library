@@ -1,3 +1,5 @@
+# Outdated, currently maintained in [civic](https://github.com/hackoregon/civic) repository
+
 ## Hack Oregon's React Component Library
 ---
 ###### v 0.2.5
