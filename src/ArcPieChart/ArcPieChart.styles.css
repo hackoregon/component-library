@@ -1,0 +1,37 @@
+.container {
+  color:#726371;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.yearsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.listItem {
+  display: inline;
+  padding: 10px;
+  color: #AAA4AB;
+  flex: inherit;
+}
+
+.link {
+  display: inline-block;
+  padding:5px;
+  font-size: 1.3em;
+}
+
+.link:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.linkActive {
+  font-weight: bold;
+  color: black;
+  border-bottom: 3px solid black;
+}
