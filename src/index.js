@@ -17,6 +17,7 @@ export LeafletMap from './LeafletMap/LeafletMap';
 export Dropdown from './Dropdown/Dropdown';
 export Icon from './Icon/Icon';
 export Scatterplot from './Scatterplot/Scatterplot';
+export Radio from './Radio/Radio';
 
 // export utils as well for broader use
 export isClient from './utils/isClient';

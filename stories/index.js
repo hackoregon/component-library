@@ -19,6 +19,7 @@ import dropdownStory from './Dropdown.story';
 import rechartsPie from './RechartsPie.story';
 import heroStory from './Hero.story';
 import scatterplotStory from './Scatterplot.story';
+import radioStory from './Radio.story';
 
 import '../src/global.styles.css';
 import '../assets/leaflet.css';
@@ -48,3 +49,4 @@ rechartsPie();
 leafletMap();
 heroStory();
 scatterplotStory();
+radioStory();
